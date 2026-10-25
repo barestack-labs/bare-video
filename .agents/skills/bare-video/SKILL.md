@@ -94,3 +94,14 @@ For code changes:
 - do not claim a backend integration exists until code and verification exist
 
 When finishing a substantive task, summarize what changed, what was verified, and what remains.
+
+
+## Website-generated handoffs
+
+The public prompt builder may hand you explicit choices for setup, edit mode, visual direction, captions, SFX, transcription, and finish behavior. Treat those choices as user instructions and apply them over defaults in this skill.
+
+For beginner projects, keep the Bare Video repo at `./bare-video/` and use sibling project folders such as `./input/`, `./references/`, `./assets/`, `./runtime/`, `./workspace/`, and `./output/`.
+
+When a cloud key is missing, create/open the project-root `.env` using variable names from `bare-video/examples/bare-video.env.example`. Never ask the user to paste secrets into chat.
+
+If the user asks to reuse Bare Video permanently, you may offer to copy/install this skill into the coding agent's documented user-level skill location, but you must ask before modifying global configuration.
