@@ -5,7 +5,7 @@ description: Edit videos with a coding agent using FFmpeg and HyperFrames. Use f
 
 # Bare Video
 
-Turn the user's footage into an edit that serves their intent. This is guidance, not a recipe. Use your judgment, the actual footage, and the user's taste. There is no Bare Video engine or CLI to install.
+Turn the user's footage into an edit that serves their intent. Bare Video is a portable editing skill: read the user's preferences, inspect the actual footage, and use the available editing tools with judgment.
 
 ## Start with what is there
 
@@ -18,11 +18,11 @@ Use an existing workspace as it is. For a new project, `input/`, `assets/`, `wor
 ## Make the edit
 
 - Judge cuts from meaning and delivery. Keep useful pauses, reactions, emphasis, and personality. Short speech and repeated words may be intentional.
-- Start with the footage. Add captions, a screenshot, a split view, or a designed scene when it helps. No required layout rotation or caption length.
-- Use references for editing language: pacing, framing, motion, density, captions, and sound. Do not copy protected branding or assets without rights.
+- Start with the footage. Treat Face-first, Split-screen, Light overlays, and Full-screen proof as optional building blocks. Respect the website prompt's selected set; choose by meaning, not by rotation.
+- Treat references separately from building blocks. Use them for editing language: pacing, framing, motion, density, captions, and sound. Do not copy protected branding or assets without rights.
 - Prefer real supporting material. If evidence is missing, stay with the speaker or ask for the asset rather than inventing proof.
-- Let sound support the edit without competing with speech. Quiet is a valid choice.
-- Respect explicit choices in a website-generated prompt. They are user preferences, not engine flags.
+- Respect the requested sound intensity: heavy can use frequent purposeful accents, balanced uses regular but selective accents, minimal reserves them for major moments, and none adds no SFX. Speech always wins.
+- Respect explicit choices in a website-generated prompt. They are creative constraints and preferences.
 
 Use FFmpeg directly for trims, joins, reframing, audio, and caption sidecars. Use HyperFrames when a browser composition, animated visuals, or an interactive preview helps. These are tools, not mandatory stages. Use their installed skills and current documentation when available. Do not build a replacement editing framework.
 
