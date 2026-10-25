@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Bare Video is an opinionated, local-first video editing repo for coding agents." />
+<title>Bare Video — agent-directed video editing</title>
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+<header class="wrap nav">
+  <a class="brand" href="#">bare<span>video</span></a>
+  <nav class="navlinks">
+    <a href="#layouts">Layouts</a><a href="#workflow">Workflow</a><a href="#setup">Setup</a><a href="#principles">Principles</a>
+    <a class="gh" href="https://github.com/barestack-labs/bare-video" aria-label="GitHub">Public repo ↗</a>
+  </nav>
+</header>
+
+<main>
+<section class="wrap hero">
+  <div>
+    <div class="kicker">Bare Stack Labs · Design-first v0.1</div>
+    <h1>Give your agent<br>a <em>video.</em></h1>
+    <p class="hero-copy">Bare Video is an opinionated, local-first editing repo for coding agents. It plans cuts by meaning, switches layouts beat-by-beat, uses references when you have them, and stops at a browser preview before final export.</p>
+    <div class="actions"><button class="btn" data-copy-prompt>Copy beginner prompt</button><a class="btn alt" href="#layouts">Explore 7 layouts</a></div>
+    <div class="meta"><span><b>MIT</b> licensed</span><span>•</span><span>Created by <b>Paul Martin Ablaza</b></span><span>•</span><span>Bare Stack Labs</span></div>
+  </div>
+  <div class="phone-shell">
+    <div class="phone">
+      <div class="hero-card"><small>BARE VIDEO · EDIT BEAT</small><strong>3 tools. One clean workflow.</strong><div class="steps"><i class="on"></i><i class="on"></i><i></i></div></div>
+      <div class="person"></div>
+      <div class="caption">THE AGENT <b>DECIDES</b> WHAT TO SHOW</div>
+    </div>
+  </div>
+</section>
+
+<div class="strip"><div class="wrap flow"><div>Raw video</div><div>Transcript</div><div>Cut plan</div><div>Layout beats</div><div>Preview</div><div>Export</div></div></div>
+
+<section class="wrap section" id="layouts">
+  <div class="section-head"><div><div class="kicker">Seven layout states</div><h2>One visual system.<br><em>Many rhythms.</em></h2></div><p class="lede">Bare Video does not lock a whole Short to one template. The agent picks a layout for each beat based on what the sentence is doing. The default language is warm, minimal, editorial, and restrained.</p></div>
+  <div class="layout-grid">
+    <a class="layout-card" href="templates/face.html"><div class="thumb"><div class="mini-face"></div><div class="mini-cap">JUST LET THE <span style="color:#e8d652">AGENT</span> EDIT</div></div><h3>01 · Face</h3><p>Full-screen speaker and captions. The default when nothing deserves to replace the person.</p><span class="open">Open live template ↗</span></a>
+    <a class="layout-card" href="templates/split.html"><div class="thumb" style="background:#ede8df"><div style="position:absolute;inset:0 0 48%;background:#202321;padding:17px;color:white;font-size:12px"><span class="tag" style="background:#343834;color:#d8d4c9">PROOF</span><div style="font:700 14px var(--mono);margin-top:18px">$ hyperframes preview</div></div><div class="mini-face" style="height:35%;bottom:4%"></div><div class="mini-cap" style="bottom:41%;color:#171713;text-shadow:none">SHOW IT <span style="background:#e8d652;padding:1px 4px">ABOVE</span></div></div><h3>02 · Split</h3><p>Top/bottom or side-by-side. First-class layout for tutorials, demos and proof.</p><span class="open">Open live template ↗</span></a>
+    <a class="layout-card" href="templates/float.html"><div class="thumb"><div class="mini-face"></div><div class="mini-card" style="left:8%;right:8%;top:8%;padding:15px"><b style="font-size:15px">$0 setup</b><div style="height:5px;background:#ddd5c7;border-radius:8px;margin-top:11px"><div style="width:72%;height:100%;background:#d1b831;border-radius:8px"></div></div></div><div class="mini-cap">NO COURSE <span style="color:#e8d652">NEEDED</span></div></div><h3>03 · Float</h3><p>Keep the speaker visible while a card, screenshot or tool stack enters the frame.</p><span class="open">Open live template ↗</span></a>
+    <a class="layout-card" href="templates/proof.html"><div class="thumb" style="background:#f9f7f2"><div style="position:absolute;inset:8%;background:#fff;border:1px solid #d9d3c8;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:14px"><div style="height:10px;width:40%;background:#1e1e1c;border-radius:8px"></div><div style="height:7px;width:70%;background:#ddd6ca;border-radius:8px;margin-top:16px"></div><div style="height:7px;width:82%;background:#ddd6ca;border-radius:8px;margin-top:7px"></div><div style="margin-top:19px;border:2px solid #e8d652;border-radius:9px;height:60px"></div></div><span class="tag" style="position:absolute;bottom:8%;left:8%">REAL THING FIRST</span></div><h3>04 · Proof</h3><p>Full-screen website, screen capture, repo or evidence. Real material beats fake cards.</p><span class="open">Open live template ↗</span></a>
+    <a class="layout-card" href="templates/editorial.html"><div class="thumb" style="background:#f8f4ea"><div style="padding:28px 21px"><span class="tag">STEP 03</span><div style="font:italic 30px var(--serif);margin-top:25px">Preview<br><b style="font-family:var(--sans);font-style:normal;font-size:45px;letter-spacing:-.07em">before export.</b></div><div style="height:7px;background:#d8d0c3;border-radius:10px;margin-top:27px"><div style="width:80%;height:100%;background:#d1b831;border-radius:10px"></div></div></div></div><h3>05 · Editorial</h3><p>Stats, steps, statements, comparisons and payoffs. Short, purposeful takeovers.</p><span class="open">Open live template ↗</span></a>
+    <a class="layout-card" href="templates/ui.html"><div class="thumb" style="background:#171a18"><div style="position:absolute;left:8%;right:8%;top:9%;border:1px solid #3a3d39;border-radius:13px;background:#202420;color:#eee;padding:13px"><span style="font:10px var(--mono);color:#aaa">agent · prompt</span><div style="font:700 13px/1.5 var(--mono);margin-top:11px;color:#eee">&gt; edit this video<br><span style="color:#e8d652">&gt; preview first</span></div></div><div style="position:absolute;left:12%;right:12%;bottom:13%;background:#2b2f2a;border:1px solid #3a3d39;border-radius:999px;color:#d8d6d0;padding:9px 11px;font-size:9px">✓ transcript ready</div></div><h3>06 · UI</h3><p>Terminal, progress, notifications and product-interface moments for AI/tutorial content.</p><span class="open">Open live template ↗</span></a>
+    <a class="layout-card" href="templates/collage.html"><div class="thumb" style="background:#d9d0c2"><div class="mini-card" style="left:6%;width:38%;height:30%;top:7%;background:#1e2020"></div><div class="mini-card" style="right:6%;width:42%;height:25%;top:12%;background:#f6f1e7"></div><div class="mini-face" style="width:38%;left:31%;height:38%;bottom:11%"></div><div class="mini-card" style="left:5%;width:24%;height:28%;bottom:7%;background:#f6f1e7"></div><div class="mini-card" style="right:5%;width:25%;height:26%;bottom:9%;background:#252725"></div><div style="position:absolute;left:8%;right:8%;top:46%;background:#e8d652;border-radius:8px;padding:7px;text-align:center;font-weight:950;font-size:15px;transform:rotate(-1deg)">SHOW THE PAYOFF</div></div><h3>07 · Collage</h3><p>High-density visual beat for reveals and summaries. Strong seasoning, not the whole meal.</p><span class="open">Open live template ↗</span></a>
+  </div>
+</section>
+
+<section class="wrap section" id="workflow">
+  <div class="section-head"><div><div class="kicker">Beat-driven direction</div><h2>The sentence picks<br><em>the scene.</em></h2></div><p class="lede">The agent should not rotate templates just for variety. A personal thought stays on the face. A named repo becomes proof. A list becomes a structured scene. A payoff earns a takeover.</p></div>
+  <div class="beats">
+    <div class="beat"><strong>FACE</strong><small>“I wasn't sure this would even work…”</small><div class="num">01</div></div>
+    <div class="beat"><strong>SPLIT</strong><small>“Then I gave the agent this repo…”</small><div class="num">02</div></div>
+    <div class="beat"><strong>EDITORIAL</strong><small>“It only needs three things.”</small><div class="num">03</div></div>
+    <div class="beat"><strong>PROOF</strong><small>“Here is the actual preview.”</small><div class="num">04</div></div>
+    <div class="beat"><strong>FACE</strong><small>“And I still get the final say.”</small><div class="num">05</div></div>
+  </div>
+</section>
+
+<section class="wrap section" id="setup">
+  <div class="section-head"><div><div class="kicker">Beginner-safe setup</div><h2>Reuse first.<br><em>Download second.</em></h2></div><p class="lede">The agent inspects the machine before touching it. Existing Chrome, Node, FFmpeg and Python are reused. Missing tools can stay inside the project so deleting the folder removes Bare Video's additions.</p></div>
+  <div class="setup-grid">
+    <div class="setup-box">
+      <h3>What the agent reports</h3>
+      <div class="check"><span>Chrome</span><span class="ok">✓ reuse existing</span></div>
+      <div class="check"><span>Node 22+</span><span class="ok">✓ reuse existing</span></div>
+      <div class="check"><span>FFmpeg</span><span class="ask">ask before install</span></div>
+      <div class="check"><span>Cloud transcription</span><span class="ask">optional .env</span></div>
+      <div class="check"><span>Local ASR model</span><span>only on request</span></div>
+      <div class="code">python scripts/doctor.py\n\n# Prints detected tools, disk space, CPU, RAM and recommended next step.</div>
+    </div>
+    <div class="setup-box light">
+      <h3>One project. Easy cleanup.</h3>
+      <div class="code">my-video/\n├── input/video.mp4\n├── references/\n├── assets/\n├── bare-video/\n├── runtime/       # only if needed\n├── workspace/\n└── output/</div>
+      <p style="font-size:13px;line-height:1.65;color:#6e695f;margin-top:20px">Cloud transcription is preferred when configured. Groq and Deepgram keys live in a local env file. Faster Whisper remains the no-key fallback. The default workflow plans with the user unless they explicitly request one-shot editing.</p>
+      <button class="btn alt" data-copy-prompt>Copy setup prompt</button>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section" id="principles"><div class="wrap section">
+  <div class="section-head"><div><div class="kicker">Opinionated on purpose</div><h2>Fast does not mean<br><em>frantic.</em></h2></div><p class="lede">Bare Video aims for dynamic, premium short-form editing without turning every syllable into a zoom, pop and explosion.</p></div>
+  <div class="principles">
+    <div class="principle"><b>01 · Meaning over silence</b><h3>Candidate, not verdict.</h3><p>ASR finds gaps. The agent decides whether the pause is dead air, thinking, emphasis, comedy or useful demonstration time.</p></div>
+    <div class="principle"><b>02 · Real material first</b><h3>Show the thing.</h3><p>If the speaker names a repo, screen, product or result, show it. Designed cards are fallback, not wallpaper.</p></div>
+    <div class="principle"><b>03 · Preview is a gate</b><h3>No blind final render.</h3><p>The agent opens the HyperFrames preview. The user reviews it. Final export happens only after approval.</p></div>
+  </div>
+</div></section>
+</main>
+
+<footer class="wrap footer"><div><b>Bare Video</b> · MIT licensed · public-first</div><div class="credit">Created by <b>Paul Martin Ablaza</b><br>Bare Stack Labs · 2026</div></footer>
+<div class="toast">Beginner prompt copied.</div>
+<script src="assets/app.js"></script>
+</body></html>
