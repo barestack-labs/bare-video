@@ -5,15 +5,16 @@ const state={
   visualPreset:"agent",
   visuals:[],
   reference:false,
-  captions:"agent",
-  sfx:"agent",
+  captions:"auto",
+  sfx:"auto",
   asr:"auto",
   finish:"preview",
   skill:false
 };
 
-const KEY="bare-video-configurator-v4";
-const OLD_KEY="bare-video-configurator-v3";
+const KEY="bare-video-configurator-v5";
+const PREVIOUS_KEY="bare-video-configurator-v4";
+const LEGACY_KEY="bare-video-configurator-v3";
 const ALL_VISUALS=["face","split","overlay","proof"];
 const steps=[...document.querySelectorAll(".step")];
 let current=0;
@@ -24,8 +25,9 @@ function load(){
   let saved=null;
   try{
     saved=JSON.parse(localStorage.getItem(KEY)||"null");
+    if(!saved) saved=JSON.parse(localStorage.getItem(PREVIOUS_KEY)||"null");
     if(!saved){
-      const old=JSON.parse(localStorage.getItem(OLD_KEY)||"null");
+      const old=JSON.parse(localStorage.getItem(LEGACY_KEY)||"null");
       if(old&&typeof old==="object"){
         saved={
           goal:old.goal||"",
@@ -34,15 +36,20 @@ function load(){
           visualPreset:"agent",
           visuals:[],
           reference:old.style==="reference",
-          captions:old.captions||"agent",
-          sfx:old.sfx==="restrained"?"balanced":(old.sfx||"agent"),
+          captions:old.captions||"auto",
+          sfx:old.sfx==="restrained"?"balanced":(old.sfx||"auto"),
           asr:old.asr||"auto",
           finish:old.finish||"preview",
           skill:!!old.skill
         };
       }
     }
-    if(saved&&typeof saved==="object")Object.assign(state,saved);
+    if(saved&&typeof saved==="object"){
+      if(saved.captions==="agent")saved.captions="auto";
+      if(saved.sfx==="agent")saved.sfx="auto";
+      if(saved.sfx==="heavy")saved.sfx="lots";
+      Object.assign(state,saved);
+    }
   }catch{}
   if(!Array.isArray(state.visuals))state.visuals=[];
   $("#goal").value=state.goal||"";
@@ -79,20 +86,20 @@ function syncVisuals(){
 
 function syncHelp(){
   const captionHelp={
-    agent:"Agent decides how much captioning the video needs.",
+    auto:"Agent decides how much captioning the video needs.",
     dynamic:"Faster word-synced captions with selective emphasis.",
     clean:"Simpler captions with calmer motion and fewer emphasized words.",
     none:"No captions unless you ask for them later."
   };
   const soundHelp={
-    agent:"Agent decides whether sound effects help.",
-    heavy:"Frequent sound accents are allowed: clicks, pops, impacts, whooshes, and transitions.",
+    auto:"Agent decides whether sound effects help.",
+    lots:"Frequent sound accents are allowed: clicks, pops, impacts, whooshes, and transitions.",
     balanced:"Use sound effects often enough to add energy, but not on every beat.",
     minimal:"Only accent major transitions, reveals, or proof moments.",
     none:"Do not add sound effects."
   };
-  $("#caption-help").textContent=captionHelp[state.captions]||captionHelp.agent;
-  $("#sound-help").textContent=soundHelp[state.sfx]||soundHelp.agent;
+  $("#caption-help").textContent=captionHelp[state.captions]||captionHelp.auto;
+  $("#sound-help").textContent=soundHelp[state.sfx]||soundHelp.auto;
 }
 
 function previewVisual(mode,copy){
@@ -200,15 +207,16 @@ $("#start-over").addEventListener("click",()=>{
     visualPreset:"agent",
     visuals:[],
     reference:false,
-    captions:"agent",
-    sfx:"agent",
+    captions:"auto",
+    sfx:"auto",
     asr:"auto",
     finish:"preview",
     skill:false
   });
   try{
     localStorage.removeItem(KEY);
-    localStorage.removeItem(OLD_KEY);
+    localStorage.removeItem(PREVIOUS_KEY);
+    localStorage.removeItem(LEGACY_KEY);
   }catch{}
   current=0;
   lastPreviewMode="face";
@@ -244,7 +252,7 @@ function visualInstruction(){
 
 function captionInstruction(){
   return{
-    agent:"Use captions only as much as this video needs. Decide from the footage.",
+    auto:"Use captions only as much as this video needs. Decide from the footage.",
     dynamic:"Use dynamic, word-synced captions with faster chunking and selective emphasis. Keep them readable and out of the way of important visuals.",
     clean:"Use clean, calmer captions with simpler motion and restrained emphasis.",
     none:"Do not add captions unless I ask later."
@@ -253,8 +261,8 @@ function captionInstruction(){
 
 function soundInstruction(){
   return{
-    agent:"Use your judgment for sound design. Quiet is valid.",
-    heavy:"Use a lot of sound design when it supports the energy: clicks, pops, impacts, whooshes, transitions, and small UI sounds. Speech must stay clear and the sounds should still match the action.",
+    auto:"Use your judgment for sound design. Quiet is valid.",
+    lots:"Use a lot of sound design when it supports the energy: clicks, pops, impacts, whooshes, transitions, and small UI sounds. Speech must stay clear and the sounds should still match the action.",
     balanced:"Use balanced sound design. Add useful clicks, pops, impacts, and whooshes to transitions and reveals, but do not accent every beat.",
     minimal:"Use very little added SFX. Accent only major transitions, reveals, or proof moments.",
     none:"Do not add sound effects."
