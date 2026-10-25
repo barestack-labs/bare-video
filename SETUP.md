@@ -26,3 +26,12 @@ If the user expects to use Bare Video across many projects, the agent may offer 
 Create a local `.env` only when the user chooses cloud transcription. The agent may open it with Notepad, TextEdit or the configured Linux editor. Never request that the user paste secrets into chat.
 
 See `examples/bare-video.env.example`.
+
+
+## Prompt builder
+
+The public prompt builder at `https://shorts.paulablaza.com/create.html` generates the handoff to the coding agent. It does not execute edits itself.
+
+For the recommended beginner layout, cloud credentials belong in the video project's root `.env`, not inside the Bare Video repository and never in chat. Use the variable names from `bare-video/examples/bare-video.env.example`.
+
+Experienced users may keep the repo-local skill where it is or, with explicit approval, copy it into the documented user-level skill location supported by their coding agent.
