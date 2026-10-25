@@ -19,7 +19,7 @@
   <div class="wrap nav-inner">
     <a class="brand-lockup" href="/" aria-label="Bare Video home"><img src="assets/logo.svg" alt=""><span>Bare Video</span></a>
     <nav>
-      <a href="#looks">Looks</a>
+      <a href="#looks">Styles</a>
       <a href="#how">How it works</a>
       <a class="nav-cta" href="#build">Build a prompt</a>
     </nav>
@@ -32,12 +32,12 @@
     <div class="hero-copy-block">
       <p class="eyebrow reveal">Open source · Bare Stack Labs</p>
       <h1 class="reveal">Edit video with<br>the coding agent<br>you already use.</h1>
-      <p class="hero-copy reveal">Bare Video is a small editing skill, not another editor to learn. Build a brief here, hand it to your coding agent, and let the agent work with FFmpeg, HyperFrames, and transcription tools already available to it.</p>
+      <p class="hero-copy reveal">Bare Video gives your coding agent a practical editing kit for short-form video. Pick a starting style, choose the kinds of compositions you like, or bring your own reference and let the agent adapt the edit to your footage.</p>
       <div class="hero-actions reveal">
         <a class="button primary" href="#build">Build my edit prompt</a>
         <a class="button secondary" href="#looks">See the building blocks</a>
       </div>
-      <p class="hero-note reveal">Your video stays with your agent and tools. This website only builds the instructions.</p>
+      <p class="hero-note reveal">Starter styles are a baseline, not a limit. Your instructions and references can override them.</p>
     </div>
 
     <div class="hero-phone-wrap reveal">
@@ -62,85 +62,28 @@
 </section>
 
 <section class="looks" id="looks">
-  <div class="wrap looks-grid">
-    <div class="looks-copy reveal">
-      <p class="eyebrow">Video building blocks</p>
-      <h2>Pick what the agent is allowed to use.</h2>
-      <p>These are not templates. They are four visual building blocks the agent can combine inside one edit. Choose a subset, allow all four, or leave the choice to the agent.</p>
-      <div class="mode-tabs" role="tablist" aria-label="Preview editing building blocks">
-        <button class="mode-tab is-active" data-demo-mode="face" type="button"><b>Face-first</b><span>Speaker fills the frame.</span></button>
-        <button class="mode-tab" data-demo-mode="split" type="button"><b>Split-screen</b><span>Speaker + screen/demo.</span></button>
-        <button class="mode-tab" data-demo-mode="overlay" type="button"><b>Light overlays</b><span>Small proof over footage.</span></button>
-        <button class="mode-tab" data-demo-mode="proof" type="button"><b>Full-screen proof</b><span>Let the real screen take over.</span></button>
-      </div>
+  <div class="wrap style-showcase">
+    <div class="section-head reveal">
+      <p class="eyebrow">Starter styles</p>
+      <h2>Start with a look. Change anything.</h2>
+      <p>These styles give the agent a visual baseline for color, type, cards, captions, and motion. They do not lock the edit into a fixed layout. A reference video or a direct instruction can override any part of them.</p>
     </div>
-
-    <div class="looks-phone-stage reveal">
-      <div class="phone demo-phone" id="demo-phone" data-phone-mode="face">
-        <div class="phone-speaker">
-          <div class="avatar-head"></div><div class="avatar-body"></div>
-        </div>
-        <div class="split-panel">
-          <div class="screen-ui">
-            <div class="screen-bar"><i></i><i></i><i></i></div>
-            <strong>bare-video</strong>
-            <span>preview → feedback → export</span>
-          </div>
-        </div>
-        <div class="phone-overlay-card">
-          <small>QUICK PROOF</small>
-          <strong>Free plan</strong>
-          <span>works on low-spec PCs</span>
-        </div>
-        <div class="proof-screen">
-          <div class="screen-bar"><i></i><i></i><i></i></div>
-          <small>REAL SCREEN</small>
-          <strong>Show the thing<br>you are talking about.</strong>
-          <div class="proof-lines"><i></i><i></i><i></i></div>
-        </div>
-        <div class="phone-caption">MAKE THE <mark>POINT</mark> CLEAR</div>
-        <div class="short-ui"><span class="profile-dot"></span><span>♡</span><span>◌</span><span>↗</span></div>
-        <div class="phone-meta"><b>@yourvideo</b><span>the agent changes layout when useful</span></div>
-      </div>
-      <p class="preview-label" id="preview-label">Face-first · keep the person full-screen unless another visual is more useful.</p>
+    <div class="style-strip reveal" aria-label="Bare Video starter styles">
+      <article class="style-sample sample-product"><div class="sample-frame"><span class="sample-kicker">PRODUCT</span><b>Clean proof,<br>room to breathe.</b><i class="sample-card">UI / RESULT</i></div><strong>Product Clean</strong><small>Bright, polished, controlled.</small></article>
+      <article class="style-sample sample-creator"><div class="sample-frame"><span class="sample-kicker">CREATOR</span><i class="sample-person"></i><b>SHOW THE<br><mark>USEFUL PART</mark></b><i class="sample-card">real screen</i></div><strong>Creator Utility</strong><small>Fast, practical, proof-led.</small></article>
+      <article class="style-sample sample-data"><div class="sample-frame"><span class="sample-kicker">RESULT</span><b class="sample-number">47%</b><i class="sample-chart"></i><i class="sample-card">REAL DATA</i></div><strong>Data Editorial</strong><small>Stats, hierarchy, calmer motion.</small></article>
+      <article class="style-sample sample-tutorial"><div class="sample-frame"><span class="sample-step">STEP 02</span><i class="sample-window"></i><b>Click here</b><i class="sample-callout"></i></div><strong>Tutorial Steps</strong><small>Clear actions and screen guidance.</small></article>
+      <article class="style-sample sample-minimal"><div class="sample-frame"><i class="sample-person"></i><b>THE POINT.</b></div><strong>Bare Minimal</strong><small>Strong framing, almost no decoration.</small></article>
     </div>
   </div>
 </section>
 
 <section class="how" id="how">
   <div class="wrap">
-    <div class="section-head reveal">
-      <p class="eyebrow">How Bare Video works</p>
-      <h2>The browser builds the brief.<br>Your coding agent edits the video.</h2>
-      <p>Nothing is rendered on this website. The prompt tells your coding agent what you want, and the Bare Video skill tells it how to make good editing decisions with the tools in your project.</p>
-    </div>
-
-    <div class="architecture reveal" aria-label="Bare Video workflow">
-      <article>
-        <span>01</span>
-        <b>Open a video project</b>
-        <p>Use one folder for the video. Put the MP4, references, screenshots, and working assets there so the agent has one clean workspace.</p>
-      </article>
-      <article>
-        <span>02</span>
-        <b>Point to the video</b>
-        <p>Open that folder in your coding agent and tell it exactly which video file to edit. The website never needs the file path.</p>
-      </article>
-      <article>
-        <span>03</span>
-        <b>Build the brief</b>
-        <p>Choose transcription, how you want to collaborate, one editing theme, allowed visual blocks, captions, sound, and preview behavior.</p>
-      </article>
-      <article>
-        <span>04</span>
-        <b>Agent reads the skill</b>
-        <p>The agent reads Bare Video, inspects the real footage and assets, then uses FFmpeg and optional HyperFrames only where they help.</p>
-      </article>
-      <article>
-        <span>05</span>
-        <b>Preview, revise, export</b>
-        <p>You react to a real draft. The agent fixes what matters, checks picture and audio, then exports the final video.</p>
-      </article>
+    <div class="section-head reveal compact-how">
+      <p class="eyebrow">How it works</p>
+      <h2>Give the agent the video and a direction.</h2>
+      <p>Keep the video and any references in your project, open it with your coding agent, then use the builder below if you want a structured brief. Bare Video supplies the editing guidance and starter kit; your footage, references, and feedback decide the actual edit.</p>
     </div>
   </div>
 </section>
@@ -150,17 +93,9 @@
     <div class="builder-intro reveal">
       <div>
         <p class="eyebrow">Build the prompt</p>
-        <h2>Choose the edit.<br>Not the file path.</h2>
+        <h2>Give the agent your taste.</h2>
       </div>
-      <div>
-        <p class="builder-intro-copy">Bare Video only needs your editing preferences. Keep the actual MP4 in the project folder you open with your coding agent, then point the agent to that file when you paste the prompt.</p>
-        <div class="folder-guide" aria-label="Recommended setup">
-          <article><span>01</span><b>Create a project folder</b><p>One folder per video is easiest to clean up later.</p></article>
-          <article><span>02</span><b>Put the video inside</b><p>Add the MP4 plus any references, screenshots, images, or logos.</p></article>
-          <article><span>03</span><b>Open it in your agent</b><p>Your coding agent should work from that folder, not from a mystery global workspace.</p></article>
-          <article><span>04</span><b>Point to the MP4</b><p>Tell the agent which video file is the source, then paste the prompt below.</p></article>
-        </div>
-      </div>
+      <p class="builder-intro-copy">Choose as much or as little as you want. The kit gives the agent useful starting points, while your own references and instructions can reshape the composition completely.</p>
     </div>
 
     <div class="builder-layout">
@@ -200,44 +135,51 @@
         <section class="builder-group">
           <div class="builder-group-head">
             <span>Editing theme</span>
-            <div><strong>Choose one visual language.</strong><p>The theme controls how captions, layouts, proof, backgrounds, cards, colors, and motion feel. It does not force a rigid template.</p></div>
+            <div><strong>Choose a starting style.</strong><p>This sets the visual skin: color, type, cards, captions, spacing, and motion. The agent can still change the composition.</p></div>
           </div>
           <div class="theme-grid">
             <button class="theme-card" data-theme="product" type="button">
               <span class="theme-preview theme-product"><i class="preview-face"></i><i class="preview-body"></i><i class="preview-card"></i><i class="preview-line"></i></span>
-              <span class="theme-copy"><strong>Product Clean</strong><small>Premium product-demo language. White, black, soft gray, clean cards, controlled motion, selective accent color.</small></span>
+              <span class="theme-copy"><strong>Product Clean</strong><small>Bright, polished, generous spacing, clean cards, controlled motion.</small></span>
             </button>
             <button class="theme-card" data-theme="creator" type="button">
               <span class="theme-preview theme-creator"><i class="preview-face"></i><i class="preview-body"></i><i class="preview-card"></i><i class="preview-line"></i></span>
-              <span class="theme-copy"><strong>Creator Utility</strong><small>Talking head + real UI. Bold captions, fast proof, useful screen recordings, practical labels and cards.</small></span>
+              <span class="theme-copy"><strong>Creator Utility</strong><small>Speaker + real UI, bold captions, fast proof, practical cards.</small></span>
             </button>
             <button class="theme-card" data-theme="data" type="button">
               <span class="theme-preview theme-data"><i class="preview-card"></i></span>
-              <span class="theme-copy"><strong>Data Editorial</strong><small>Percentages, progress, charts, editorial hierarchy, calmer motion, restrained warm or muted accents.</small></span>
+              <span class="theme-copy"><strong>Data Editorial</strong><small>Stats, charts, editorial hierarchy, restrained accents, calmer motion.</small></span>
             </button>
             <button class="theme-card" data-theme="tutorial" type="button">
               <span class="theme-preview theme-tutorial"><i class="preview-card"></i><i class="preview-line"></i></span>
-              <span class="theme-copy"><strong>Tutorial Steps</strong><small>Step labels, clear screen takeovers, callouts, cursor/UI emphasis, high-contrast instructions.</small></span>
+              <span class="theme-copy"><strong>Tutorial Steps</strong><small>Step labels, screen takeovers, callouts, and clear UI emphasis.</small></span>
             </button>
             <button class="theme-card" data-theme="minimal" type="button">
               <span class="theme-preview theme-minimal"><i class="preview-face"></i><i class="preview-body"></i></span>
-              <span class="theme-copy"><strong>Bare Minimal</strong><small>Talking head, black and white type, clean proof, purposeful crops, almost no decorative motion.</small></span>
+              <span class="theme-copy"><strong>Bare Minimal</strong><small>Strong framing, black-and-white type, clean proof, minimal decoration.</small></span>
             </button>
           </div>
         </section>
 
         <section class="builder-group">
           <div class="builder-group-head">
-            <span>What can appear?</span>
-            <div><strong>Choose the building blocks.</strong><p>The selected theme styles these blocks. Turn off anything you do not want in the edit.</p></div>
+            <span>Layouts & elements</span>
+            <div><strong>Give the agent a useful kit.</strong><p>Select the compositions you like. They are ingredients, not restrictions: the agent can resize, combine, reposition, or adapt them to the footage.</p></div>
           </div>
-          <div class="visual-grid">
-            <button class="visual-toggle" data-visual="face" type="button"><strong>Face-first</strong><small>Keep the speaker full-screen when delivery is strongest.</small></button>
-            <button class="visual-toggle" data-visual="split" type="button"><strong>Split-screen</strong><small>Speaker + real screen, demo, screenshot, or supporting image.</small></button>
-            <button class="visual-toggle" data-visual="overlay" type="button"><strong>Light overlays</strong><small>Small proof, labels, cards, stats, logos, or supporting images over footage.</small></button>
-            <button class="visual-toggle" data-visual="proof" type="button"><strong>Full-screen proof</strong><small>Let the real result, website, screenshot, demo, or supporting image take over.</small></button>
+          <div class="component-grid">
+            <button class="component-toggle" data-visual="face" type="button"><span class="component-preview cp-face"><i></i></span><strong>Talking head</strong></button>
+            <button class="component-toggle" data-visual="split" type="button"><span class="component-preview cp-split"><i></i></span><strong>Split screen</strong></button>
+            <button class="component-toggle" data-visual="fullscreen" type="button"><span class="component-preview cp-full"><i></i></span><strong>Full-screen media</strong></button>
+            <button class="component-toggle" data-visual="card" type="button"><span class="component-preview cp-card"><i></i></span><strong>Floating card</strong></button>
+            <button class="component-toggle" data-visual="bigcard" type="button"><span class="component-preview cp-big"><i></i></span><strong>Big card</strong></button>
+            <button class="component-toggle" data-visual="stat" type="button"><span class="component-preview cp-stat"><i>47%</i></span><strong>Stat / data card</strong></button>
+            <button class="component-toggle" data-visual="step" type="button"><span class="component-preview cp-step"><i>02</i></span><strong>Step card</strong></button>
+            <button class="component-toggle" data-visual="ui" type="button"><span class="component-preview cp-ui"><i></i></span><strong>Screenshot / UI</strong></button>
+            <button class="component-toggle" data-visual="cards" type="button"><span class="component-preview cp-cards"><i></i></span><strong>Multiple cards</strong></button>
+            <button class="component-toggle" data-visual="green" type="button"><span class="component-preview cp-green"><i></i></span><strong>Green-screen layout</strong></button>
           </div>
-          <div class="visual-meta"><span id="visual-help">Enable only the visual blocks you want the agent to use.</span><span id="visual-count">4 of 4 enabled</span></div>
+          <label class="improvise-toggle"><input id="agent-improvise" type="checkbox" checked><span><b>Agent can improvise</b><small>Resize, combine, restyle, or create another composition when your footage, reference, or instruction calls for it.</small></span></label>
+          <div class="visual-meta"><span id="visual-help">These are starting components, not a strict allow-list.</span><span id="visual-count"></span></div>
         </section>
 
         <section class="builder-group">
@@ -259,7 +201,7 @@
         <textarea id="builder-prompt" readonly spellcheck="false"></textarea>
         <div class="builder-prompt-actions">
           <button class="copy-builder" id="copy-builder-prompt" type="button">Copy prompt</button>
-          <p class="builder-copy-status" id="builder-copy-status">After copying, point your agent to the exact video file inside your project folder.</p>
+          <p class="builder-copy-status" id="builder-copy-status">Paste this into the coding agent working with your video project.</p>
           <div class="advanced-note"><b>Advanced:</b> copy or clone the Bare Video repo into the project and let your agent read the skill directly. You can modify that local project copy however you want without turning the public skill into your personal config.</div>
         </div>
       </aside>
@@ -267,25 +209,13 @@
   </div>
 </section>
 
-<section class="why">
-  <div class="wrap why-grid">
-    <div class="why-title reveal">
-      <p class="eyebrow">Use the guide or skip it</p>
-      <h2>Start guided.<br>Stay flexible.</h2>
-    </div>
-    <div class="why-items">
-      <article class="reveal"><b>New to coding agents?</b><p>Use the prompt builder. It explains the decisions and gives you one copy-paste handoff.</p></article>
-      <article class="reveal"><b>Already know your setup?</b><p>Point your agent at the repo and the Bare Video skill. Use your own folders, tools, and references.</p></article>
-      <article class="reveal"><b>Advanced user?</b><p>Copy or clone the repo into the project, point your agent at the Bare Video skill, and customize that local copy if you want. The public repo stays a clean boilerplate.</p></article>
-    </div>
-  </div>
-</section>
+
 
 <section class="closing">
   <div class="wrap closing-inner reveal">
     <img class="closing-logo" src="assets/logo.svg" alt="">
-    <h2>Build the prompt.<br>Then build the video.</h2>
-    <p>Choose your visual building blocks, captions, sound, transcription, and approval flow.</p>
+    <h2>Your footage. Your reference. Your edit.</h2>
+    <p>Use the starter kit as-is or push past it. Bare Video gives the agent enough structure to begin without deciding the creative ceiling for you.</p>
     <a class="button light" href="#build">Build my prompt</a>
   </div>
 </section>
