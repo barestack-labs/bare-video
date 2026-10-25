@@ -3,54 +3,177 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Bare Video is an open-source video-editing skill for coding agents. Give your agent footage, a goal, and your taste. It edits with FFmpeg and HyperFrames, then shows you a preview.">
+<meta name="description" content="Bare Video is an open-source video-editing skill for coding agents. Choose how your edit should look, hand the prompt to your agent, then preview and revise the result.">
 <link rel="canonical" href="https://shorts.paulablaza.com/">
 <meta property="og:title" content="Bare Video">
-<meta property="og:description" content="Give your agent a video. Keep the final say.">
+<meta property="og:description" content="Choose the edit. Let your coding agent build it.">
 <meta property="og:url" content="https://shorts.paulablaza.com/">
 <meta property="og:type" content="website">
-<title>Bare Video | Give your agent a video</title>
+<title>Bare Video | Agent-directed short-form editing</title>
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="/">Bare Video</a><nav><a href="#story">How it works</a><a href="#possibilities">Looks</a><a href="create.html">Build a prompt</a></nav></div></header>
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a class="brand-lockup" href="/" aria-label="Bare Video home"><img src="assets/logo.svg" alt=""><span>Bare Video</span></a>
+    <nav>
+      <a href="#looks">Looks</a>
+      <a href="#how">How it works</a>
+      <a class="nav-cta" href="create.html">Build a prompt</a>
+    </nav>
+  </div>
+</header>
+
 <main>
 <section class="hero">
-<div class="wrap hero-inner">
-<p class="domain reveal">shorts.paulablaza.com</p>
-<h1 class="reveal">Give your agent a video.<br><span>Keep the final say.</span></h1>
-<p class="hero-copy reveal">Bare Video is an open-source editing skill for coding agents. Your agent uses the tools already on your machine, reaches for FFmpeg and HyperFrames when useful, and adapts the edit to your footage instead of forcing it through a template.</p>
-<div class="hero-actions reveal"><a class="button primary" href="create.html">Build my prompt</a><a class="button" href="#story">See how it works</a></div>
-<p class="hero-note reveal">No extra editor. No Bare Video engine. Just a better handoff to your coding agent.</p>
-</div>
-<div class="hero-demo wrap reveal" aria-hidden="true"><div class="hero-demo-label"><span>BARE VIDEO</span><span>agent-directed edit</span></div><div class="hero-canvas"><div class="hero-proof"><div class="browser-bar"><i></i><i></i><i></i><span>github.com/barestack-labs/bare-video</span></div><div class="browser-body"><b>bare-video</b><p>Read the skill. Use the footage. Make the edit.</p><div class="browser-lines"><i></i><i></i><i></i></div></div></div><div class="hero-speaker"></div><div class="hero-caption">SHOW WHAT <mark>MATTERS</mark></div></div></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy-block">
+      <p class="eyebrow reveal">Open source · Bare Stack Labs</p>
+      <h1 class="reveal">Tell your agent<br>how the video<br>should <span>feel.</span></h1>
+      <p class="hero-copy reveal">Bare Video is a skill your coding agent reads before editing. You choose the goal and the kinds of visuals you want. The agent uses FFmpeg, HyperFrames, transcription tools, and its own judgment to build the edit.</p>
+      <div class="hero-actions reveal">
+        <a class="button primary" href="create.html">Build my edit prompt</a>
+        <a class="button secondary" href="#looks">See the video styles</a>
+      </div>
+      <p class="hero-note reveal">Your video stays with your agent and tools. This website only builds the instructions.</p>
+    </div>
+
+    <div class="hero-phone-wrap reveal">
+      <div class="phone hero-phone" data-phone-mode="overlay">
+        <div class="phone-speaker">
+          <div class="avatar-head"></div><div class="avatar-body"></div>
+        </div>
+        <div class="phone-overlay-card">
+          <small>REAL RESULT</small>
+          <strong>12× faster</strong>
+          <span>with the same workflow</span>
+        </div>
+        <div class="phone-caption">THIS IS THE <mark>PART</mark> THAT MATTERS</div>
+        <div class="short-ui">
+          <span class="profile-dot"></span><span>♡</span><span>◌</span><span>↗</span>
+        </div>
+        <div class="phone-meta"><b>@yourvideo</b><span>edited with your coding agent</span></div>
+      </div>
+      <div class="phone-shadow"></div>
+    </div>
+  </div>
 </section>
-<section class="story" id="story"><div class="wrap story-grid"><div class="story-stage"><div class="story-frame" data-active-scene="face">
-<div class="scene scene-face" data-scene="face"><div class="scene-person"></div><div class="scene-caption">START WITH THE <mark>FOOTAGE</mark></div></div>
-<div class="scene scene-split" data-scene="split"><div class="split-proof"><small>NATIVE TOOLS</small><code>$ ffmpeg · hyperframes</code><span>use what the edit needs</span></div><div class="scene-person small"></div><div class="scene-caption dark">ADD WHAT HELPS</div></div>
-<div class="scene scene-proof" data-scene="proof"><div class="proof-window"><div class="browser-bar"><i></i><i></i><i></i><span>real-source.dev</span></div><div class="proof-content"><small>REAL MATERIAL</small><strong>Proof gets<br>the frame.</strong><div class="proof-lines"><i></i><i></i><i></i></div></div></div></div>
-<div class="scene scene-editorial" data-scene="editorial"><small>YOUR CALL</small><strong>Preview.<br>Then export.</strong><div class="progress"><i></i></div></div>
-</div></div>
-<div class="story-copy">
-<article class="story-step" data-story-scene="face"><span>01</span><h2>Your footage comes first.</h2><p>The agent reads the Bare Video skill, inspects the actual video, and figures out what the edit is trying to do. No mandatory sequence of layouts pretending to be taste.</p></article>
-<article class="story-step" data-story-scene="split"><span>02</span><h2>Use the tools that already work.</h2><p>FFmpeg handles the media. HyperFrames handles composed browser visuals when they help. Transcription can come from Groq, Deepgram, a local model, or whatever tool you approve.</p></article>
-<article class="story-step" data-story-scene="proof"><span>03</span><h2>Real material beats decorative filler.</h2><p>If the video mentions a repo, result, website, screenshot, or demo, show the real thing. If nothing useful belongs on screen, stay with the footage.</p></article>
-<article class="story-step" data-story-scene="editorial"><span>04</span><h2>You still approve the edit.</h2><p>Ask for a plan or let the agent make a first draft. Either way, preview the result and adjust it in normal language before final export.</p></article>
-</div></div></section>
-<section class="wrap section" id="possibilities"><div class="section-head reveal"><div><p class="section-label">Creative direction</p><h2>Give it taste, not a cage.</h2></div><p>These are directions the agent can choose from. They are not templates it has to rotate through.</p></div>
-<div class="layout-grid">
-<div class="layout-card reveal"><div class="thumb face-thumb"><div class="mini-face"></div><div class="mini-caption">FACE FIRST</div></div><div class="layout-copy"><h3>Face-first</h3><p>Stay with the speaker when that is the strongest frame.</p></div></div>
-<div class="layout-card reveal"><div class="thumb split-thumb"><div class="split-mini-proof">DEMO<code>$ preview</code></div><div class="mini-face small"></div><div class="mini-caption dark">SHOW THE THING</div></div><div class="layout-copy"><h3>Tutorial</h3><p>Speaker plus screen, screenshot, or useful supporting material.</p></div></div>
-<div class="layout-card reveal"><div class="thumb face-thumb"><div class="mini-face"></div><div class="float-mini"><b>small proof</b><i></i></div><div class="mini-caption">KEEP IT LIGHT</div></div><div class="layout-copy"><h3>Light overlays</h3><p>Small visuals without throwing away the footage.</p></div></div>
-<div class="layout-card wide reveal"><div class="thumb proof-thumb"><div class="proof-mini-window"><b>real-source.dev</b><i></i><i></i><div></div></div></div><div class="layout-copy"><h3>Proof-heavy</h3><p>Let the repo, demo, result, or screen take over when it deserves the space.</p></div></div>
-<div class="layout-card reveal"><div class="thumb editorial-thumb"><small>PAYOFF</small><strong>One idea.<br>Full frame.</strong><i></i></div><div class="layout-copy"><h3>Editorial</h3><p>Designed moments for stats, comparisons, steps, and payoffs.</p></div></div>
-<div class="layout-card reveal"><div class="thumb ui-thumb"><code>&gt; inspect footage<br><span>&gt; build preview</span></code><small>✓ use when useful</small></div><div class="layout-copy"><h3>UI / terminal</h3><p>Interface-driven visuals for technical or agent workflows.</p></div></div>
-<div class="layout-card reveal"><div class="thumb collage-thumb"><i></i><i></i><i></i><i></i><b>YOUR REFERENCE</b></div><div class="layout-copy"><h3>Reference-led</h3><p>Give the agent an edit you like and let it borrow the language, not the branding.</p></div></div>
-</div></section>
-<section class="wrap section workflow"><div class="section-head reveal"><div><p class="section-label">The simple version</p><h2>Folder. Skill. Edit.</h2></div><p>Bare Video stays out of the way. The coding agent does the work with native tools.</p></div>
-<ol class="workflow-list"><li class="reveal"><span>01</span><b>Make a folder</b><p>Put your original video and any references or assets there.</p></li><li class="reveal"><span>02</span><b>Load Bare Video</b><p>Give the agent the repo or install the skill permanently if you use it often.</p></li><li class="reveal"><span>03</span><b>Describe the edit</b><p>Use the prompt builder or just tell the agent what you want.</p></li><li class="reveal"><span>04</span><b>Preview</b><p>Review the cut and visuals instead of trusting a successful command.</p></li><li class="reveal"><span>05</span><b>Export</b><p>Adjust in plain language, then render the final video.</p></li></ol></section>
-<section class="closing"><div class="wrap closing-inner reveal"><h2>One skill.<br>Your agent does the rest.</h2><p>Open source. Local-first. Built under Bare Stack Labs.</p><a class="button light" href="create.html">Build your edit prompt</a></div></section>
+
+<section class="looks" id="looks">
+  <div class="wrap looks-grid">
+    <div class="looks-copy reveal">
+      <p class="eyebrow">Video building blocks</p>
+      <h2>Pick what the agent is allowed to use.</h2>
+      <p>These are not templates. They are ways the video can switch presentation when the moment calls for it. Choose one, combine several, or let the agent decide.</p>
+      <div class="mode-tabs" role="tablist" aria-label="Preview editing building blocks">
+        <button class="mode-tab is-active" data-demo-mode="face" type="button"><b>Face-first</b><span>Speaker fills the frame.</span></button>
+        <button class="mode-tab" data-demo-mode="split" type="button"><b>Split-screen</b><span>Speaker + screen/demo.</span></button>
+        <button class="mode-tab" data-demo-mode="overlay" type="button"><b>Light overlays</b><span>Small proof over footage.</span></button>
+        <button class="mode-tab" data-demo-mode="proof" type="button"><b>Full-screen proof</b><span>Let the real screen take over.</span></button>
+      </div>
+    </div>
+
+    <div class="looks-phone-stage reveal">
+      <div class="phone demo-phone" id="demo-phone" data-phone-mode="face">
+        <div class="phone-speaker">
+          <div class="avatar-head"></div><div class="avatar-body"></div>
+        </div>
+        <div class="split-panel">
+          <div class="screen-ui">
+            <div class="screen-bar"><i></i><i></i><i></i></div>
+            <strong>bare-video</strong>
+            <span>preview → feedback → export</span>
+          </div>
+        </div>
+        <div class="phone-overlay-card">
+          <small>QUICK PROOF</small>
+          <strong>Free plan</strong>
+          <span>works on low-spec PCs</span>
+        </div>
+        <div class="proof-screen">
+          <div class="screen-bar"><i></i><i></i><i></i></div>
+          <small>REAL SCREEN</small>
+          <strong>Show the thing<br>you are talking about.</strong>
+          <div class="proof-lines"><i></i><i></i><i></i></div>
+        </div>
+        <div class="phone-caption">MAKE THE <mark>POINT</mark> CLEAR</div>
+        <div class="short-ui"><span class="profile-dot"></span><span>♡</span><span>◌</span><span>↗</span></div>
+        <div class="phone-meta"><b>@yourvideo</b><span>the agent changes layout when useful</span></div>
+      </div>
+      <p class="preview-label" id="preview-label">Face-first · keep the person full-screen unless another visual is more useful.</p>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">How Bare Video actually works</p>
+      <h2>The website decides nothing.<br>Your agent does the editing.</h2>
+      <p>Bare Video gives your agent a clear editing brief and a reusable skill. The tools still run in your own project workspace.</p>
+    </div>
+
+    <div class="architecture reveal">
+      <article>
+        <span>01</span>
+        <div class="arch-icon folder-icon"><i></i><i></i></div>
+        <h3>Your project folder</h3>
+        <p>Put the original video, references, and optional assets together. Keep the source footage untouched.</p>
+      </article>
+      <div class="arch-arrow">→</div>
+      <article>
+        <span>02</span>
+        <div class="arch-icon skill-icon"><img src="assets/logo.svg" alt=""></div>
+        <h3>Agent reads Bare Video</h3>
+        <p>The skill tells the agent how to think about cuts, visuals, references, privacy, preview, and QA.</p>
+      </article>
+      <div class="arch-arrow">→</div>
+      <article>
+        <span>03</span>
+        <div class="arch-icon tools-icon"><b>ff</b><b>hf</b><b>asr</b></div>
+        <h3>It uses the right tools</h3>
+        <p>FFmpeg for media work. HyperFrames when composed visuals help. Groq, Deepgram, or local transcription when speech timing helps.</p>
+      </article>
+      <div class="arch-arrow">→</div>
+      <article>
+        <span>04</span>
+        <div class="arch-icon preview-icon"><i></i><i></i></div>
+        <h3>You review the edit</h3>
+        <p>Preview it, tell the agent what to change in plain language, then export the final video.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap why-grid">
+    <div class="why-title reveal">
+      <p class="eyebrow">Built for beginners, not only beginners</p>
+      <h2>You can use the guide.<br>Or skip straight to the skill.</h2>
+    </div>
+    <div class="why-items">
+      <article class="reveal"><b>New to coding agents?</b><p>Use the prompt builder. It explains the decisions and gives you one copy-paste handoff.</p></article>
+      <article class="reveal"><b>Already know your setup?</b><p>Point your agent at the repo and the Bare Video skill. Use your own folders, tools, and references.</p></article>
+      <article class="reveal"><b>Use it often?</b><p>Keep the skill in your agent's supported user-level skill folder so Bare Video becomes part of your normal workflow.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap closing-inner reveal">
+    <img class="closing-logo" src="assets/logo.svg" alt="">
+    <h2>Build the prompt.<br>Then build the video.</h2>
+    <p>Choose your visual building blocks, captions, sound, transcription, and approval flow.</p>
+    <a class="button light" href="create.html">Open the prompt builder</a>
+  </div>
+</section>
 </main>
-<footer class="wrap footer"><div><b>Bare Video</b><br><a href="https://shorts.paulablaza.com/">shorts.paulablaza.com</a></div><div>Created by Paul Martin Ablaza<br>Bare Stack Labs · MIT</div></footer>
+
+<footer class="wrap footer">
+  <div><a class="brand-lockup footer-brand" href="/"><img src="assets/logo.svg" alt=""><span>Bare Video</span></a><small>shorts.paulablaza.com</small></div>
+  <div>Created by Paul Martin Ablaza<br>Bare Stack Labs · MIT</div>
+</footer>
+
 <script src="assets/app.js"></script>
-</body></html>
+</body>
+</html>
