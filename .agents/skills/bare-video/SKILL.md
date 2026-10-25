@@ -125,7 +125,7 @@ If the user provides a reference video, image, or design system, study the real 
 
 ## Cut with intent
 
-Speech-driven edits live or die on the cuts. Work from the transcript and the waveform together, never from a silence threshold alone.
+Speech-driven edits live or die on the cuts. The transcript's word timings decide where the cuts land. Audio is only used afterwards, to check the join.
 
 - **Tight:** remove silences longer than 300ms, repeated takes, filler, and false starts. Keep the density high. Never cut mid-word, and leave the breath a line needs to land.
 - **Balanced:** remove dead air longer than about 800ms when it serves the edit, plus obvious false starts. Keep pauses that carry emphasis or let a point sit.
@@ -135,18 +135,20 @@ Cut on the syllable boundary, not on a fixed time. Check the joins by playing th
 
 Silence removal serves the story. It does not set the pace. A pause before a reveal is content, not dead air.
 
-### Where the cut points come from
+### Where the cut points come from: word timestamps only
 
-The transcript is the source of truth for timing. The waveform is the check, not the map.
+Cut from speech, not from loudness. Do not use FFmpeg `silencedetect`, `silenceremove`, or any audio-level gate as the cutting mechanism. Level is not speech: it keeps room tone, eats breaths, and cuts mid-word.
 
-1. Take word-level timings from the chosen route. Groq and Deepgram return per-word `start` and `end`. Faster Whisper returns word timings when word-level output is enabled. If the transcript has only sentence timings, say so and offer a word-timed route before promising tight cuts.
-2. Build the gap list from consecutive words: `gap = word[i+1].start - word[i].end`. That gap is the silence candidate, measured from real speech, not from a level threshold.
-3. Confirm each candidate against the audio before cutting it. Measure loudness inside the gap. Keep the gap if it carries audible content, a breath you want, or a music beat. Cut it if it is room tone.
-4. Place the cut at the word boundary plus a handle, 10 to 30ms, so the first consonant is intact. Never cut inside a word's own `start` to `end` span.
-5. Cap the removal by the requested intensity. Tight uses gaps over 300ms, balanced over about 800ms, loose over about 1.5 seconds.
-6. Re-time everything downstream from the new timeline: captions, cards, sound cues, and the composition length. A cut that is not re-timed breaks caption sync.
+1. Get word-level timings from the chosen route. Groq and Deepgram return `start` and `end` for every word. Faster Whisper returns them when word-level output is enabled.
+2. Build the gap list from consecutive words: `gap = word[i+1].start - word[i].end`. Every gap is a silence candidate, measured from real speech edges.
+3. Remove a gap when it passes the requested threshold: tight over 300ms, balanced over about 800ms, loose over about 1.5 seconds.
+4. Place each cut at the word edge plus a handle of 10 to 30ms so the first consonant stays intact. Never cut inside a word's own `start` to `end` span.
+5. Drop repeated takes, filler words, and false starts using the text, not the audio.
+6. Re-time everything downstream from the new timeline: captions, cards, sound cues, and the total duration. A cut that is not re-timed breaks caption sync.
 
-If the tooling only gives you audio, not word timings, fall back to energy detection with a conservative threshold and tell the user that the cuts are audio-detected, not speech-aligned.
+If the transcript has no word timings, stop and say so. Offer a word-timed route: Groq, Deepgram, or Faster Whisper with word output turned on. Do not silently fall back to audio detection and do not present a level-based cut as a speech-aligned one.
+
+The one time audio earns a second look is checking the join after the cut: play 500ms across the seam to catch a click or a clipped consonant. That is verification, not detection.
 
 ## Captions should be precise and intentionally styled
 

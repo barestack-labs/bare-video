@@ -71,9 +71,9 @@ if(builder){
   };
 
   const cutCopy={
-    tight:"Cut tight. Remove every silence longer than 300ms, remove repeated takes, filler and false starts, and keep the speech density high. Do not cut mid-word and do not remove the breath a line needs to land.",
-    balanced:"Cut by meaning. Remove dead air longer than about 800ms when it serves the edit, plus obvious false starts, but keep pauses that carry emphasis or let a point sit. Silence removal serves the story, it does not set the pace.",
-    loose:"Cut loose. Keep the natural rhythm, breaths, and pauses. Remove only dead air longer than about 1.5 seconds or a take that is clearly unusable."
+    tight:"Cut tight from word timestamps. Remove every gap between words longer than 300ms, plus repeated takes, filler, and false starts. Do not use FFmpeg silencedetect or any audio-level silence gate. Never cut mid-word, keep a 10 to 30ms handle, and do not remove the breath a line needs to land.",
+    balanced:"Cut by meaning, from word timestamps. Remove gaps between words longer than about 800ms when it serves the edit, plus obvious false starts. Do not use FFmpeg silencedetect or any audio-level silence gate. Keep pauses that carry emphasis or let a point sit.",
+    loose:"Cut loose, from word timestamps. Keep the natural rhythm, breaths, and pauses. Remove only gaps between words longer than about 1.5 seconds, or a take that is clearly unusable. Do not use FFmpeg silencedetect or any audio-level silence gate."
   };
 
   function referenceText(){
