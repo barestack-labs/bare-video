@@ -1,107 +1,41 @@
 ---
 name: bare-video
-description: Build or modify Bare Video's agent-directed short-form editing workflow. Use when implementing transcription, cut planning, layout selection, HyperFrames preview/rendering, captions, SFX, setup, QA, or the Bare Video website and templates.
+description: Edit videos with a coding agent using FFmpeg and HyperFrames. Use for footage cleanup, captions, supporting visuals, reference-led edits, local setup, browser previews, and final exports. The agent supplies the creative judgment; Bare Video supplies guidance.
 ---
 
 # Bare Video
 
-Read `AGENTS.md` first. It is the repository-wide policy.
+Turn the user's footage into an edit that serves their intent. This is guidance, not a recipe. Use your judgment, the actual footage, and the user's taste. There is no Bare Video engine or CLI to install.
 
-Use this skill for substantive Bare Video implementation work. Keep the product simple enough that a beginner can put a raw video in a folder and ask a coding agent to edit it.
+## Start with what is there
 
-## Product contract
+Find the source footage, the desired outcome, and any references. Inspect the media with ffprobe and sample useful frames or sections. Reuse installed FFmpeg, HyperFrames, and transcription tools. Check versions and native command help before inventing syntax or adding dependencies.
 
-Bare Video is an open-source, local-first toolkit for agent-directed short-form video editing.
+If a transcript would help, use an existing transcript, a configured tool, or an approved provider. Do not pretend to understand unheard speech. If transcription needs credentials or a model download, explain that boundary and finish what you can without it.
 
-Default user flow:
+Use an existing workspace as it is. For a new project, `input/`, `assets/`, `workspace/`, and `output/` are enough; add other folders only when needed. Keep the user's originals separate from outputs.
 
-1. Inspect the project and machine.
-2. Reuse installed tools before downloading anything.
-3. Transcribe the source video.
-4. Build cut candidates from timestamps and context.
-5. Let semantic judgment decide what should actually be removed.
-6. Build a beat plan.
-7. Choose layouts by meaning.
-8. Build/open the browser preview.
-9. Apply user feedback.
-10. Final-render only after approval unless the user explicitly requested one-shot export.
+## Make the edit
 
-Do not silently install global dependencies, expose secrets, pay for services, or download large models.
+- Judge cuts from meaning and delivery. Keep useful pauses, reactions, emphasis, and personality. Short speech and repeated words may be intentional.
+- Start with the footage. Add captions, a screenshot, a split view, or a designed scene when it helps. No required layout rotation or caption length.
+- Use references for editing language: pacing, framing, motion, density, captions, and sound. Do not copy protected branding or assets without rights.
+- Prefer real supporting material. If evidence is missing, stay with the speaker or ask for the asset rather than inventing proof.
+- Let sound support the edit without competing with speech. Quiet is a valid choice.
+- Respect explicit choices in a website-generated prompt. They are user preferences, not engine flags.
 
-## Engineering priorities
+Use FFmpeg directly for trims, joins, reframing, audio, and caption sidecars. Use HyperFrames when a browser composition, animated visuals, or an interactive preview helps. These are tools, not mandatory stages. Use their installed skills and current documentation when available. Do not build a replacement editing framework.
 
-Work in this order unless the task says otherwise:
+When direction is unclear, show a brief plan. When the user asks for a first draft, make it without an unnecessary planning checkpoint. Inspect the preview and adapt to feedback.
 
-1. Stable normalized transcript schema.
-2. ASR adapters: Groq, Deepgram, then faster-whisper fallback.
-3. Deterministic cut/keep-map mechanics.
-4. Semantic cut review.
-5. Layout plan schema using the seven layouts in `templates/registry.json`.
-6. HyperFrames composition + browser preview.
-7. Captions and SFX.
-8. Final render and QA.
-9. Reference-video analysis.
+## Protect the work
 
-Read the relevant docs only when needed:
+Preserve original footage. Keep timing and audio synchronized, and avoid accidental duplicated or omitted ranges. Deliberate rearrangements are fine when they serve the requested edit.
 
-- `docs/ARCHITECTURE.md`
-- `docs/WORKFLOW.md`
-- `docs/REFERENCE-GRAMMAR.md`
-- `docs/ROADMAP.md`
-- `templates/registry.json`
-- `templates/sfx-map.json`
+Ask before paid calls, global changes, and large downloads. Keep credentials out of chat, logs, compositions, and commits. Use the chosen tool's documented credential setup; a `.env` file is not automatically loaded by every tool. Get approval before sending private footage to a cloud service.
 
-## Visual rules
+Preview before final export unless the user requests one-shot export. Use HyperFrames check/preview for compositions or a playable draft for direct FFmpeg edits. After rendering, inspect decoded frames, listen to audio, and check duration and synchronization. A successful command alone does not prove a good edit.
 
-The website and video system should not look like generic AI-generated UI.
+Report the output location, what you verified, and any real limitation. Never claim a missing transcription, preview, or export worked.
 
-Prefer:
-
-- direct language
-- simple hierarchy
-- useful whitespace
-- square or lightly rounded geometry
-- real screenshots and footage
-- fewer containers
-- fewer pills
-- fewer decorative labels
-- restrained motion
-- one clear accent
-
-Avoid:
-
-- cards nested inside cards
-- giant vague manifesto copy
-- gradient-heavy hero sections
-- fake dashboards used only as decoration
-- random floating badges
-- excessive border radii
-- constant hover lifting
-- unnecessary serif-italic flourishes
-- explaining the design system more than showing the product
-
-For video layouts, real material beats designed cards. Show the person until there is something better to show.
-
-## Verification
-
-For code changes:
-
-- run the smallest relevant tests first
-- run `python scripts/doctor.py` when setup/runtime detection changes
-- inspect generated JSON for schema changes
-- verify source ranges stay ordered and non-overlapping for cut logic
-- preview visual changes in-browser when practical
-- do not claim a backend integration exists until code and verification exist
-
-When finishing a substantive task, summarize what changed, what was verified, and what remains.
-
-
-## Website-generated handoffs
-
-The public prompt builder may hand you explicit choices for setup, edit mode, visual direction, captions, SFX, transcription, and finish behavior. Treat those choices as user instructions and apply them over defaults in this skill.
-
-For beginner projects, keep the Bare Video repo at `./bare-video/` and use sibling project folders such as `./input/`, `./references/`, `./assets/`, `./runtime/`, `./workspace/`, and `./output/`.
-
-When a cloud key is missing, create/open the project-root `.env` using variable names from `bare-video/examples/bare-video.env.example`. Never ask the user to paste secrets into chat.
-
-If the user asks to reuse Bare Video permanently, you may offer to copy/install this skill into the coding agent's documented user-level skill location, but you must ask before modifying global configuration.
+If using the repository checkout, `docs/WORKFLOW.md` has direct tool examples. This skill also works on its own.

@@ -1,146 +1,57 @@
 # Bare Video
 
-**An open-source toolkit for agent-directed short-form video editing.**
+**A video-editing skill for your coding agent.**
 
-Website: **https://shorts.paulablaza.com**
+Give your agent footage, a goal, and an optional reference. It uses its judgment to make the edit with FFmpeg and HyperFrames, then shows you a preview. Bare Video supplies the guidance, not another editing engine.
 
-Bare Video gives a coding agent a practical video-editing workflow: transcribe the footage, build conservative hard cuts, choose visual layouts from the meaning of each beat, generate a browser-previewable composition, then render after approval.
+Website: [shorts.paulablaza.com](https://shorts.paulablaza.com/)  
+Prompt builder: [create your editing prompt](https://shorts.paulablaza.com/create.html)
 
-> Current status: **v0.5 engine build.** The prompt builder, project setup, Groq / Deepgram / faster-whisper adapters, normalized transcript schema, DeepCut-style keep-map engine, direct FFmpeg autocut renderer, layout planner, captions, synthetic SFX, reference packets, HyperFrames project generation, CLI, and media QA are implemented.
+## Start here
 
-## Beginner path
+1. Put your footage in a project folder. Keep the originals.
+2. Open that folder in your coding agent.
+3. Give it a prompt from the website, or use the short prompt below.
 
-The easiest starting point is the website prompt builder:
+> Use Bare Video to edit `./input/video.mp4`. Read the skill at `.agents/skills/bare-video/SKILL.md` in https://github.com/barestack-labs/bare-video. Inspect my installed tools before downloading anything. Use your judgment for cuts, captions, visuals, and sound. Keep the original footage intact. Show me a preview before final export.
 
-**https://shorts.paulablaza.com/create.html**
+If your agent cannot read GitHub directly, have it clone this repository and read the skill locally. No Python package, server, or global skill install is required. Installing the skill in your agent's supported skill directory is optional.
 
-It walks through project setup, edit mode, visual style, captions, SFX, transcription, and preview/export behavior, then produces one copy-paste prompt for your coding agent.
+## What the agent does
 
-Recommended project structure:
+- Understands the footage, your goal, and any references.
+- Gets a transcript when useful, using an available transcription tool or a provider you approve.
+- Decides which takes, pauses, and reactions belong in the edit. A silence threshold is not an editor.
+- Uses FFmpeg directly for media work and HyperFrames for compositions, previews, and rendering where appropriate.
+- Checks the output and asks for feedback before final export, unless you request one-shot export.
 
-```text
-my-video/
-├── input/
-│   └── video.mp4
-├── references/
-├── assets/
-├── bare-video/
-├── .env
-├── runtime/
-├── workspace/
-└── output/
-```
+Layouts, captions, pacing, and sound are creative choices, not a fixed checklist. A simple cut can be the right result.
 
-Keep API keys in the project-root `.env`, never in agent chat.
+## What is in this repo
 
-## Quick machine check
+- `.agents/skills/bare-video/SKILL.md`: the portable editing skill.
+- `AGENTS.md`: instructions for agents working from this checkout.
+- `index.html`, `create.html`, and `assets/`: a static website and browser-only prompt builder.
+- `SETUP.md` and `docs/WORKFLOW.md`: tool setup and direct command examples.
 
-```bash
-python scripts/doctor.py
-```
+The prompt builder does not upload or edit media. Your coding agent runs the tools on your machine. Cloud transcription, if you choose it, sends audio to that provider and may have costs or limits.
 
-Bare Video reuses existing Node, FFmpeg, Chrome/Chromium, and Python before suggesting downloads.
+## Tools
 
-## Run the engine
+FFmpeg and ffprobe handle media. HyperFrames needs Node.js 22+ and a compatible Chromium browser for preview/render. Transcription depends on the local tool or cloud provider you choose. Reuse existing installations; ask before large downloads, paid calls, or global changes.
 
-From the Bare Video repo:
+See [setup](SETUP.md) and the [editing workflow](docs/WORKFLOW.md).
 
-```bash
-python scripts/bare_video.py run ../input/video.mp4 \
-  --workspace ../workspace \
-  --output ../output/autocut.mp4 \
-  --provider auto \
-  --style bare
-```
+## Verification
 
-The run command creates:
+The static pages were exercised on desktop and mobile, including preference generation, clipboard copying, draft restoration, reset, and local navigation.
 
-- normalized word-level transcript
-- semantic cut candidates
-- strict source-ordered cut map
-- FFmpeg autocut
-- retimed edited transcript
-- beat/layout plan
-- HyperFrames project
-- first QA report
+A direct-tool smoke run on Windows used FFmpeg 9.0.1 to cut a generated clip with speech, then HyperFrames 0.8.195 to check, preview, and render it. The five-second MP4 decoded successfully, displayed the expected picture, and preserved the edited audio. This checks the native tool path, not an automatic editing engine.
 
-Then preview:
-
-```bash
-python scripts/bare_video.py hf-check ../workspace/hyperframes
-python scripts/bare_video.py preview ../workspace/hyperframes
-```
-
-After approval:
-
-```bash
-python scripts/bare_video.py hf-render ../workspace/hyperframes \
-  --quality delivery \
-  --output ../output/final/bare-video-final.mp4
-```
-
-See `docs/ENGINE.md` and `docs/SCHEMAS.md` for the full command surface and data formats.
-
-## Transcription
-
-Supported adapters:
-
-- **Groq Whisper** for fast cloud transcription.
-- **Deepgram Nova-3** for cloud transcription with rich word timing.
-- **faster-whisper** as an optional local fallback.
-
-All providers normalize into the same transcript schema.
-
-`--provider auto` uses an already-configured Groq key first, then Deepgram. It deliberately stops if neither exists rather than silently downloading a local model.
-
-## Cuts
-
-Bare Video borrows the strict keep-map mechanics from DeepCut:
-
-- word gaps are cut candidates, not semantic verdicts
-- default gap threshold: 0.30 s
-- word-safe boundary padding: 0.02 s
-- source windows must stay ordered
-- no overlap or duplicate windows
-- tiny fragments are filtered conservatively
-- direct FFmpeg timeline rendering avoids hundreds of intermediate MP4 joins
-
-Exact immediate repeated-word candidates may be auto-applied only when `--auto-semantic` is explicitly enabled. Other semantic candidates remain review material by default.
-
-## Visual system
-
-Seven layout states:
-
-1. Face
-2. Split
-3. Float
-4. Proof
-5. Editorial
-6. UI
-7. Collage
-
-The planner chooses layouts from meaning, not rotation. Real screenshots, demos, repos, and results beat decorative cards.
-
-## References
-
-```bash
-python scripts/bare_video.py reference reference.mp4 \
-  --output-dir ../workspace/reference
-```
-
-This creates a compact 4x4 contact sheet, selected scene frames, media metadata, and a reference packet so an agent can study editing grammar without repeatedly ingesting the entire video.
-
-## Verification status
-
-The deterministic engine has been exercised with unit tests and a real MP4 integration pass covering hard cuts, transcript retiming, layout planning, reference sampling, synthetic SFX generation, composition generation, and media decode/silence QA.
-
-Two external boundaries still require user-environment verification:
-
-- Cloud Groq / Deepgram calls require the user's own API key and therefore were not live-called during repository construction.
-- HyperFrames project generation is implemented against the current CLI contract, but the HyperFrames package could not be fetched in the build container, so `lint/check/preview/render` still need one live run in an environment with package-network access.
+Live transcription and the creative quality of edits on your own footage still depend on your agent and chosen tools. No cloud transcription was called during that smoke run.
 
 ## Project
 
-Created by **Paul Martin Ablaza**.
+Created by **Paul Martin Ablaza**, under **Bare Stack Labs**. MIT licensed.
 
-A **Bare Stack Labs** project, released under the MIT License.
+The website's Archivo and Courier Prime fonts retain their SIL Open Font License notices in `assets/fonts/`.

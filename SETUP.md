@@ -1,37 +1,49 @@
-# Setup philosophy
+# Setup
 
-Bare Video should feel disposable for beginners and reusable for power users.
+Bare Video is an instruction skill, not an application to install. Your coding agent runs existing tools directly. The website needs no setup or account.
 
-## Default: project-local
+## Check before installing
 
-A beginner can keep the repo, optional runtimes, references, work files and outputs in one project folder. Deleting that folder should remove Bare Video's project-specific additions.
+Ask your agent to inspect what is already available:
 
-Bare Video should **reuse** installed system tools before suggesting downloads.
+```text
+ffmpeg -version
+ffprobe -version
+node --version
+```
 
-### Reuse order
+FFmpeg and ffprobe cover basic media editing. Node.js 22+ is needed if the edit uses HyperFrames. Check `npx hyperframes --help` for its current commands. The first npx use may download the package; a local renderer also needs Chromium. Reuse an existing supported browser before proposing a download.
 
-1. Existing Node 22+
-2. Existing FFmpeg / ffprobe
-3. Existing Chrome / Chromium
-4. Existing Python
-5. Existing configured Groq / Deepgram keys
-6. Optional local ASR runtime/model
+No Python package or Bare Video CLI is required. Do not install tools globally by default. Explain missing requirements, download sizes, and destinations before a large installation.
 
-## Global install is opt-in
+## Use the skill
 
-If the user expects to use Bare Video across many projects, the agent may offer a system/global install for FFmpeg or other reusable tools. Do not make this the beginner default.
+Open a video-project folder in your coding agent and ask it to read `.agents/skills/bare-video/SKILL.md` from this repo. It can clone the repo inside that project if needed. You can also copy the skill into the user-level skill location documented by your agent, but that is optional and should be your choice.
 
-## Credentials
+A simple project:
 
-Create a local `.env` only when the user chooses cloud transcription. The agent may open it with Notepad, TextEdit or the configured Linux editor. Never request that the user paste secrets into chat.
+```text
+my-video/
+  input/video.mp4
+  assets/
+  workspace/
+  output/
+```
 
-See `examples/bare-video.env.example`.
+These folder names are suggestions. Existing workspaces do not need to be reorganized.
 
+## Transcription and privacy
 
-## Prompt builder
+Use an existing transcript, an installed local transcriber, or a cloud provider you approve. Local models can be large. Cloud services receive your audio and may have fees, quotas, or file-size limits. The agent should explain those choices before uploading or downloading anything.
 
-The public prompt builder at `https://shorts.paulablaza.com/create.html` generates the handoff to the coding agent. It does not execute edits itself.
+Keep credentials in the chosen tool's documented local configuration, never in the prompt or chat. An ignored `.env` can be useful, but the agent must load it or configure the tool explicitly; FFmpeg and HyperFrames do not universally read it on your behalf.
 
-For the recommended beginner layout, cloud credentials belong in the video project's root `.env`, not inside the Bare Video repository and never in chat. Use the variable names from `bare-video/examples/bare-video.env.example`.
+## Website development
 
-Experienced users may keep the repo-local skill where it is or, with explicit approval, copy it into the documented user-level skill location supported by their coding agent.
+Serve the checkout with any static server. For example, if Python is already installed:
+
+```bash
+python -m http.server 8000
+```
+
+Open `http://localhost:8000`. Python is only an optional development server here, not a video-editing dependency. There is no npm install or build step.
