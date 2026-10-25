@@ -39,8 +39,8 @@ if(builder){
 
   const transcriptionCopy={
     faster:"Use Faster Whisper locally for transcription. Check whether it and a suitable model already exist before downloading anything. Prefer word-level timestamps.",
-    groq:"Use Groq for transcription with credentials already configured locally. Prefer word-level timing when supported. Never ask me to paste an API key into chat.",
-    deepgram:"Use Deepgram for transcription with credentials already configured locally. Preserve detailed word timing when available. Never ask me to paste an API key into chat.",
+    groq:"Use Groq for transcription. First check GROQ_API_KEY in the project .env or current environment. If it is missing, create the project .env if needed and open it in my normal text editor; on Windows, use Notepad. Put a GROQ_API_KEY= line in the file and ask me to save the key there. Never ask me to paste the key into chat. After I save it, continue and prefer detailed word timing when supported. If I skip cloud setup, offer Faster Whisper instead of pretending Groq is configured.",
+    deepgram:"Use Deepgram for transcription. First check DEEPGRAM_API_KEY in the project .env or current environment. If it is missing, create the project .env if needed and open it in my normal text editor; on Windows, use Notepad. Put a DEEPGRAM_API_KEY= line in the file and ask me to save the key there. Never ask me to paste the key into chat. After I save it, continue and preserve detailed word timing when available. If I skip cloud setup, offer Faster Whisper instead of pretending Deepgram is configured.",
     existing:"Reuse the verified transcript I provide. Prefer word-level timestamps. If you cannot locate it, ask me for it before speech-driven editing."
   };
 
@@ -143,6 +143,18 @@ if(builder){
       button.setAttribute("aria-pressed",active?"true":"false");
     });
     $("#agent-improvise").checked=state.improvise;
+
+    const cloud=state.transcription==="groq"||state.transcription==="deepgram";
+    const cloudHelp=$("#cloud-key-help");
+    if(cloudHelp){
+      cloudHelp.hidden=!cloud;
+      if(cloud){
+        const isGroq=state.transcription==="groq";
+        $("#cloud-key-title").textContent=isGroq?"Groq key":"Deepgram key";
+        $("#cloud-key-line").textContent=isGroq?"GROQ_API_KEY=":"DEEPGRAM_API_KEY=";
+      }
+    }
+
     $("#builder-prompt").value=buildPrompt();
     $("#visual-count").textContent=state.visuals.length+" selected";
   }
