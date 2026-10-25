@@ -6,116 +6,182 @@
 <meta name="description" content="Bare Video is an open-source toolkit for agent-directed short-form editing with transcript-aware cuts, reusable layouts, and browser preview." />
 <link rel="canonical" href="https://shorts.paulablaza.com/" />
 <meta property="og:title" content="Bare Video" />
-<meta property="og:description" content="An open-source toolkit for agent-directed short-form video editing." />
+<meta property="og:description" content="Give a coding agent your footage. Plan the edit, preview it, then export." />
 <meta property="og:url" content="https://shorts.paulablaza.com/" />
 <title>Bare Video | Agent-directed short-form editing</title>
 <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-<header class="wrap nav">
-  <a class="brand" href="/">Bare Video</a>
-  <nav class="navlinks">
-    <a href="#layouts">Layouts</a>
-    <a href="#workflow">How it works</a>
-    <a href="https://github.com/barestack-labs/bare-video">GitHub ↗</a>
-  </nav>
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/">Bare Video</a>
+    <nav>
+      <a href="#story">How it edits</a>
+      <a href="#layouts">Layouts</a>
+      <a href="https://github.com/barestack-labs/bare-video">GitHub ↗</a>
+    </nav>
+  </div>
 </header>
 
 <main>
-<section class="wrap hero">
-  <p class="eyebrow">shorts.paulablaza.com</p>
-  <h1>A video editing workflow for coding agents.</h1>
-  <p class="hero-copy">Drop in a raw video. Bare Video is being built to transcribe it, plan cuts, choose layouts, open a browser preview, and export after approval.</p>
-  <div class="actions">
-    <a class="btn" href="https://github.com/barestack-labs/bare-video">View the repo ↗</a>
-    <button class="btn secondary" data-copy-prompt>Copy setup prompt</button>
+<section class="hero">
+  <div class="wrap hero-inner">
+    <p class="domain reveal">shorts.paulablaza.com</p>
+    <h1 class="reveal">Give your agent a video.<br><span>Keep the final say.</span></h1>
+    <p class="hero-copy reveal">Bare Video is an open-source editing workflow for coding agents. It is being built to transcribe footage, plan cuts, choose visual layouts, open a browser preview, and export only after you approve the edit.</p>
+    <div class="hero-actions reveal">
+      <a class="button primary" href="https://github.com/barestack-labs/bare-video">View GitHub ↗</a>
+      <button class="button" data-copy-prompt>Copy setup prompt</button>
+    </div>
   </div>
-  <p class="status">Early build · MIT licensed · Bare Stack Labs</p>
+
+  <div class="hero-demo wrap reveal" aria-hidden="true">
+    <div class="hero-demo-label"><span>BARE VIDEO</span><span>layout preview</span></div>
+    <div class="hero-canvas">
+      <div class="hero-proof">
+        <div class="browser-bar"><i></i><i></i><i></i><span>github.com/barestack-labs/bare-video</span></div>
+        <div class="browser-body">
+          <b>bare-video</b>
+          <p>Agent-directed short-form editing.</p>
+          <div class="browser-lines"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="hero-speaker"></div>
+      <div class="hero-caption">SHOW THE <mark>REAL THING</mark></div>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="wrap story-grid">
+    <div class="story-stage">
+      <div class="story-frame" data-active-scene="face">
+        <div class="scene scene-face" data-scene="face">
+          <div class="scene-person"></div>
+          <div class="scene-caption">START WITH THE <mark>PERSON</mark></div>
+        </div>
+        <div class="scene scene-split" data-scene="split">
+          <div class="split-proof">
+            <small>LIVE PROOF</small>
+            <code>$ hyperframes preview</code>
+            <span>composition ready</span>
+          </div>
+          <div class="scene-person small"></div>
+          <div class="scene-caption dark">SHOW IT ABOVE</div>
+        </div>
+        <div class="scene scene-proof" data-scene="proof">
+          <div class="proof-window">
+            <div class="browser-bar"><i></i><i></i><i></i><span>actual-source.dev</span></div>
+            <div class="proof-content">
+              <small>REAL MATERIAL</small>
+              <strong>Put the evidence<br>in the middle.</strong>
+              <div class="proof-lines"><i></i><i></i><i></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="scene scene-editorial" data-scene="editorial">
+          <small>PAYOFF</small>
+          <strong>Preview<br>before export.</strong>
+          <div class="progress"><i></i></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-copy">
+      <article class="story-step" data-story-scene="face">
+        <span>01</span>
+        <h2>Show the person until there is something better to show.</h2>
+        <p>The speaker is the baseline. Bare Video does not cover them with graphics just because the timeline feels quiet.</p>
+      </article>
+      <article class="story-step" data-story-scene="split">
+        <span>02</span>
+        <h2>When the sentence points somewhere, use the frame.</h2>
+        <p>A demo, screenshot, or tool can take half the screen while the speaker stays present.</p>
+      </article>
+      <article class="story-step" data-story-scene="proof">
+        <span>03</span>
+        <h2>Proof gets space.</h2>
+        <p>If the speaker names a repo, result, website, or screen, show the actual thing. Do not shrink evidence into a decorative card.</p>
+      </article>
+      <article class="story-step" data-story-scene="editorial">
+        <span>04</span>
+        <h2>Use designed scenes when the idea earns one.</h2>
+        <p>Stats, steps, comparisons, and payoffs can take over briefly. Then get out of the way.</p>
+      </article>
+    </div>
+  </div>
 </section>
 
 <section class="wrap section" id="layouts">
-  <div class="section-title">
+  <div class="section-head reveal">
     <div>
-      <p class="eyebrow">Layouts</p>
-      <h2>Seven ways to use the frame.</h2>
+      <p class="section-label">Layouts</p>
+      <h2>Seven states. No template roulette.</h2>
     </div>
-    <p>The agent chooses a layout when the content gives it a reason to. No random template roulette.</p>
+    <p>The agent chooses the frame from the meaning of the line. These are reusable building blocks, not seven skins for the same card.</p>
   </div>
 
   <div class="layout-grid">
-    <a class="layout-card" href="templates/face.html">
-      <div class="thumb"><div class="mini-face"></div><div class="mini-cap">LET THE <span>AGENT</span> EDIT</div></div>
-      <div class="card-copy"><h3>Face</h3><p>Speaker first. Use it when nothing more useful needs the frame.</p></div>
+    <a class="layout-card reveal" href="templates/face.html">
+      <div class="thumb face-thumb"><div class="mini-face"></div><div class="mini-caption">LET THE <mark>AGENT</mark> EDIT</div></div>
+      <div class="layout-copy"><h3>Face</h3><p>Speaker first.</p></div>
     </a>
-
-    <a class="layout-card" href="templates/split.html">
-      <div class="thumb split-thumb"><div class="proof-top">PROOF<br><code>$ hyperframes preview</code></div><div class="mini-face split-face"></div><div class="mini-cap dark">SHOW IT ABOVE</div></div>
-      <div class="card-copy"><h3>Split</h3><p>Speaker plus demo, screenshot, or B-roll. A default tutorial layout.</p></div>
+    <a class="layout-card reveal" href="templates/split.html">
+      <div class="thumb split-thumb"><div class="split-mini-proof">PROOF<code>$ preview</code></div><div class="mini-face small"></div><div class="mini-caption dark">SHOW IT ABOVE</div></div>
+      <div class="layout-copy"><h3>Split</h3><p>Demo plus speaker.</p></div>
     </a>
-
-    <a class="layout-card" href="templates/float.html">
-      <div class="thumb"><div class="mini-face"></div><div class="float-card"><b>$0 setup</b><i></i></div><div class="mini-cap">KEEP THE FACE</div></div>
-      <div class="card-copy"><h3>Float</h3><p>Keep the speaker while a small card or visual enters the frame.</p></div>
+    <a class="layout-card reveal" href="templates/float.html">
+      <div class="thumb face-thumb"><div class="mini-face"></div><div class="float-mini"><b>$0 setup</b><i></i></div><div class="mini-caption">KEEP THE FACE</div></div>
+      <div class="layout-copy"><h3>Float</h3><p>Small visual, speaker stays.</p></div>
     </a>
-
-    <a class="layout-card proof-card" href="templates/proof.html">
-      <div class="thumb proof-thumb"><div class="browser-proof"><b>actual-source.dev</b><i></i><i></i><div></div></div></div>
-      <div class="card-copy"><h3>Proof</h3><p>Put the real website, repo, result, or screen in the middle and let it take space.</p></div>
+    <a class="layout-card wide reveal" href="templates/proof.html">
+      <div class="thumb proof-thumb"><div class="proof-mini-window"><b>actual-source.dev</b><i></i><i></i><div></div></div></div>
+      <div class="layout-copy"><h3>Proof</h3><p>Website, repo, result, or screen. Centered and large.</p></div>
     </a>
-
-    <a class="layout-card" href="templates/editorial.html">
+    <a class="layout-card reveal" href="templates/editorial.html">
       <div class="thumb editorial-thumb"><small>STEP 03</small><strong>Preview<br>before export.</strong><i></i></div>
-      <div class="card-copy"><h3>Editorial</h3><p>Short takeovers for a stat, list, comparison, or payoff.</p></div>
+      <div class="layout-copy"><h3>Editorial</h3><p>Stats, steps, comparisons, payoff.</p></div>
     </a>
-
-    <a class="layout-card" href="templates/ui.html">
+    <a class="layout-card reveal" href="templates/ui.html">
       <div class="thumb ui-thumb"><code>&gt; edit this video<br><span>&gt; preview first</span></code><small>✓ transcript ready</small></div>
-      <div class="card-copy"><h3>UI</h3><p>Terminal, status, and product-interface moments when the screen is the story.</p></div>
+      <div class="layout-copy"><h3>UI</h3><p>Terminal, status, interface.</p></div>
     </a>
-
-    <a class="layout-card" href="templates/collage.html">
+    <a class="layout-card reveal" href="templates/collage.html">
       <div class="thumb collage-thumb"><i></i><i></i><i></i><i></i><b>SHOW THE PAYOFF</b></div>
-      <div class="card-copy"><h3>Collage</h3><p>A dense reveal or summary. Useful occasionally, terrible as a personality.</p></div>
+      <div class="layout-copy"><h3>Collage</h3><p>Dense reveal. Use sparingly.</p></div>
     </a>
   </div>
 </section>
 
-<section class="wrap section workflow" id="workflow">
-  <div class="section-title">
+<section class="wrap section workflow">
+  <div class="section-head reveal">
     <div>
-      <p class="eyebrow">How it works</p>
-      <h2>The content decides the edit.</h2>
+      <p class="section-label">Workflow</p>
+      <h2>From footage to preview.</h2>
     </div>
-    <p>The current repo is the design and workflow foundation. The transcription and render engine are the next build.</p>
+    <p>The current repo has the design system, workflow rules, templates, machine doctor, and agent skill. The editing engine is the next build.</p>
   </div>
-
-  <ol class="steps">
-    <li><span>01</span><div><b>Transcribe</b><p>Groq, Deepgram, or local faster-whisper.</p></div></li>
-    <li><span>02</span><div><b>Plan cuts</b><p>Silence creates candidates. Meaning decides what gets removed.</p></div></li>
-    <li><span>03</span><div><b>Choose layouts</b><p>Face, Split, Float, Proof, Editorial, UI, or Collage.</p></div></li>
-    <li><span>04</span><div><b>Preview</b><p>Open the HyperFrames composition in the browser before final export.</p></div></li>
-    <li><span>05</span><div><b>Export</b><p>Render after approval unless one-shot export was explicitly requested.</p></div></li>
+  <ol class="workflow-list">
+    <li class="reveal"><span>01</span><b>Transcribe</b><p>Groq, Deepgram, or local faster-whisper.</p></li>
+    <li class="reveal"><span>02</span><b>Plan cuts</b><p>Silence creates candidates. Meaning decides.</p></li>
+    <li class="reveal"><span>03</span><b>Build beats</b><p>Choose layouts based on what each line is doing.</p></li>
+    <li class="reveal"><span>04</span><b>Preview</b><p>Open the composition in the browser.</p></li>
+    <li class="reveal"><span>05</span><b>Export</b><p>Render after approval.</p></li>
   </ol>
 </section>
 
-<section class="wrap section rules">
-  <div class="section-title">
-    <div>
-      <p class="eyebrow">Default rules</p>
-      <h2>Less decoration. More evidence.</h2>
-    </div>
-  </div>
-  <div class="rule-grid">
-    <div><b>Show the person until there is something better to show.</b><p>Real screenshots and demos beat invented cards.</p></div>
-    <div><b>Do not cut every pause.</b><p>Thinking, emphasis, reactions, and useful demo time can stay.</p></div>
-    <div><b>Do not final-render blind.</b><p>Preview is a checkpoint, not a decorative step in a diagram.</p></div>
+<section class="closing">
+  <div class="wrap closing-inner reveal">
+    <h2>Less decoration.<br>More useful frames.</h2>
+    <p>Open source. Early build. Built under Bare Stack Labs.</p>
+    <a class="button light" href="https://github.com/barestack-labs/bare-video">Open the repo ↗</a>
   </div>
 </section>
 </main>
 
 <footer class="wrap footer">
   <div><b>Bare Video</b><br><a href="https://shorts.paulablaza.com/">shorts.paulablaza.com</a></div>
-  <div>Created by Paul Martin Ablaza<br>A Bare Stack Labs project · MIT</div>
+  <div>Created by Paul Martin Ablaza<br>Bare Stack Labs · MIT</div>
 </footer>
 
 <div class="toast">Setup prompt copied.</div>
