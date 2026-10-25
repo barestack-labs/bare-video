@@ -59,9 +59,9 @@ let state = { ...DEFAULTS };
 const styleText = () => ({
   bare: "Start simple and adapt to the footage. Use the speaker, captions, and supporting visuals where they help. Let the meaning and my taste guide the edit, not a fixed template.",
   captions: "Keep the original footage full-screen most of the time. Use cuts and captions as the primary edit language. Avoid routine full-screen graphic scenes.",
-  tutorial: "Make this tutorial and proof-heavy. Prioritize real screen recordings, screenshots, demos, repos, and results. Prefer Split and Proof layouts when useful.",
+  tutorial: "Make this tutorial and proof-heavy. Prioritize real screen recordings, screenshots, demos, repos, and results. Prefer real screen recordings, screenshots, demos, repos, and results when useful.",
   face: "Keep this face-first and minimal. Stay on the speaker for most of the video and interrupt only when a visual is genuinely more useful.",
-  agent: "Choose the visual mix yourself using the skill's rules. Do not rotate layouts for variety; choose them from the meaning of each beat.",
+  agent: "Choose the visual mix yourself from the footage, the goal, and the Bare Video skill. Do not add visuals just for variety.",
   reference:
     "Look in ./references/ and derive a style from it: layout rhythm, framing, caption treatment, motion, graphic density, sound, pacing. Recreate that general editing language. Do not copy protected branding or copyrighted assets unless I have the rights to them.",
 }[state.style]);
@@ -98,7 +98,7 @@ function setupText() {
   }
   return (
     "Treat this as a first video project. Keep all new work inside the current dedicated project folder. " +
-    "Recommended folders: ./input/, ./references/, ./assets/, ./runtime/ (for anything installed), ./workspace/, ./output/. " +
+    "A simple layout is ./input/, ./references/, ./assets/, ./workspace/, and ./output/. " +
     "Reuse installed tools first. Add folders or dependencies only when the edit needs them."
   );
 }
@@ -126,7 +126,7 @@ Video: ${state.video_path}
 Goal: ${goal}
 
 ${setupText()}
-Inspect installed tools and use their current help. Use FFmpeg directly for media work and HyperFrames when a browser composition helps. No custom editing engine or extra framework.
+Inspect installed tools and use their current help. Use FFmpeg directly for media work. Use HyperFrames when a browser composition, animation, or preview helps. Bare Video is the skill, not another editing engine.
 
 My preferences:
 - Process: ${planText()}
