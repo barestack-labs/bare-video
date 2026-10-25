@@ -16,6 +16,12 @@
 .sc-chip:hover{border-color:#b4b4bb}
 .sc-chip.is-on{background:#0b0b0c;border-color:#0b0b0c;color:#fff}
 
+.sc-ori{display:flex;align-items:center;gap:6px;margin:-10px 0 22px}
+.sc-ori[hidden]{display:none}
+.sc-ori>span{font:700 8.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#8a8a90;margin-right:2px}
+.sc-ori button{border:1px solid #dcdce1;background:#fff;color:#3a3a3d;border-radius:999px;padding:5px 10px;font-size:10.5px;font-weight:650;cursor:pointer}
+.sc-ori button.is-on{background:#0b0b0c;border-color:#0b0b0c;color:#fff}
+
 .sc-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
 .sc-item{min-width:0}
 .sc-name{display:block;margin-top:10px;font-size:12.5px;font-weight:720;letter-spacing:-.02em;color:#0b0b0c}
@@ -59,6 +65,11 @@
 .sc-phone[data-comp="split"] .cs-foot{inset:0 0 44% 0}
 .sc-phone[data-comp="split"] .cs-cap{bottom:47%;font-size:7.4cqw}
 .sc-phone[data-comp="split"] .cs-doc{left:7%;right:7%;top:59%;bottom:8%}
+
+/* reversed: information on top, speaker below */
+.sc-phone[data-comp="split"][data-ori="bottom"] .cs-foot{inset:48% 0 0 0}
+.sc-phone[data-comp="split"][data-ori="bottom"] .cs-doc{top:6%;bottom:auto;height:36%}
+.sc-phone[data-comp="split"][data-ori="bottom"] .cs-cap{bottom:auto;top:49%;font-size:7.4cqw}
 
 .sc-phone[data-comp="full"] .cs-kicker{left:8%;top:8%;color:rgba(255,255,255,.78)}
 .sc-phone[data-comp="full"] .cs-cap{bottom:17%}

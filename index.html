@@ -68,6 +68,11 @@
       <p>A style is one set of decisions: type, color, cards, spacing, captions, motion. Here is the exact same composition in all five, so you can see what actually changes and what stays put.</p>
     </div>
     <div class="sc-chips" id="sc-chips" aria-label="Choose a component"></div>
+    <div class="sc-ori" id="sc-ori" hidden>
+      <span>Order</span>
+      <button type="button" data-ori="top">Speaker on top</button>
+      <button type="button" data-ori="bottom">Speaker below</button>
+    </div>
     <div class="sc-grid" id="sc-grid"></div>
     <p class="sc-note">Grey blocks are footage slots, not fake mockups of people. Drop in your own clip and the same composition keeps its style. Styles are a starting baseline: your references and instructions override them.</p>
   </div>
@@ -147,23 +152,23 @@
           </div>
           <div class="theme-grid">
             <button class="theme-card" data-theme="product" type="button">
-              <span class="theme-preview theme-product"><i class="preview-face"></i><i class="preview-body"></i><i class="preview-card"></i><i class="preview-line"></i></span>
+              <span class="theme-preview" data-theme-preview="product"></span>
               <span class="theme-copy"><strong>Product Clean</strong><small>Bright, polished, generous spacing, clean cards, controlled motion.</small></span>
             </button>
             <button class="theme-card" data-theme="creator" type="button">
-              <span class="theme-preview theme-creator"><i class="preview-face"></i><i class="preview-body"></i><i class="preview-card"></i><i class="preview-line"></i></span>
+              <span class="theme-preview" data-theme-preview="creator"></span>
               <span class="theme-copy"><strong>Creator Utility</strong><small>Speaker + real UI, bold captions, fast proof, practical cards.</small></span>
             </button>
             <button class="theme-card" data-theme="data" type="button">
-              <span class="theme-preview theme-data"><i class="preview-card"></i></span>
+              <span class="theme-preview" data-theme-preview="data"></span>
               <span class="theme-copy"><strong>Data Editorial</strong><small>Stats, charts, editorial hierarchy, restrained accents, calmer motion.</small></span>
             </button>
             <button class="theme-card" data-theme="tutorial" type="button">
-              <span class="theme-preview theme-tutorial"><i class="preview-card"></i><i class="preview-line"></i></span>
+              <span class="theme-preview" data-theme-preview="tutorial"></span>
               <span class="theme-copy"><strong>Tutorial Steps</strong><small>Step labels, screen takeovers, callouts, and clear UI emphasis.</small></span>
             </button>
             <button class="theme-card" data-theme="minimal" type="button">
-              <span class="theme-preview theme-minimal"><i class="preview-face"></i><i class="preview-body"></i></span>
+              <span class="theme-preview" data-theme-preview="minimal"></span>
               <span class="theme-copy"><strong>Bare Minimal</strong><small>Strong framing, black-and-white type, clean proof, minimal decoration.</small></span>
             </button>
           </div>
@@ -175,16 +180,16 @@
             <div><strong>Give the agent a useful kit.</strong><p>Select the compositions you like. They are ingredients, not restrictions: the agent can resize, combine, reposition, or adapt them to the footage.</p></div>
           </div>
           <div class="component-grid">
-            <button class="component-toggle" data-visual="face" type="button"><span class="component-preview cp-face"><i></i></span><strong>Talking head</strong></button>
-            <button class="component-toggle" data-visual="split" type="button"><span class="component-preview cp-split"><i></i></span><strong>Split screen</strong></button>
-            <button class="component-toggle" data-visual="fullscreen" type="button"><span class="component-preview cp-full"><i></i></span><strong>Full-screen media</strong></button>
-            <button class="component-toggle" data-visual="card" type="button"><span class="component-preview cp-card"><i></i></span><strong>Floating card</strong></button>
-            <button class="component-toggle" data-visual="bigcard" type="button"><span class="component-preview cp-big"><i></i></span><strong>Big card</strong></button>
-            <button class="component-toggle" data-visual="stat" type="button"><span class="component-preview cp-stat"><i>47%</i></span><strong>Stat / data card</strong></button>
-            <button class="component-toggle" data-visual="step" type="button"><span class="component-preview cp-step"><i>02</i></span><strong>Step card</strong></button>
-            <button class="component-toggle" data-visual="ui" type="button"><span class="component-preview cp-ui"><i></i></span><strong>Screenshot / UI</strong></button>
-            <button class="component-toggle" data-visual="cards" type="button"><span class="component-preview cp-cards"><i></i></span><strong>Multiple cards</strong></button>
-            <button class="component-toggle" data-visual="green" type="button"><span class="component-preview cp-green"><i></i></span><strong>Green-screen layout</strong></button>
+            <button class="component-toggle" data-visual="face" type="button"><strong>Talking head</strong></button>
+            <button class="component-toggle" data-visual="split" type="button"><strong>Split screen</strong></button>
+            <button class="component-toggle" data-visual="fullscreen" type="button"><strong>Full-screen media</strong></button>
+            <button class="component-toggle" data-visual="card" type="button"><strong>Floating card</strong></button>
+            <button class="component-toggle" data-visual="bigcard" type="button"><strong>Big card</strong></button>
+            <button class="component-toggle" data-visual="stat" type="button"><strong>Stat / data card</strong></button>
+            <button class="component-toggle" data-visual="step" type="button"><strong>Step card</strong></button>
+            <button class="component-toggle" data-visual="ui" type="button"><strong>Screenshot / UI</strong></button>
+            <button class="component-toggle" data-visual="cards" type="button"><strong>Multiple cards</strong></button>
+            <button class="component-toggle" data-visual="green" type="button"><strong>Green-screen layout</strong></button>
           </div>
           <label class="improvise-toggle"><input id="agent-improvise" type="checkbox" checked><span><b>Agent can improvise</b><small>Resize, combine, restyle, or create another composition when your footage, reference, or instruction calls for it.</small></span></label>
           <div class="visual-meta"><span id="visual-help">These are starting components, not a strict allow-list.</span><span id="visual-count"></span></div>
@@ -235,7 +240,7 @@
 </footer>
 
 <script src="assets/app.js"></script>
-<script src="assets/builder.js"></script>
 <script src="assets/showcase.js"></script>
+<script src="assets/builder.js"></script>
 </body>
 </html>

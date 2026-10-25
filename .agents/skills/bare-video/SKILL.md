@@ -9,6 +9,13 @@ Bare Video is an editing skill, not a video engine. The coding agent supplies th
 
 Do not create a Bare Video CLI, media engine, template runtime, workflow graph, or wrapper around tools that already work.
 
+## How this skill is organised
+
+- This file holds the judgment: what to inspect, what to decide, and what never to fake.
+- [references/themes.md](references/themes.md) holds the tokens: palette, type family, weight, tracking, radius, caption rules, motion timing. Use those numbers instead of reinterpreting a theme name.
+- [references/hyperframes.md](references/hyperframes.md) holds the build contract for HyperFrames: composition shape, timeline registration, clip timing, caption markup from word timings, the motion rules lint rejects, and the verification order.
+- A component is a parameterised skeleton, not a picture. Split screen has two orders, speaker on top with the information below, or the information above with the speaker below. A theme restyles the skeleton through tokens. Anything not named here can still be composed when the footage calls for it, as long as it stays inside the theme's tokens.
+
 ## Start the session like a human editor
 
 Work inside the video project the user opened. If the user has no project folder yet, recommend one disposable folder per video so temporary files are easy to remove later. A simple structure is enough:
@@ -76,7 +83,7 @@ Bare Video includes reusable composition ingredients. They are not a finite temp
 Starter components include:
 
 - **Talking head:** let the speaker own the frame when delivery is the strongest visual.
-- **Split screen:** combine the speaker with a real screen, screenshot, demo, image, or other useful visual.
+- **Split screen:** combine the speaker with a real screen, screenshot, demo, image, or other useful visual. Two orders are equally valid: speaker on top with the information below, or the information on top with the speaker below. Pick the order that serves the sentence, the way the face sits in frame, and whether the viewer must read or watch first. Do not ask about it unless both orders are genuinely equal.
 - **Full-screen media:** let real proof, UI, a website, screenshot, image, or demo take over when it deserves the frame.
 - **Floating card:** place a compact card over footage for a label, quote, proof point, image, UI detail, or short piece of information.
 - **Big card:** use an oversized card as a major composition for proof, a statement, UI, or another focal visual.

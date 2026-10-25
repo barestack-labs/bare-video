@@ -26,7 +26,7 @@ if(builder){
 
   const componentCopy={
     face:"Talking head: use the speaker as the main composition when delivery is the strongest visual.",
-    split:"Split screen: combine the speaker with a real screen, screenshot, demo, image, or other useful visual.",
+    split:"Split screen: combine the speaker with a real screen, screenshot, demo, image, or other useful visual. Either order is allowed: speaker on top with the information below, or the information on top with the speaker below. Choose by the way the face sits in frame and whether the viewer should read or watch first.",
     fullscreen:"Full-screen media: let a real screen, result, website, screenshot, image, or demo take over when it deserves the frame.",
     card:"Floating card: place a compact card over footage for a label, quote, proof point, image, UI detail, or short piece of information.",
     bigcard:"Big card: use a large card as a major composition, including oversized proof, a strong statement, UI, or a focal visual.",
@@ -158,6 +158,17 @@ if(builder){
 
     $("#builder-prompt").value=buildPrompt();
     $("#visual-count").textContent=state.visuals.length+" selected";
+    paintThemePreviews();
+  }
+
+  function paintThemePreviews(){
+    if(typeof window.bvPhone!=="function")return;
+    $$("[data-theme-preview]").forEach(el=>{
+      const key=el.dataset.themePreview;
+      if(el.dataset.painted===key)return;
+      el.innerHTML=window.bvPhone("face",key);
+      el.dataset.painted=key;
+    });
   }
 
   $$(".segmented [data-key]").forEach(button=>button.addEventListener("click",()=>{state[button.dataset.key]=button.dataset.value;sync();}));

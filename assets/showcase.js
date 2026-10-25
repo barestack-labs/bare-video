@@ -81,20 +81,36 @@ if (SHOWCASE) {
     }
   };
 
-  const phone = (theme, comp) => `
+  const phone = (theme, comp, ori = "top") => `
     <div class="sc-item">
-      <div class="sc-phone t-${theme.key}" data-comp="${comp}">
+      <div class="sc-phone t-${theme.key}" data-comp="${comp}" data-ori="${ori}">
         <div class="sc-stage">${build(comp)}</div>
       </div>
       <div class="sc-name"><strong>${theme.name}</strong></div>
       <span class="sc-desc">${theme.desc}</span>
     </div>`;
 
-  const render = (comp) => {
+  /* the builder reuses the same renderer so its previews match the page */
+  window.bvPhone = (comp, themeKey, cls = "mini", ori = "top") =>
+    `<div class="sc-phone t-${themeKey} ${cls}" data-comp="${comp}" data-ori="${ori}"><div class="sc-stage">${build(comp)}</div></div>`;
+
+  let currentComp = "split";
+  let currentOri = "top";
+
+  const render = (comp, ori = "top") => {
+    currentComp = comp;
+    currentOri = ori;
     SHOWCASE.querySelectorAll(".sc-chip").forEach((chip) =>
       chip.classList.toggle("is-on", chip.dataset.comp === comp)
     );
-    SHOWCASE.querySelector("#sc-grid").innerHTML = THEMES.map((t) => phone(t, comp)).join("");
+    const oriBox = SHOWCASE.querySelector("#sc-ori");
+    if (oriBox) {
+      oriBox.hidden = comp !== "split";
+      oriBox.querySelectorAll("[data-ori]").forEach((b) =>
+        b.classList.toggle("is-on", b.dataset.ori === ori)
+      );
+    }
+    SHOWCASE.querySelector("#sc-grid").innerHTML = THEMES.map((t) => phone(t, comp, ori)).join("");
   };
 
   /* every component on one page, for checking: ?all=1 */
@@ -112,13 +128,22 @@ if (SHOWCASE) {
 
     SHOWCASE.querySelector("#sc-chips").addEventListener("click", (event) => {
       const chip = event.target.closest(".sc-chip");
-      if (chip) render(chip.dataset.comp);
+      if (chip) render(chip.dataset.comp, "top");
     });
+
+    const oriBox = SHOWCASE.querySelector("#sc-ori");
+    if (oriBox) {
+      oriBox.addEventListener("click", (event) => {
+        const btn = event.target.closest("[data-ori]");
+        if (btn) render(currentComp, btn.dataset.ori);
+      });
+    }
 
     const wanted =
       new URLSearchParams(location.search).get("comp") ||
       (location.hash.startsWith("#looks=") ? location.hash.slice(7) : "");
+    const wantedOri = new URLSearchParams(location.search).get("ori") === "bottom" ? "bottom" : "top";
 
-    render(COMPONENTS.some((c) => c.key === wanted) ? wanted : "split");
+    render(COMPONENTS.some((c) => c.key === wanted) ? wanted : "split", wantedOri);
   }
 }
