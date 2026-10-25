@@ -1,0 +1,17 @@
+# secrets
+.env
+*.env
+!examples/*.env.example
+
+# project media / generated work
+input/
+references/
+workspace/
+output/
+runtime/
+
+# deps / caches
+node_modules/
+__pycache__/
+.DS_Store
+Thumbs.db
