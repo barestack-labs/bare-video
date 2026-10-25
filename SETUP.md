@@ -20,7 +20,7 @@ HyperFrames is optional. The agent should first transcribe, inspect the footage,
 
 ## Use the skill
 
-Open a video-project folder in your coding agent and ask it to read the Bare Video skill from this repo. One folder per video is recommended because temporary assets, transcripts, previews, and renders are then easy to remove together. It can clone the repo inside that project if needed. You can also copy the skill into the user-level skill location documented by your agent, but that is optional and should be your choice.
+Open a video-project folder in your coding agent and ask it to read the Bare Video skill from this repo. One folder per video is recommended because temporary assets, transcripts, previews, and renders are then easy to remove together. It can clone the repo inside that project if needed. Advanced users can copy or clone the repo into each video project and let their agent read or customize that local copy.
 
 A simple project:
 

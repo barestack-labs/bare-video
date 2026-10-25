@@ -2,66 +2,117 @@
 
 **A video-editing skill for your coding agent.**
 
-Give your agent footage, choose how speech should be transcribed, plan the edit together if you want, and let the agent use FFmpeg plus optional HyperFrames to build a preview. Bare Video supplies a reusable editing skill and a prompt builder that turns your design choices into one clear handoff.
+Bare Video is a small open-source editing guide plus a browser-only prompt builder. Your coding agent does the actual work with the video files and tools in your project.
 
-Website: [shorts.paulablaza.com](https://shorts.paulablaza.com/)  
-Prompt builder: [create your editing prompt](https://shorts.paulablaza.com/create.html)
+Website and prompt builder: https://shorts.paulablaza.com/#build
 
 ## Start here
 
-1. Put your footage in a project folder. Keep the originals.
-2. Open that folder in your coding agent.
-3. Give it a prompt from the website, or use the short prompt below.
+1. Create or open one project folder for the video.
+2. Put the source MP4 and any references, screenshots, images, logos, or other assets in that folder.
+3. Open the folder in your coding agent and point the agent to the exact video file you want edited.
+4. Build a prompt on the Bare Video homepage and paste it into the agent.
+5. Let the agent read the Bare Video skill before editing.
 
-> Use Bare Video to edit the video path I give you. Read the skill in https://github.com/barestack-labs/bare-video. Use my chosen transcription route, then plan the short with me before the heavy build. Inspect installed tools before downloading anything. Use FFmpeg directly, and only ask to add HyperFrames locally to this video project if the plan genuinely needs it. Keep the original footage intact and show me a preview before final export.
+The website never needs the source video path and never uploads the media. The path belongs in the conversation with your coding agent because that agent is the thing that can actually access the project files.
 
-If your agent cannot read GitHub directly, have it clone this repository and read the skill locally. No Python package, server, or global skill install is required. Installing the skill in your agent's supported skill directory is optional.
+One folder per video is recommended because temporary assets, transcripts, previews, and renders are then easy to remove together.
+
+## Beginner path
+
+Use the builder on the homepage.
+
+It lets you choose:
+
+- Faster Whisper, Groq, Deepgram, or an existing transcript
+- Plan with me or Start editing
+- one editing theme
+- which visual building blocks are allowed
+- visual pace
+- captions
+- sound design
+- preview-first or one-pass output
+
+Copy the generated prompt, paste it into your coding agent, then point the agent to the exact video file inside the project folder.
+
+## Advanced path
+
+Copy or clone this repo into the video project and let your coding agent read the Bare Video skill directly.
+
+The agent can customize that local project copy if you want to experiment or adapt the boilerplate. Keep private footage paths, credentials, and project-only details out of the public repository.
+
+There is no Bare Video engine, CLI, template runtime, or media backend.
+
+## Editing themes
+
+Bare Video includes five starter editing languages:
+
+- **Product Clean:** premium product-demo language with white, black, soft gray, generous space, clean cards, controlled motion, selective accent color, and polished proof.
+- **Creator Utility:** talking head plus real UI, bold captions, quick screen proof, useful labels, practical cards, and faster creator pacing.
+- **Data Editorial:** strong information hierarchy with real percentages, progress, charts, counters, data cards, restrained warm or muted accents, and calmer editorial motion.
+- **Tutorial Steps:** obvious step labels, screen takeovers, callouts, UI emphasis, high-contrast instructions, and minimal decoration.
+- **Bare Minimal:** strong talking-head framing, black-and-white typography, simple proof, purposeful crops or zooms, and almost no decorative motion.
+
+These themes style the same four structural building blocks:
+
+- Face-first
+- Split-screen
+- Light overlays
+- Full-screen proof
+
+A theme is not a rigid template. Real reference videos, images, design systems, and direct feedback can override the starter theme.
 
 ## What the agent does
 
-- Understands the footage, your goal, and any references.
-- Uses the transcription route you choose: Faster Whisper, Groq, Deepgram, or an existing verified transcript.
-- Decides which takes, pauses, and reactions belong in the edit. A silence threshold is not an editor.
-- Uses FFmpeg directly for media work. HyperFrames is optional and is considered after transcription and planning; if it would help and is missing, the agent asks before adding it locally to the video project.
-- Checks the output and asks for feedback before final export, unless you request one-shot export.
-
-Layouts, captions, pacing, and sound are creative choices, not a fixed checklist. A simple cut can be the right result.
-
-## Design ownership
-
-Bare Video includes starter choices for visual pace, captions, sound, and four caption/overlay themes: Mono, Graphite, Plain, and Orange. They are defaults, not a house style. Your approved colors, typography, reference videos, pacing, and feedback override them.
-
-For active short-form pacing, the agent tries to give most meaningful phrases a useful visible response without changing something mechanically on every word.
-
-## Inspiration
-
-Bare Video was informed by the agent-guided editing ideas in [Nate Herk's Herk Edit Kit](https://github.com/nateherkai/herk-edit-kit), especially transcript-first editing, planning before heavy composition, preview-and-feedback loops, and preserving reusable editing lessons. Bare Video is an independent skill-first project and does not bundle Herk Edit Kit templates, cards, scripts, or runtime.
+- Confirms the exact source video inside the project folder.
+- Uses the transcription route you choose.
+- Inspects the real footage, transcript, references, and assets.
+- Plans with you first when requested, or makes a first draft when requested.
+- Uses FFmpeg directly for normal media work.
+- Uses HyperFrames only when composition, motion graphics, or browser preview would materially improve the edit.
+- Asks before adding HyperFrames locally when it is missing.
+- Does not install HyperFrames globally by default.
+- Uses real proof and real assets instead of inventing them.
+- Shows a preview before final export unless you explicitly request one pass.
+- Checks the actual picture, audio, caption timing, duration, and A/V sync before claiming the edit works.
 
 ## What is in this repo
 
-- `.agents/skills/bare-video/SKILL.md`: the portable editing skill.
-- `AGENTS.md`: instructions for agents working from this checkout.
-- `index.html`, `create.html`, and `assets/`: a static website and browser-only prompt builder.
-- `SETUP.md` and `docs/WORKFLOW.md`: tool setup and direct command examples.
-
-The prompt builder does not upload or edit media. Your coding agent runs the tools on your machine. Cloud transcription, if you choose it, sends audio to that provider and may have costs or limits.
+- .agents/skills/bare-video/SKILL.md: the portable editing guide
+- AGENTS.md: instructions for coding agents working from this checkout
+- index.html and assets/: the static website with the prompt builder directly on the homepage
+- create.html: compatibility redirect for old builder links
+- SETUP.md and docs/WORKFLOW.md: setup boundaries and direct tool examples
 
 ## Tools
 
-FFmpeg and ffprobe handle media. HyperFrames needs Node.js 22+ and a compatible Chromium browser for preview/render. Transcription depends on the local tool or cloud provider you choose. Reuse existing installations; ask before large downloads, paid calls, or global changes.
+FFmpeg and ffprobe handle media work.
 
-See [setup](SETUP.md) and the [editing workflow](docs/WORKFLOW.md).
+HyperFrames is optional. It needs Node.js 22+ and a compatible Chromium browser when used for preview or rendering.
+
+Transcription depends on the local tool or cloud provider you choose. Reuse existing installations and credentials. Ask before large downloads, paid calls, cloud uploads of private audio, or global configuration changes.
 
 ## Verification
 
-The static pages were exercised on desktop and mobile. The landing-page phone demo was scrolled through Face-first, Split-screen, Light overlays, and Full-screen proof in order. The six-step builder was checked at 1366×768 and 1440×900 with no page scrolling or nested scroll areas, and at 390×844 with normal vertical scrolling and no horizontal overflow. Path validation, mobile step scroll reset, all four transcription choices, both planning modes, strict visual subsets, all three visual-pacing choices, all four themes, all four sound levels, prompt generation, result display, and reset were exercised without browser console errors.
+The current homepage was exercised locally in Chromium at 1366x768 and 390x844.
 
-A direct-tool smoke run on Windows used FFmpeg 9.0.1 to cut a generated clip with speech, then HyperFrames 0.8.195 to check, preview, and render it. The five-second MP4 decoded successfully, displayed the expected picture, and preserved the edited audio. This checks the native tool path that the Bare Video skill asks agents to use.
+Verified behavior:
 
-Live transcription and the creative quality of edits on your own footage still depend on your agent and chosen tools. No cloud transcription was called during that smoke run.
+- the scroll-driven phone demo progresses Face-first, Split-screen, Light overlays, Full-screen proof in order
+- the prompt builder lives directly on the homepage
+- no video-path field exists in the builder
+- all five editing themes are selectable
+- all four visual building blocks can be enabled or disabled, with at least one kept active
+- transcription, planning, visual pace, captions, sound, and first-output selectors update the generated prompt
+- selecting Creator Utility updates the prompt to the Creator Utility theme
+- disabling Full-screen proof removes it from the allowed visual section
+- the prompt tells the coding agent to ask for the exact video file when needed
+- the 390px mobile layout has no horizontal overflow
+- create.html redirects old links to /#build
+- the tested flow produced no browser console or page errors
+
+A prior direct-tool smoke run used FFmpeg 9.0.1 and HyperFrames 0.8.195 to cut, preview, render, decode, and inspect a generated clip with speech. Creative quality on real footage still depends on the coding agent, the user's source material, and the chosen tools.
 
 ## Project
 
 Created by **Paul Martin Ablaza**, under **Bare Stack Labs**. MIT licensed.
-
-The website's Archivo and Courier Prime fonts retain their SIL Open Font License notices in `assets/fonts/`.

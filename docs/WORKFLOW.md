@@ -38,7 +38,7 @@ This file-input syntax was verified with FFmpeg 9.0.1. Check `ffmpeg -h full` on
 
 For active short-form pacing, most meaningful spoken phrases should have a useful visible response. That response can be a relevant screen, split-screen, proof, overlay, crop or motion change, or caption emphasis. Do not rotate layouts mechanically and do not add motion to filler words.
 
-Use only the visual building blocks the user allowed. Caption and overlay themes are starting points. The user's own colors, type, references, and confirmed design rules override them. Sound effects should follow visible actions and meaningful transitions instead of every cut.
+Use only the visual building blocks the user allowed. The selected editing theme styles those blocks. Product Clean, Creator Utility, Data Editorial, Tutorial Steps, and Bare Minimal are starting languages, not rigid templates. Real references and direct feedback override them. Sound effects should follow visible actions and meaningful transitions instead of every cut.
 
 ## Add what helps
 

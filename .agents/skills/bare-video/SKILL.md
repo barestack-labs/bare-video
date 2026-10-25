@@ -20,7 +20,7 @@ Work inside the video project the user opened. If the user has no project folder
 
 These names are suggestions, not requirements. Do not move or duplicate the user's original footage without a reason.
 
-Confirm the source video path and the goal. The user chooses the path. Do not assume ./input/video.mp4 exists.
+Before media work, make sure the user has identified the exact source video inside the project folder. The website does not collect this path. If the user has not pointed to a file yet, ask which video to edit. Do not assume ./input/video.mp4 exists.
 
 ## Transcribe before making speech-driven edit decisions
 
@@ -92,6 +92,22 @@ Do not mechanically switch something on every word. Short-form should feel respo
 
 Use real supporting material first. If the requested screenshot, proof, logo, result, or B-roll does not exist, stay with the speaker or ask for the asset. Never fabricate evidence.
 
+## Apply one editing theme across the allowed building blocks
+
+The selected theme is the primary visual language. It controls typography, color, background treatment, cards, proof presentation, caption styling, and motion. It does not change which structural building blocks are allowed.
+
+The five Bare Video starter themes are:
+
+- **Product Clean:** premium product-demo language. Use white, black, and soft gray as the base, generous negative space, clean product or UI cards, controlled motion, selective accent color, and occasional editorial type contrast. Speaker backgrounds can use a tasteful real image, gradient, or product visual when it supports the footage.
+- **Creator Utility:** practical creator editing. Keep the speaker present, use bold readable captions, bring in screen recordings and UI proof quickly, use useful labels or cards, selective keyword color, and faster transitions that prioritize clarity.
+- **Data Editorial:** information-led editorial design. Use strong hierarchy, real percentages, progress bars, charts, counters, and data cards when the source contains real data. Use restrained warm or muted accents and calmer motion. Editorial type contrast is allowed.
+- **Tutorial Steps:** instructional clarity. Use obvious step labels, screen takeovers, callouts, cursor or UI emphasis, high-contrast captions, and minimal decoration. The viewer should always know what to click, read, or do next.
+- **Bare Minimal:** stripped-back short-form editing. Favor strong talking-head framing, clean black-and-white typography, simple proof, purposeful crops or zooms, and very little decorative motion.
+
+These are starting languages, not rigid templates. The same Face-first, Split-screen, Light overlays, and Full-screen proof building blocks can look different under each theme.
+
+If the user provides a reference video, image, or design system, study the real reference and let it override specific theme details where appropriate. Do not copy protected branding or fabricate missing assets.
+
 ## Captions should be precise and intentionally styled
 
 Use transcript timing to keep captions synchronized with speech. Check the rendered captions against the actual audio.
@@ -102,14 +118,7 @@ For **Clean** captions, keep timing precise but use calmer chunking, motion, and
 
 For **None**, do not burn captions into the video. The transcript can still guide cuts and timing.
 
-Bare Video includes four starting themes:
-
-- **Mono:** high-contrast black and white.
-- **Graphite:** charcoal, white, and soft gray.
-- **Plain:** simple readable text with minimal container treatment.
-- **Orange:** black and white with orange used only for meaningful emphasis.
-
-These are defaults, not a house style. The user's own colors, typography, spacing, caption rules, reference videos, and design system override them.
+The selected editing theme controls the caption and overlay treatment. The user's direct feedback and real references override the starter theme.
 
 Keep captions away from the speaker's mouth, important UI, and proof the viewer needs to read. Reposition captions when the layout changes instead of hiding them unnecessarily.
 
@@ -142,13 +151,9 @@ Preview before final export unless the user explicitly requested a one-pass fina
 
 Inspect the actual picture, audio, duration, caption timing, visual changes, and A/V sync. A successful command or lint result does not prove a good edit.
 
-When the user gives feedback, fix the edit first. If they want that preference to persist, offer one of these paths:
+When the user gives feedback, fix the edit first. The active project can evolve during the session.
 
-- install or copy Bare Video into the user-level skill location supported by their coding agent
-- create a separate personal style skill containing only the design rules they actually approved
-- store reusable style rules in their own knowledge base when they use one
-
-Do not silently rewrite Bare Video around one person's project-specific notes. Do not put private footage paths, credentials, or temporary project details into a reusable skill.
+Advanced users may copy or clone the Bare Video repo into their own video project and let their coding agent customize that local project copy. Keep project-specific footage paths, credentials, and private temporary details out of the public Bare Video repo.
 
 Report the output location, what changed, what was actually verified, which tools were used, and any real limitation that remains.
 

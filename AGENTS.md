@@ -12,7 +12,7 @@ Read the Bare Video skill first. Use the user's goal, footage, references, desig
 - Ask before paid services, large model downloads, global installs, or global configuration changes.
 - Review speech in context. Silence, repeated words, and short phrases are not automatic deletion rules.
 - Use real supporting assets, or stay with the footage. Do not fabricate proof.
-- Follow explicit visual building blocks, visual pace, caption style, theme, sound level, transcription choice, planning mode, and approval choices. The user's approved design rules override Bare Video's starter themes.
+- Follow explicit visual building blocks, visual pace, caption style, editing theme, sound level, transcription choice, planning mode, and approval choices. Product Clean, Creator Utility, Data Editorial, Tutorial Steps, and Bare Minimal are starter languages only. The user's real references and direct feedback override them.
 - Show a preview before final export unless the user explicitly requests one-shot export.
 - Inspect the rendered media, including picture, audio, duration, and synchronization. Never claim an untested boundary works.
 
@@ -24,4 +24,4 @@ Keep it small. The website is plain HTML, CSS, and JavaScript with no build step
 
 Prefer removing an unnecessary layer over adding configuration, adapters, wrappers, or a new framework. A helper script needs a demonstrated recurring use, not a hypothetical future feature.
 
-For website changes, serve the files locally and exercise the real page on desktop and mobile. Check the scroll-driven phone demo, every prompt-builder choice, generated prompt text, reset, and copy flow. For skill changes, exercise the relevant native tool path and keep instructions aligned with current tool help. Update the existing docs when behavior changes.
+For website changes, serve the files locally and exercise the real page on desktop and mobile. The prompt builder lives on the homepage at #build. Check the scroll-driven phone demo, every builder choice, generated prompt text, and copy flow. For skill changes, exercise the relevant native tool path and keep instructions aligned with current tool help. Update the existing docs when behavior changes.

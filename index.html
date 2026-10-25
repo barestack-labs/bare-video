@@ -12,6 +12,7 @@
 <meta property="og:type" content="website">
 <title>Bare Video | Agent-directed short-form editing</title>
 <link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/builder.css">
 </head>
 <body>
 <header class="site-nav">
@@ -20,7 +21,7 @@
     <nav>
       <a href="#looks">Looks</a>
       <a href="#how">How it works</a>
-      <a class="nav-cta" href="create.html">Build a prompt</a>
+      <a class="nav-cta" href="#build">Build a prompt</a>
     </nav>
   </div>
 </header>
@@ -33,7 +34,7 @@
       <h1 class="reveal">Edit video with<br>the coding agent<br>you already use.</h1>
       <p class="hero-copy reveal">Bare Video is a small editing skill, not another editor to learn. Build a brief here, hand it to your coding agent, and let the agent work with FFmpeg, HyperFrames, and transcription tools already available to it.</p>
       <div class="hero-actions reveal">
-        <a class="button primary" href="create.html">Build my edit prompt</a>
+        <a class="button primary" href="#build">Build my edit prompt</a>
         <a class="button secondary" href="#looks">See the building blocks</a>
       </div>
       <p class="hero-note reveal">Your video stays with your agent and tools. This website only builds the instructions.</p>
@@ -117,29 +118,151 @@
     <div class="architecture reveal" aria-label="Bare Video workflow">
       <article>
         <span>01</span>
-        <b>Build the brief</b>
-        <p>Choose the goal, visual building blocks, captions, sound, transcription, and review flow.</p>
+        <b>Open a video project</b>
+        <p>Use one folder for the video. Put the MP4, references, screenshots, and working assets there so the agent has one clean workspace.</p>
       </article>
       <article>
         <span>02</span>
-        <b>Agent reads the skill</b>
-        <p>Your coding agent reads Bare Video before it touches the footage. The skill supplies the editing rules and safety checks.</p>
+        <b>Point to the video</b>
+        <p>Open that folder in your coding agent and tell it exactly which video file to edit. The website never needs the file path.</p>
       </article>
       <article>
         <span>03</span>
-        <b>Inspect footage + tools</b>
-        <p>The agent checks the video, existing assets, FFmpeg, HyperFrames, and available transcription before downloading anything.</p>
+        <b>Build the brief</b>
+        <p>Choose transcription, how you want to collaborate, one editing theme, allowed visual blocks, captions, sound, and preview behavior.</p>
       </article>
       <article>
         <span>04</span>
-        <b>Edit with judgment</b>
-        <p>FFmpeg handles direct media work. HyperFrames helps when composed visuals, animation, or browser preview genuinely improve the edit.</p>
+        <b>Agent reads the skill</b>
+        <p>The agent reads Bare Video, inspects the real footage and assets, then uses FFmpeg and optional HyperFrames only where they help.</p>
       </article>
       <article>
         <span>05</span>
         <b>Preview, revise, export</b>
         <p>You react to a real draft. The agent fixes what matters, checks picture and audio, then exports the final video.</p>
       </article>
+    </div>
+  </div>
+</section>
+
+<section class="builder" id="build">
+  <div class="wrap">
+    <div class="builder-intro reveal">
+      <div>
+        <p class="eyebrow">Build the prompt</p>
+        <h2>Choose the edit.<br>Not the file path.</h2>
+      </div>
+      <div>
+        <p class="builder-intro-copy">Bare Video only needs your editing preferences. Keep the actual MP4 in the project folder you open with your coding agent, then point the agent to that file when you paste the prompt.</p>
+        <div class="folder-guide" aria-label="Recommended setup">
+          <article><span>01</span><b>Create a project folder</b><p>One folder per video is easiest to clean up later.</p></article>
+          <article><span>02</span><b>Put the video inside</b><p>Add the MP4 plus any references, screenshots, images, or logos.</p></article>
+          <article><span>03</span><b>Open it in your agent</b><p>Your coding agent should work from that folder, not from a mystery global workspace.</p></article>
+          <article><span>04</span><b>Point to the MP4</b><p>Tell the agent which video file is the source, then paste the prompt below.</p></article>
+        </div>
+      </div>
+    </div>
+
+    <div class="builder-layout">
+      <div class="builder-form">
+        <section class="builder-group">
+          <div class="builder-group-head">
+            <span>Goal</span>
+            <div><strong>What should the finished short do?</strong><p>Optional. One sentence is enough. The agent still inspects the real footage before deciding the edit.</p></div>
+          </div>
+          <textarea class="builder-goal" id="builder-goal" rows="2" placeholder="Turn this into a fast tutorial. Keep my personality, make the proof easy to follow, and remove dead moments."></textarea>
+        </section>
+
+        <section class="builder-group">
+          <div class="builder-group-head">
+            <span>Transcript</span>
+            <div><strong>How should the agent understand speech?</strong><p>Choose the transcription route. The agent checks what already exists before downloading models or using cloud services.</p></div>
+          </div>
+          <div class="segmented" aria-label="Transcription">
+            <button data-key="transcription" data-value="faster" type="button">Faster Whisper</button>
+            <button data-key="transcription" data-value="groq" type="button">Groq</button>
+            <button data-key="transcription" data-value="deepgram" type="button">Deepgram</button>
+            <button data-key="transcription" data-value="existing" type="button">I have a transcript</button>
+          </div>
+        </section>
+
+        <section class="builder-group">
+          <div class="builder-group-head">
+            <span>Collaboration</span>
+            <div><strong>When do you want to give feedback?</strong><p>Keep this simple. Plan first if you want control before editing, or let the agent make a concrete draft.</p></div>
+          </div>
+          <div class="segmented" aria-label="Planning style">
+            <button data-key="planning" data-value="plan" type="button">Plan with me</button>
+            <button data-key="planning" data-value="draft" type="button">Start editing</button>
+          </div>
+        </section>
+
+        <section class="builder-group">
+          <div class="builder-group-head">
+            <span>Editing theme</span>
+            <div><strong>Choose one visual language.</strong><p>The theme controls how captions, layouts, proof, backgrounds, cards, colors, and motion feel. It does not force a rigid template.</p></div>
+          </div>
+          <div class="theme-grid">
+            <button class="theme-card" data-theme="product" type="button">
+              <span class="theme-preview theme-product"><i class="preview-face"></i><i class="preview-body"></i><i class="preview-card"></i><i class="preview-line"></i></span>
+              <span class="theme-copy"><strong>Product Clean</strong><small>Premium product-demo language. White, black, soft gray, clean cards, controlled motion, selective accent color.</small></span>
+            </button>
+            <button class="theme-card" data-theme="creator" type="button">
+              <span class="theme-preview theme-creator"><i class="preview-face"></i><i class="preview-body"></i><i class="preview-card"></i><i class="preview-line"></i></span>
+              <span class="theme-copy"><strong>Creator Utility</strong><small>Talking head + real UI. Bold captions, fast proof, useful screen recordings, practical labels and cards.</small></span>
+            </button>
+            <button class="theme-card" data-theme="data" type="button">
+              <span class="theme-preview theme-data"><i class="preview-card"></i></span>
+              <span class="theme-copy"><strong>Data Editorial</strong><small>Percentages, progress, charts, editorial hierarchy, calmer motion, restrained warm or muted accents.</small></span>
+            </button>
+            <button class="theme-card" data-theme="tutorial" type="button">
+              <span class="theme-preview theme-tutorial"><i class="preview-card"></i><i class="preview-line"></i></span>
+              <span class="theme-copy"><strong>Tutorial Steps</strong><small>Step labels, clear screen takeovers, callouts, cursor/UI emphasis, high-contrast instructions.</small></span>
+            </button>
+            <button class="theme-card" data-theme="minimal" type="button">
+              <span class="theme-preview theme-minimal"><i class="preview-face"></i><i class="preview-body"></i></span>
+              <span class="theme-copy"><strong>Bare Minimal</strong><small>Talking head, black and white type, clean proof, purposeful crops, almost no decorative motion.</small></span>
+            </button>
+          </div>
+        </section>
+
+        <section class="builder-group">
+          <div class="builder-group-head">
+            <span>What can appear?</span>
+            <div><strong>Choose the building blocks.</strong><p>The selected theme styles these blocks. Turn off anything you do not want in the edit.</p></div>
+          </div>
+          <div class="visual-grid">
+            <button class="visual-toggle" data-visual="face" type="button"><strong>Face-first</strong><small>Keep the speaker full-screen when delivery is strongest.</small></button>
+            <button class="visual-toggle" data-visual="split" type="button"><strong>Split-screen</strong><small>Speaker + real screen, demo, screenshot, or supporting image.</small></button>
+            <button class="visual-toggle" data-visual="overlay" type="button"><strong>Light overlays</strong><small>Small proof, labels, cards, stats, logos, or supporting images over footage.</small></button>
+            <button class="visual-toggle" data-visual="proof" type="button"><strong>Full-screen proof</strong><small>Let the real result, website, screenshot, demo, or supporting image take over.</small></button>
+          </div>
+          <div class="visual-meta"><span id="visual-help">Enable only the visual blocks you want the agent to use.</span><span id="visual-count">4 of 4 enabled</span></div>
+        </section>
+
+        <section class="builder-group">
+          <div class="builder-group-head">
+            <span>Finishing touches</span>
+            <div><strong>Control the intensity.</strong><p>These choices shape how often the edit changes and how much captions and sound contribute.</p></div>
+          </div>
+          <div class="compact-pairs">
+            <div class="compact-control"><b>Visual pace</b><div class="segmented"><button data-key="pace" data-value="active" type="button">Active</button><button data-key="pace" data-value="balanced" type="button">Balanced</button><button data-key="pace" data-value="calm" type="button">Calm</button></div></div>
+            <div class="compact-control"><b>Captions</b><div class="segmented"><button data-key="captions" data-value="punchy" type="button">Punchy</button><button data-key="captions" data-value="clean" type="button">Clean</button><button data-key="captions" data-value="none" type="button">None</button></div></div>
+            <div class="compact-control"><b>Sound design</b><div class="segmented"><button data-key="sound" data-value="lots" type="button">Lots</button><button data-key="sound" data-value="balanced" type="button">Balanced</button><button data-key="sound" data-value="minimal" type="button">Minimal</button><button data-key="sound" data-value="none" type="button">None</button></div></div>
+            <div class="compact-control"><b>First output</b><div class="segmented"><button data-key="finish" data-value="preview" type="button">Preview first</button><button data-key="finish" data-value="final" type="button">One pass</button></div></div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="builder-prompt-wrap" aria-label="Generated Bare Video prompt">
+        <div class="builder-prompt-head"><div><span>Live prompt</span><b>Paste this into your coding agent.</b></div><span>Nothing uploaded</span></div>
+        <textarea id="builder-prompt" readonly spellcheck="false"></textarea>
+        <div class="builder-prompt-actions">
+          <button class="copy-builder" id="copy-builder-prompt" type="button">Copy prompt</button>
+          <p class="builder-copy-status" id="builder-copy-status">After copying, point your agent to the exact video file inside your project folder.</p>
+          <div class="advanced-note"><b>Advanced:</b> copy or clone the Bare Video repo into the project and let your agent read the skill directly. You can modify that local project copy however you want without turning the public skill into your personal config.</div>
+        </div>
+      </aside>
     </div>
   </div>
 </section>
@@ -153,7 +276,7 @@
     <div class="why-items">
       <article class="reveal"><b>New to coding agents?</b><p>Use the prompt builder. It explains the decisions and gives you one copy-paste handoff.</p></article>
       <article class="reveal"><b>Already know your setup?</b><p>Point your agent at the repo and the Bare Video skill. Use your own folders, tools, and references.</p></article>
-      <article class="reveal"><b>Use it often?</b><p>Keep the skill in your agent's supported user-level skill folder so Bare Video becomes part of your normal workflow.</p></article>
+      <article class="reveal"><b>Advanced user?</b><p>Copy or clone the repo into the project, point your agent at the Bare Video skill, and customize that local copy if you want. The public repo stays a clean boilerplate.</p></article>
     </div>
   </div>
 </section>
@@ -163,7 +286,7 @@
     <img class="closing-logo" src="assets/logo.svg" alt="">
     <h2>Build the prompt.<br>Then build the video.</h2>
     <p>Choose your visual building blocks, captions, sound, transcription, and approval flow.</p>
-    <a class="button light" href="create.html">Open the prompt builder</a>
+    <a class="button light" href="#build">Build my prompt</a>
   </div>
 </section>
 </main>
@@ -174,5 +297,6 @@
 </footer>
 
 <script src="assets/app.js"></script>
+<script src="assets/builder.js"></script>
 </body>
 </html>
