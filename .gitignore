@@ -2,12 +2,12 @@
 .env
 *.env
 
-# project media / generated work
-input/
-references/
-workspace/
-output/
-runtime/
+# project media / generated work (root folders only, so skill references/ stay tracked)
+/input/
+/references/
+/workspace/
+/output/
+/runtime/
 
 # deps / caches
 node_modules/
