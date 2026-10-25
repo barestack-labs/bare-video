@@ -81,9 +81,14 @@
 <section class="how" id="how">
   <div class="wrap">
     <div class="section-head reveal compact-how">
-      <p class="eyebrow">How it works</p>
-      <h2>Give the agent the video and a direction.</h2>
-      <p>Keep the video and any references in your project, open it with your coding agent, then use the builder below if you want a structured brief. Bare Video supplies the editing guidance and starter kit; your footage, references, and feedback decide the actual edit.</p>
+      <p class="eyebrow">First-time setup</p>
+      <h2>Set it up once. Then just edit.</h2>
+      <p>Open the project with your coding agent. If you choose Groq or Deepgram and the key is missing, the agent creates or opens a local <code>.env</code> file for you. On Windows that can be Notepad. Put the key there, save it, and continue. Keys never need to go into chat.</p>
+    </div>
+    <div class="setup-flow reveal" aria-label="Bare Video setup flow">
+      <article><span>01</span><b>Open the project</b><p>Your video, references, and Bare Video can live together in the working folder.</p></article>
+      <article><span>02</span><b>Add a cloud key only if needed</b><p>Groq uses <code>GROQ_API_KEY</code>. Deepgram uses <code>DEEPGRAM_API_KEY</code>. The agent opens the local env file instead of asking for the secret in chat.</p></article>
+      <article><span>03</span><b>Build the brief and preview</b><p>Choose the style, components, captions, sound, and review flow. The agent edits with your real footage and references.</p></article>
     </div>
   </div>
 </section>
@@ -118,6 +123,14 @@
             <button data-key="transcription" data-value="groq" type="button">Groq</button>
             <button data-key="transcription" data-value="deepgram" type="button">Deepgram</button>
             <button data-key="transcription" data-value="existing" type="button">I have a transcript</button>
+          </div>
+          <div class="cloud-key-help" id="cloud-key-help" hidden>
+            <div>
+              <span class="cloud-key-label">First-time cloud setup</span>
+              <strong id="cloud-key-title">Groq key</strong>
+              <p>The agent checks your project <code>.env</code> first. If the key is missing, it should create or open that file in your normal text editor. On Windows, use Notepad. Paste the key into the file, save it, then return to the agent. Never paste the key into chat.</p>
+            </div>
+            <code id="cloud-key-line">GROQ_API_KEY=</code>
           </div>
         </section>
 
@@ -197,7 +210,7 @@
       </div>
 
       <aside class="builder-prompt-wrap" aria-label="Generated Bare Video prompt">
-        <div class="builder-prompt-head"><div><span>Live prompt</span><b>Paste this into your coding agent.</b></div><span>Nothing uploaded</span></div>
+        <div class="builder-prompt-head"><div><span>Live prompt</span><b>Paste this into your coding agent.</b></div><span>Local-first</span></div>
         <textarea id="builder-prompt" readonly spellcheck="false"></textarea>
         <div class="builder-prompt-actions">
           <button class="copy-builder" id="copy-builder-prompt" type="button">Copy prompt</button>
