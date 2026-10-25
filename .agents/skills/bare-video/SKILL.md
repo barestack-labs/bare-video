@@ -127,28 +127,51 @@ If the user provides a reference video, image, or design system, study the real 
 
 Speech-driven edits live or die on the cuts. The transcript's word timings decide where the cuts land. Audio is only used afterwards, to check the join.
 
-- **Tight:** remove silences longer than 300ms, repeated takes, filler, and false starts. Keep the density high. Never cut mid-word, and leave the breath a line needs to land.
-- **Balanced:** remove dead air longer than about 800ms when it serves the edit, plus obvious false starts. Keep pauses that carry emphasis or let a point sit.
-- **Loose:** keep the natural rhythm, breaths, and pauses. Remove only dead air longer than about 1.5 seconds, or a take that is clearly unusable.
+- **Tight:** candidates are gaps longer than 300ms, plus repeated takes and filler.
+- **Balanced:** candidates are gaps longer than about 800ms, plus obvious false starts.
+- **Loose:** candidates are gaps longer than about 1.5 seconds, or an unusable take.
 
-Cut on the syllable boundary, not on a fixed time. Check the joins by playing them back: a cut that sounds clean in a waveform can still click or clip the first consonant. Handles of 10 to 30ms either side are usually enough.
+Cut at word edges, not at a fixed interval and not mid-word. Check the joins by playing them back: a cut that looks clean in a waveform can still click or clip the first consonant.
 
 Silence removal serves the story. It does not set the pace. A pause before a reveal is content, not dead air.
 
-### Where the cut points come from: word timestamps only
+### The cut contract
 
-Cut from speech, not from loudness. Do not use FFmpeg `silencedetect`, `silenceremove`, or any audio-level gate as the cutting mechanism. Level is not speech: it keeps room tone, eats breaths, and cuts mid-word.
+Never use `silencedetect`, `silenceremove`, or any loudness gate to decide a cut. Loudness is not speech.
 
-1. Get word-level timings from the chosen route. Groq and Deepgram return `start` and `end` for every word. Faster Whisper returns them when word-level output is enabled.
-2. Build the gap list from consecutive words: `gap = word[i+1].start - word[i].end`. Every gap is a silence candidate, measured from real speech edges.
-3. Remove a gap when it passes the requested threshold: tight over 300ms, balanced over about 800ms, loose over about 1.5 seconds.
-4. Place each cut at the word edge plus a handle of 10 to 30ms so the first consonant stays intact. Never cut inside a word's own `start` to `end` span.
-5. Drop repeated takes, filler words, and false starts using the text, not the audio.
-6. Re-time everything downstream from the new timeline: captions, cards, sound cues, and the total duration. A cut that is not re-timed breaks caption sync.
+Given words `w[0..n]` with `start` and `end` in seconds, and handle `h`:
 
-If the transcript has no word timings, stop and say so. Offer a word-timed route: Groq, Deepgram, or Faster Whisper with word output turned on. Do not silently fall back to audio detection and do not present a level-based cut as a speech-aligned one.
+- Gap: `g = w[i+1].start - w[i].end`
+- Remove the interval `[w[i].end + h, w[i+1].start - h]`
+- Default `h = 0.015` (15ms). Allowed range 0.010 to 0.030.
+- If `g - 2h <= 0`, keep the gap. Too tight to cut safely.
+- Never remove any part of a word's own `w.start` to `w.end` span.
+- Leading silence: trim to at most 150ms before `w[0].start`. Same after `w[n].end`.
+- Overlap: if `w[i+1].start < w[i].end`, two words overlap. Keep the gap and report it. Do not guess.
 
-The one time audio earns a second look is checking the join after the cut: play 500ms across the seam to catch a click or a clipped consonant. That is verification, not detection.
+The chosen intensity sets which gaps are candidates: 300ms, about 800ms, or about 1.5 seconds. A candidate is not an automatic deletion. Delete it unless the surrounding text is a deliberate beat, a reveal, a punchline, or a pause the sentence needs. Then keep 200 to 400ms of it.
+
+Filler and repeated takes: propose them from the text, then listen to the one second either side before deleting. Text proposes, ears approve. Text alone cannot tell a deliberate repetition from a second take.
+
+If the transcript has no word timings, stop and say so. Offer a word-timed route: Groq, Deepgram, or Faster Whisper with word output on. Do not fall back to audio detection, and never present a level-based cut as a speech-aligned one.
+
+### Write the decision list before rendering
+
+Cuts without a decision list drift the moment you revise. Build it first:
+
+```
+source_in, source_out, output_in, output_out, note
+12.480,  18.204,   0.000,   5.724,  hook
+22.900,  31.150,   5.724,  13.974,  setup
+```
+
+- `duration = source_out - source_in`
+- `output_in` = previous `output_out`, starting at 0
+- `output_out = output_in + duration`
+
+Map every downstream cue through the list: `out_t = output_in + (src_t - source_in)` for the segment that contains `src_t`. If a cue crosses a removed interval, split it at the seam. Every renderer, FFmpeg or HyperFrames, consumes the same list.
+
+Do not stream-copy across word boundaries. Frame accuracy at an arbitrary point needs a re-encode, or a verified keyframe-aligned copy. Check the join after rendering, not before.
 
 ## Captions should be precise and intentionally styled
 
@@ -198,5 +221,18 @@ When the user gives feedback, fix the edit first. The active project can evolve 
 Advanced users may copy or clone the Bare Video repo into their own video project and let their coding agent customize that local project copy. Keep project-specific footage paths, credentials, and private temporary details out of the public Bare Video repo.
 
 Report the output location, what changed, what was actually verified, which tools were used, and any real limitation that remains.
+
+## Deliver something playable
+
+Defaults for a 9:16 short unless the user asks otherwise:
+
+- 1080x1920, 30fps, H.264 high, `yuv420p`, faststart, CRF 18 to 20.
+- Audio: AAC, 48kHz, stereo or mono as the source allows, 192kbps.
+- Loudness: -14 LUFS integrated, true peak at or below -1 dBTP. Speech sits on top; music ducks under it.
+- VFR phone footage: normalise to a constant frame rate before cutting, or the word timings will drift against the picture.
+- Rotation metadata: read it and apply it. Do not ignore it and then wonder why the frame is sideways.
+- Before delivery: decode the whole file once, confirm the audio stream exists, and check three frames plus the first and last second.
+
+Keep the decision list, the word-timed transcript, the theme overrides, and the render command with the project. A revision should reuse them, not rebuild the edit from scratch.
 
 Use the repository files that actually exist. Do not cite or depend on setup documentation that is not present in the checkout.

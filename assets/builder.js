@@ -71,7 +71,7 @@ if(builder){
   };
 
   const cutCopy={
-    tight:"Cut tight from word timestamps. Remove every gap between words longer than 300ms, plus repeated takes, filler, and false starts. Do not use FFmpeg silencedetect or any audio-level silence gate. Never cut mid-word, keep a 10 to 30ms handle, and do not remove the breath a line needs to land.",
+    tight:"Cut tight from word timestamps. Candidates are every gap between words longer than 300ms, plus repeated takes, filler, and false starts. A candidate is not automatic: keep 200 to 400ms when the pause is a deliberate beat, a reveal, or a punchline. Do not use FFmpeg silencedetect or any audio-level gate. Never cut inside a word, keep a 15ms handle, and do not remove the breath a line needs to land.",
     balanced:"Cut by meaning, from word timestamps. Remove gaps between words longer than about 800ms when it serves the edit, plus obvious false starts. Do not use FFmpeg silencedetect or any audio-level silence gate. Keep pauses that carry emphasis or let a point sit.",
     loose:"Cut loose, from word timestamps. Keep the natural rhythm, breaths, and pauses. Remove only gaps between words longer than about 1.5 seconds, or a take that is clearly unusable. Do not use FFmpeg silencedetect or any audio-level silence gate."
   };

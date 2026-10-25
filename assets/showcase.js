@@ -8,7 +8,7 @@ if (SHOWCASE) {
     { key: "product", name: "Product Clean", desc: "White, tight sans, soft cards." },
     { key: "creator", name: "Creator Utility", desc: "Near-black, wide caps, lime accent." },
     { key: "data", name: "Data Editorial", desc: "Warm paper, serif, rust accent, hairlines." },
-    { key: "tutorial", name: "Tutorial Steps", desc: "Cool grey, blue accent, numbered steps." },
+    { key: "tutorial", name: "Tutorial Steps", desc: "Cool grey, blue accent, clear callouts." },
     { key: "minimal", name: "Bare Minimal", desc: "Black, wide caps, hairline only." }
   ];
 
