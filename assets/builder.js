@@ -5,7 +5,8 @@ if(builder){
     transcription:"faster",
     planning:"plan",
     theme:"product",
-    visuals:["face","split","overlay","proof"],
+    visuals:["face","split","fullscreen","card","bigcard","stat","step","ui","cards","green"],
+    improvise:true,
     pace:"active",
     captions:"punchy",
     sound:"balanced",
@@ -16,66 +17,65 @@ if(builder){
   const $$=selector=>[...builder.querySelectorAll(selector)];
 
   const themeCopy={
-    product:"Product Clean: polished white, black, and soft-gray composition with generous negative space, crisp product or UI cards, controlled motion, selective accent color, and occasional editorial type contrast. Proof should feel deliberate and premium rather than busy.",
-    creator:"Creator Utility: practical creator-style editing with the speaker kept present, bold readable captions, screen recordings and UI proof appearing quickly, useful labels/cards, selective keyword color, and fast transitions that prioritize clarity.",
-    data:"Data Editorial: editorial information design with strong hierarchy, data cards, progress bars, percentages, charts or counters when real data exists, restrained warm or muted accent colors, and a calmer mix of serif-style editorial moments with clean sans-serif UI.",
-    tutorial:"Tutorial Steps: instructional editing with obvious step labels, screen takeovers, callouts, cursor or UI emphasis, high-contrast captions, and minimal decoration. The viewer should always know what to click, read, or do next.",
-    minimal:"Bare Minimal: stripped-back short-form editing with strong talking-head framing, clean black-and-white typography, simple proof, purposeful crops or zooms, and very little decorative motion. Keep only what improves the point."
+    product:"Product Clean: bright white, black, and soft-gray visual skin with generous spacing, crisp cards, controlled motion, selective accent color, and polished product or UI presentation.",
+    creator:"Creator Utility: practical creator visual skin with bold readable captions, quick real-world proof, useful labels and cards, selective keyword color, and faster transitions.",
+    data:"Data Editorial: information-led visual skin with strong hierarchy, restrained warm or muted accents, editorial typography, real charts or percentages when supported by the source, and calmer motion.",
+    tutorial:"Tutorial Steps: instructional visual skin with obvious step labels, clear callouts, UI emphasis, high-contrast captions, and minimal decoration.",
+    minimal:"Bare Minimal: stripped-back visual skin with strong talking-head framing, black-and-white typography, simple proof, purposeful crops, and very little decorative motion."
   };
 
-  const visualCopy={
-    face:"Face-first: keep the speaker full-screen when delivery is the strongest visual.",
-    split:"Split-screen: show the speaker together with a real screen, screenshot, demo, or supporting image.",
-    overlay:"Light overlays: place small real screenshots, labels, logos, cards, stats, or supporting images over the footage.",
-    proof:"Full-screen proof: let a real result, repo, website, screenshot, demo, or supporting image take over when the viewer needs to see it clearly."
+  const componentCopy={
+    face:"Talking head: use the speaker as the main composition when delivery is the strongest visual.",
+    split:"Split screen: combine the speaker with a real screen, screenshot, demo, image, or other useful visual.",
+    fullscreen:"Full-screen media: let a real screen, result, website, screenshot, image, or demo take over when it deserves the frame.",
+    card:"Floating card: place a compact card over footage for a label, quote, proof point, image, UI detail, or short piece of information.",
+    bigcard:"Big card: use a large card as a major composition, including oversized proof, a strong statement, UI, or a focal visual.",
+    stat:"Stat or data card: present real numbers, percentages, progress, charts, or comparisons with clear hierarchy. Never invent data.",
+    step:"Step card: show a numbered action, instruction, or stage with enough room for the viewer to understand what happens next.",
+    ui:"Screenshot or UI card: frame real interface proof clearly, either as a card, crop, device-like frame, or focused screen region.",
+    cards:"Multiple cards: arrange several useful cards around or beside the subject when the content benefits from comparison, accumulation, options, or spatial storytelling.",
+    green:"Green-screen layout: place the keyed or isolated speaker over real supporting media or a designed composition when the footage and available tools support it."
   };
 
   const transcriptionCopy={
     faster:"Use Faster Whisper locally for transcription. Check whether it and a suitable model already exist before downloading anything. Prefer word-level timestamps.",
-    groq:"Use Groq for transcription with credentials already configured locally. Prefer word-level timing when the current API supports it. Never ask me to paste an API key into chat.",
+    groq:"Use Groq for transcription with credentials already configured locally. Prefer word-level timing when supported. Never ask me to paste an API key into chat.",
     deepgram:"Use Deepgram for transcription with credentials already configured locally. Preserve detailed word timing when available. Never ask me to paste an API key into chat.",
-    existing:"Reuse the verified transcript I provide instead of creating a new one. Prefer word-level timestamps. If you cannot locate the transcript, ask me for it before planning speech-driven cuts."
+    existing:"Reuse the verified transcript I provide. Prefer word-level timestamps. If you cannot locate it, ask me for it before speech-driven editing."
   };
 
   const planningCopy={
-    plan:"After transcription and footage inspection, show me a compact edit plan before the heavy build. Include the hook, retained story, important cuts, visual beats tied to spoken moments, caption treatment, sound cues, and whether HyperFrames would materially help. Let me change the plan before you build the draft.",
-    draft:"After transcription and footage inspection, make the first draft without a planning approval checkpoint. Still make deliberate decisions about the hook, cuts, visual beats, captions, and sound. Give me a real preview to react to."
+    plan:"After transcription and footage inspection, show me a compact edit plan before the heavy build. Cover the hook, retained story, important cuts, visual beats, caption treatment, sound cues, and whether HyperFrames would materially help. Let me change the plan before the draft.",
+    draft:"After transcription and footage inspection, make the first draft without a planning checkpoint. Make deliberate choices about the hook, cuts, visual beats, captions, and sound, then give me a real preview to react to."
   };
 
   const paceCopy={
-    active:"Use an active short-form pace. Most meaningful spoken phrases should receive a useful visible response, such as a layout change, relevant proof, a real overlay, a purposeful crop or motion change, or caption emphasis. Do not animate filler words mechanically.",
-    balanced:"Use a balanced visual pace. Change presentation when it improves understanding, supports proof, or prevents a dead stretch. Let strong talking-head delivery stay on screen when it works.",
-    calm:"Use a calm visual pace. Let the speaker stay on screen for longer stretches and add visual changes only when the content clearly benefits."
+    active:"Use an active short-form pace. Give meaningful phrases a useful visual response when it helps, but do not animate filler words mechanically.",
+    balanced:"Use a balanced visual pace. Change presentation when it improves understanding, supports proof, or prevents a dead stretch.",
+    calm:"Use a calm visual pace. Let strong footage breathe and change the composition only when the content benefits."
   };
 
   const captionCopy={
-    punchy:"Use precise word-timed punchy captions with short readable chunks and deliberate emphasis on the useful word or phrase. Keep captions away from the speaker's mouth and important UI or proof.",
-    clean:"Use precise clean captions with calmer chunking, restrained motion, and selective emphasis. Keep them away from important UI, proof, and the speaker's mouth.",
+    punchy:"Use precise word-timed punchy captions with short readable chunks and deliberate emphasis. Keep captions away from faces and important proof.",
+    clean:"Use precise clean captions with calmer chunking, restrained motion, and selective emphasis.",
     none:"Do not burn captions into the video. The transcript should still guide cuts and timing."
   };
 
   const soundCopy={
-    lots:"Use lots of purposeful sound design. Add varied clicks, taps, impacts, soft whooshes, transitions, and UI sounds when they match visible actions. Keep speech dominant and do not turn repeated sounds into a rhythm track.",
-    balanced:"Use balanced sound design. Add useful clicks, taps, impacts, and soft whooshes to real actions, reveals, and transitions, but do not accent every cut. Keep speech dominant.",
-    minimal:"Use minimal added sound effects. Accent only major reveals, transitions, proof moments, or important on-screen actions.",
+    lots:"Use frequent but purposeful sound design tied to visible actions, reveals, and transitions. Keep speech dominant.",
+    balanced:"Use selective clicks, taps, impacts, and soft whooshes for real actions, reveals, and transitions. Keep speech dominant.",
+    minimal:"Use added sound only for major reveals, transitions, proof moments, or important actions.",
     none:"Do not add sound effects."
   };
 
   function buildPrompt(){
-    const selected=state.visuals.map(key=>visualCopy[key]).filter(Boolean);
-    const goal=state.goal.trim()||"Make the strongest truthful short-form edit from the video I point you to while keeping my meaning and personality.";
-
+    const selected=state.visuals.map(key=>componentCopy[key]).filter(Boolean);
+    const goal=state.goal.trim()||"Make the strongest truthful short-form edit from the video I give you while keeping my meaning and personality.";
     return [
       "Edit my video using Bare Video.",
       "",
-      "Bare Video repo:",
-      "https://github.com/barestack-labs/bare-video",
-      "",
+      "Bare Video repo: https://github.com/barestack-labs/bare-video",
       "Read .agents/skills/bare-video/SKILL.md first and use it as the editing guide.",
-      "",
-      "PROJECT",
-      "Work inside the video project folder I opened. Before doing media work, make sure I have pointed you to the exact video file to edit. If I have not, ask me which video file to use. Keep the original footage untouched and put temporary work and outputs separately.",
-      "If I provide reference videos, screenshots, images, logos, or other assets, inspect the real files and use them as direction. Do not invent missing proof or assets.",
       "",
       "GOAL",
       goal,
@@ -86,13 +86,15 @@ if(builder){
       "WORK WITH ME",
       planningCopy[state.planning],
       "",
-      "EDITING THEME",
+      "STARTING STYLE",
       themeCopy[state.theme],
-      "Treat this as the primary editing language, not a rigid template. Adapt it to the footage and my feedback. A reference I provide can override specific theme details.",
+      "This is a visual baseline, not a rigid template. My instructions and any real reference I provide can override any part of it.",
       "",
-      "ALLOWED VISUAL BUILDING BLOCKS",
+      "STARTER COMPONENTS I LIKE",
       ...selected.map(item=>"- "+item),
-      "Use only these enabled building blocks. Choose them by meaning, not by rotation.",
+      state.improvise
+        ?"These are ingredients, not restrictions. Resize, reposition, combine, restyle, repeat, or create another composition when the footage, reference, or my instruction calls for it."
+        :"Prefer these selected components. You may adapt their size and placement, but stay close to this kit unless my footage or direct instruction clearly requires something else.",
       "",
       "VISUAL PACE",
       paceCopy[state.pace],
@@ -104,18 +106,20 @@ if(builder){
       soundCopy[state.sound],
       "",
       "TOOLS",
-      "Use FFmpeg directly for normal media work. After the transcript and edit direction are clear, decide whether HyperFrames would materially improve composition, motion graphics, or browser preview. If FFmpeg alone is enough, skip HyperFrames. If HyperFrames would help and is missing from this project, ask before adding it locally here. Do not install it globally by default.",
+      "Use FFmpeg directly for normal media work. After the transcript and direction are clear, use HyperFrames only if it materially improves composition, motion graphics, or previewing. If it is missing and would help, ask before adding it locally to the project.",
       "",
       "EDITING RULES",
-      "- Make cuts from meaning, delivery, and story, not a silence threshold alone.",
-      "- Anchor visual changes, captions, and sound cues to the words or actions they support.",
+      "- Make cuts from meaning, delivery, and story, not silence thresholds alone.",
+      "- Anchor visual changes, captions, and sound to the words or actions they support.",
       "- Prefer real screenshots, demos, websites, results, logos, images, and footage over invented proof.",
-      "- My direct feedback and any reference I provide override the starter theme.",
-      "- Check the actual picture, audio, caption timing, duration, and A/V sync before claiming the edit works.",
+      "- Treat the starter components as a kit you can creatively adapt, not a finite template library.",
+      "- My direct feedback and real references override the starter style and component defaults.",
+      "- Never invent data, proof, screenshots, assets, or results.",
+      "- Check picture, audio, caption timing, duration, and A/V sync before claiming the edit works.",
       "",
       "FIRST OUTPUT",
       state.finish==="preview"
-        ?"Show me a playable draft or browser preview before final export. Wait for my feedback, apply the changes, then export after approval."
+        ?"Show me a playable draft or browser preview before final export. Apply my feedback, then export after approval."
         :"Build, self-check, and export in one pass unless a real blocker or missing asset requires my decision.",
       "",
       "At the end, tell me what you changed, what you actually verified, which tools you used, and where the preview or final output is."
@@ -128,74 +132,37 @@ if(builder){
       button.classList.toggle("is-selected",active);
       button.setAttribute("aria-pressed",active?"true":"false");
     });
-
     $$("[data-theme]").forEach(button=>{
       const active=state.theme===button.dataset.theme;
       button.classList.toggle("is-selected",active);
       button.setAttribute("aria-pressed",active?"true":"false");
     });
-
     $$("[data-visual]").forEach(button=>{
       const active=state.visuals.includes(button.dataset.visual);
       button.classList.toggle("is-selected",active);
       button.setAttribute("aria-pressed",active?"true":"false");
     });
-
+    $("#agent-improvise").checked=state.improvise;
     $("#builder-prompt").value=buildPrompt();
-    $("#visual-count").textContent=state.visuals.length+" of 4 enabled";
+    $("#visual-count").textContent=state.visuals.length+" selected";
   }
 
-  $$(".segmented [data-key]").forEach(button=>{
-    button.addEventListener("click",()=>{
-      state[button.dataset.key]=button.dataset.value;
-      sync();
-    });
-  });
-
-  $$("[data-theme]").forEach(button=>{
-    button.addEventListener("click",()=>{
-      state.theme=button.dataset.theme;
-      sync();
-    });
-  });
-
-  $$("[data-visual]").forEach(button=>{
-    button.addEventListener("click",()=>{
-      const key=button.dataset.visual;
-      if(state.visuals.includes(key)){
-        if(state.visuals.length===1){
-          $("#visual-help").textContent="Keep at least one building block enabled.";
-          return;
-        }
-        state.visuals=state.visuals.filter(item=>item!==key);
-      }else{
-        state.visuals=[...state.visuals,key];
-      }
-      $("#visual-help").textContent="Enable only the visual blocks you want the agent to use.";
-      sync();
-    });
-  });
-
-  $("#builder-goal").addEventListener("input",event=>{
-    state.goal=event.target.value;
+  $$(".segmented [data-key]").forEach(button=>button.addEventListener("click",()=>{state[button.dataset.key]=button.dataset.value;sync();}));
+  $$("[data-theme]").forEach(button=>button.addEventListener("click",()=>{state.theme=button.dataset.theme;sync();}));
+  $$("[data-visual]").forEach(button=>button.addEventListener("click",()=>{
+    const key=button.dataset.visual;
+    state.visuals=state.visuals.includes(key)?state.visuals.filter(item=>item!==key):[...state.visuals,key];
     sync();
-  });
+  }));
+  $("#agent-improvise").addEventListener("change",event=>{state.improvise=event.target.checked;sync();});
+  $("#builder-goal").addEventListener("input",event=>{state.goal=event.target.value;sync();});
 
   $("#copy-builder-prompt").addEventListener("click",async()=>{
     const prompt=$("#builder-prompt");
     let copied=false;
-    try{
-      await navigator.clipboard.writeText(prompt.value);
-      copied=true;
-    }catch{
-      prompt.focus();
-      prompt.select();
-      try{copied=document.execCommand("copy")}catch{}
-    }
-    $("#builder-copy-status").textContent=copied
-      ?"Copied. Paste it into your coding agent, then point the agent to your video file."
-      :"Copy was blocked. The prompt is selected, press Ctrl+C.";
+    try{await navigator.clipboard.writeText(prompt.value);copied=true;}
+    catch{prompt.focus();prompt.select();try{copied=document.execCommand("copy");}catch{}}
+    $("#builder-copy-status").textContent=copied?"Copied. Paste it into the coding agent working with your video.":"Copy was blocked. The prompt is selected, press Ctrl+C.";
   });
-
   sync();
 }
