@@ -16,8 +16,8 @@
   <div class="wrap top-in">
     <a class="brand" href="index.html">Bare Video</a>
     <nav class="top-links" aria-label="Site">
-      <a href="index.html#how">How it edits</a>
-      <a href="index.html#setup">Running it</a>
+      <a href="index.html#story">How it works</a>
+      <a href="index.html#possibilities">Looks</a>
       <a class="ghost" href="https://github.com/barestack-labs/bare-video" target="_blank" rel="noopener">GitHub</a>
     </nav>
   </div>
@@ -25,7 +25,7 @@
 
 <main>
 <section class="intro wrap">
-  <h1>Start your edit.</h1>
+  <h1>Shape your edit.</h1>
   <p class="lede">Choose how the edit should feel. This form turns the choices into one copy-paste prompt for your coding agent. It runs entirely in your browser: nothing is uploaded anywhere.</p>
   <details class="firsttime">
     <summary>First time with an agent video project?</summary>
@@ -41,13 +41,13 @@
 
     <fieldset class="fs" id="fs-edit">
       <legend>The edit</legend>
-      <p class="fs-note">Defaults are the skill's own restrained choices. Change what you care about, skip the rest.</p>
+      <p class="fs-note">Choose only what you care about. Leave the rest to the agent.</p>
 
       <div class="sub" id="sub-mode">
         <p class="sublabel" id="lb-mode">How much should the agent decide on its own?</p>
         <div class="rows" role="radiogroup" aria-labelledby="lb-mode">
           <label class="r"><input type="radio" name="mode" value="plan" checked>
-            <span><b>Plan with me</b> <span class="des">It shows the proposed cuts and visual beats first. Building starts after you approve.</span></span></label>
+            <span><b>Plan with me</b> <span class="des">It gives you a short cut and visual plan first. Editing starts after you approve.</span></span></label>
           <label class="r"><input type="radio" name="mode" value="oneshot">
             <span><b>One-shot first draft</b> <span class="des">It builds the first browser preview without stopping for a plan approval.</span></span></label>
         </div>
@@ -70,7 +70,7 @@
         <div class="rows" role="radiogroup" aria-labelledby="lb-style">
           <p class="sublabel" id="lb-style">What should the video feel like?</p>
           <label class="r"><input type="radio" name="style" value="bare" checked>
-            <span><b>Bare default</b> <span class="des">Restrained editorial pacing. The speaker carries it; graphics appear only when they earn the space.</span></span></label>
+            <span><b>Bare / editorial</b> <span class="des">Clean, restrained, premium. The footage carries the edit; designed moments appear only when useful.</span></span></label>
           <label class="r"><input type="radio" name="style" value="captions">
             <span><b>Captions only</b> <span class="des">Keep footage full-screen. Cuts and captions are the whole language; no routine graphic scenes.</span></span></label>
           <label class="r"><input type="radio" name="style" value="tutorial">
@@ -78,7 +78,7 @@
           <label class="r"><input type="radio" name="style" value="face">
             <span><b>Face-first minimal</b> <span class="des">Stay on the speaker almost everywhere. Interrupt only when a visual is genuinely more useful.</span></span></label>
           <label class="r"><input type="radio" name="style" value="agent">
-            <span><b>Agent decides</b> <span class="des">It picks the visual mix from your words and your footage, without rotating layouts for variety.</span></span></label>
+            <span><b>Agent decides</b> <span class="des">It reads the footage and chooses the visual mix itself.</span></span></label>
           <label class="r"><input type="radio" name="style" value="reference">
             <span><b>I have my own reference</b> <span class="des">It derives style from the videos or screenshots you place in <code>references/</code>, without copying protected branding.</span></span></label>
         </div>
@@ -89,7 +89,7 @@
         <div class="rows" role="radiogroup" aria-labelledby="lb-captions">
           <p class="sublabel" id="lb-captions">How much text on screen?</p>
           <label class="r"><input type="radio" name="captions" value="dynamic" checked>
-            <span><b>Dynamic</b> <span class="des">Short word-synced chunks, two to three words, restrained emphasis.</span></span></label>
+            <span><b>Dynamic</b> <span class="des">Tighter, energetic captions with selective emphasis.</span></span></label>
           <label class="r"><input type="radio" name="captions" value="clean">
             <span><b>Clean</b> <span class="des">Longer, calmer chunks with less movement.</span></span></label>
           <label class="r"><input type="radio" name="captions" value="none">
@@ -102,7 +102,7 @@
         <div class="rows" role="radiogroup" aria-labelledby="lb-sfx">
           <p class="sublabel" id="lb-sfx">How present should sound effects be?</p>
           <label class="r"><input type="radio" name="sfx" value="restrained" checked>
-            <span><b>Restrained</b> <span class="des">Small synthesized context sounds: soft whooshes, clicks, impacts. Speech always wins.</span></span></label>
+            <span><b>Restrained</b> <span class="des">A few useful clicks, impacts, or whooshes. Speech always wins.</span></span></label>
           <label class="r"><input type="radio" name="sfx" value="minimal">
             <span><b>Minimal</b> <span class="des">Accent only major layout changes or the payoff moment.</span></span></label>
           <label class="r"><input type="radio" name="sfx" value="none">
@@ -115,9 +115,9 @@
         <div class="rows" role="radiogroup" aria-labelledby="lb-asr">
           <p class="sublabel" id="lb-asr">How should the spoken words be timed?</p>
           <label class="r"><input type="radio" name="asr" value="auto" checked>
-            <span><b>Whatever works on my machine</b> <span class="des">Use an existing transcript or an available tool. Ask before downloads, paid calls, or sending private audio to a cloud provider.</span></span></label>
+            <span><b>Use the best available option</b> <span class="des">Reuse what is already configured. Groq and Deepgram are both good cloud options; local transcription is fine too.</span></span></label>
           <label class="r"><input type="radio" name="asr" value="cloud">
-            <span><b>My cloud provider</b> <span class="des">Use my configured provider after confirming the audio upload. Missing credentials stay in local configuration, never chat.</span></span></label>
+            <span><b>Cloud transcription</b> <span class="des">Use a configured Groq or Deepgram setup after confirming the audio upload. Credentials stay local, never in chat.</span></span></label>
           <label class="r"><input type="radio" name="asr" value="local">
             <span><b>Local only, no cloud</b> <span class="des">No cloud calls at all. The agent explains any local model download, its size and its destination, and asks first.</span></span></label>
         </div>
@@ -129,7 +129,7 @@
         <div class="rows" role="radiogroup" aria-labelledby="lb-setup">
           <p class="sublabel" id="lb-setup">Where does this run?</p>
           <label class="r"><input type="radio" name="experience" value="new" checked>
-            <span><b>New dedicated folder</b> <span class="des">One folder holds the video, the repo, secrets, work files and output.</span></span></label>
+            <span><b>New dedicated folder</b> <span class="des">One folder holds the original video, references, work files, and output.</span></span></label>
           <label class="r"><input type="radio" name="experience" value="existing">
             <span><b>I have my workspace</b> <span class="des">It works inside your existing layout and does not reorganize it to match a template.</span></span></label>
         </div>
@@ -143,7 +143,7 @@
       <div class="rows" role="radiogroup" aria-labelledby="lb-finish">
         <p class="sublabel" id="lb-finish">What happens at the end of the run?</p>
         <label class="r"><input type="radio" name="finish" value="review" checked>
-          <span><b>Preview first, then export</b> <span class="des">It opens the browser preview, waits for your feedback, and renders the final file only after you approve.</span></span></label>
+          <span><b>Preview first, then export</b> <span class="des">It shows you a playable or browser preview, waits for feedback, and exports only after approval.</span></span></label>
         <label class="r"><input type="radio" name="finish" value="oneshot">
           <span><b>Finish in one go</b> <span class="des">The preview, self-checks and export happen in the same run. Ambiguous judgment calls still come back to you.</span></span></label>
       </div>
