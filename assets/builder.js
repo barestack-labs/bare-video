@@ -17,11 +17,11 @@ if(builder){
   const $$=selector=>[...builder.querySelectorAll(selector)];
 
   const themeCopy={
-    product:"Product Clean: bright white, black, and soft-gray visual skin with generous spacing, crisp cards, controlled motion, selective accent color, and polished product or UI presentation.",
-    creator:"Creator Utility: practical creator visual skin with bold readable captions, quick real-world proof, useful labels and cards, selective keyword color, and faster transitions.",
-    data:"Data Editorial: information-led visual skin with strong hierarchy, restrained warm or muted accents, editorial typography, real charts or percentages when supported by the source, and calmer motion.",
-    tutorial:"Tutorial Steps: instructional visual skin with obvious step labels, clear callouts, UI emphasis, high-contrast captions, and minimal decoration.",
-    minimal:"Bare Minimal: stripped-back visual skin with strong talking-head framing, black-and-white typography, simple proof, purposeful crops, and very little decorative motion."
+    product:"Product Clean: white #fff, ink #0b0b0c, secondary #8a8a90, hairline #e4e4e8, black accent, tight sans headlines weight 800 letter-spacing -0.05em, no caps, cards radius 14px with a soft shadow, caption bottom 15%, 300 to 420ms ease-out motion. No second color.",
+    creator:"Creator Utility: near-black #0d0d0f, white ink, lime accent #d8ff3e, wide grotesque headlines weight 850 uppercase letter-spacing -0.02em, light cards radius 8px, caption white uppercase with the emphasis word on a solid lime block, snappy 180 to 300ms motion.",
+    data:"Data Editorial: warm paper #f2ede3, ink #1a1714, hairline #d9d0c1, rust accent #b4451f, serif headlines and numerals weight 800, cards radius 2px with hairlines, captions dark ink serif with no shadow, calm 400 to 600ms motion. Real numbers only; skip stat treatment when the video has no numbers.",
+    tutorial:"Tutorial Steps: cool grey #eef2f8, ink #0f1620, blue accent #2f6bff, neutral sans headlines weight 800, step badges in mono uppercase, cards radius 12px, one action per card, captions dark ink kept clear of the element being clicked, 200 to 320ms motion that lands on the action.",
+    minimal:"Bare Minimal: black #0a0a0a, white ink, white accent only, wide grotesque headlines weight 850 uppercase letter-spacing -0.03em, no card fills, 1px hairline only, radius 0, captions white with no highlight block, emphasis from scale and placement, almost no decorative motion."
   };
 
   const componentCopy={

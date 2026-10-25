@@ -12,10 +12,10 @@
 }
 .builder-intro h2{
   margin:0;
-  font-size:clamp(46px,5.6vw,78px);
-  line-height:.92;
-  letter-spacing:-.065em;
-  max-width:760px;
+  font-size:clamp(32px,4vw,52px);
+  line-height:1;
+  letter-spacing:-.05em;
+  max-width:620px;
 }
 .builder-intro-copy{
   color:var(--muted);
@@ -27,8 +27,8 @@
 
 .builder-layout{
   display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(340px,.58fr);
-  gap:52px;
+  grid-template-columns:minmax(0,1fr) minmax(320px,400px);
+  gap:44px;
   align-items:start;
 }
 .builder-form{
@@ -36,46 +36,49 @@
   border-top:1px solid #bfc0c5;
 }
 .builder-group{
-  padding:24px 0;
+  padding:20px 0;
   border-bottom:1px solid #cfd0d5;
 }
 .builder-group-head{
   display:grid;
-  grid-template-columns:160px 1fr;
-  gap:22px;
+  grid-template-columns:1fr;
+  gap:5px;
   align-items:start;
-  margin-bottom:14px;
+  margin-bottom:12px;
 }
 .builder-group-head span{
-  font:700 9px var(--mono);
+  font:700 8.5px var(--mono);
   text-transform:uppercase;
-  letter-spacing:.09em;
-  color:#8e8e93;
+  letter-spacing:.1em;
+  color:#98989e;
 }
 .builder-group-head div>strong{
   display:block;
-  font-size:19px;
-  letter-spacing:-.035em;
+  font-size:15px;
+  font-weight:730;
+  letter-spacing:-.02em;
 }
 .builder-group-head p{
-  margin:4px 0 0;
-  font-size:10px;
-  line-height:1.45;
+  margin:5px 0 0;
+  font-size:12px;
+  line-height:1.5;
   color:var(--muted);
-  max-width:650px;
+  max-width:620px;
 }
 .builder-goal{
   width:100%;
-  border:0;
-  border-bottom:1px solid #aeb0b5;
-  background:transparent;
+  border:1px solid #c8c9ce;
+  border-radius:12px;
+  background:#fff;
   resize:vertical;
-  min-height:78px;
-  padding:10px 0;
+  min-height:74px;
+  padding:12px 14px;
   outline:none;
-  font:500 21px/1.25 var(--sans);
-  letter-spacing:-.03em;
+  font:400 14.5px/1.5 var(--sans);
+  letter-spacing:-.01em;
+  color:var(--ink);
 }
+.builder-goal::placeholder{color:#9a9aa0}
 .builder-goal:focus{border-color:var(--ink)}
 .segmented{
   display:inline-flex;
@@ -286,6 +289,7 @@
   padding:16px 17px;
   border-bottom:1px solid #2b2b2e;
 }
+.builder-prompt-head>div{display:grid;gap:4px}
 .builder-prompt-head span{
   font:700 8px var(--mono);
   text-transform:uppercase;
@@ -298,14 +302,14 @@
 #builder-prompt{
   display:block;
   width:100%;
-  height:440px;
+  height:392px;
   resize:none;
   border:0;
   outline:none;
   background:#0b0b0d;
   color:#f5f5f7;
-  padding:17px;
-  font:10px/1.58 var(--mono);
+  padding:16px;
+  font:10px/1.55 var(--mono);
 }
 .builder-prompt-actions{
   display:grid;

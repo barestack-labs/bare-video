@@ -98,15 +98,17 @@ The current homepage was exercised locally in Chromium at 1366x768 and 390x844.
 
 Verified behavior:
 
-- the scroll-driven phone demo progresses Face-first, Split-screen, Light overlays, Full-screen proof in order
+- the component showcase renders every one of the ten components in all five styles
+- each style has its own palette, type family, card treatment, radius, and accent
+- the theme descriptions match what the frame actually shows
 - the prompt builder lives directly on the homepage
 - no video-path field exists in the builder
 - all five editing themes are selectable
 - all ten visual components can be enabled or disabled, with at least one kept active
 - transcription, planning, visual pace, captions, sound, and first-output selectors update the generated prompt
-- selecting Creator Utility updates the prompt to the Creator Utility theme
+- selecting Creator Utility updates the prompt with the Creator Utility tokens
 - disabling Full-screen proof removes it from the allowed visual section
-- the prompt tells the coding agent to ask for the exact video file when needed
+- the prompt tells the coding agent to fetch the skill from the repo when the file is not in the project
 - the 390px mobile layout has no horizontal overflow
 - create.html redirects old links to /#build
 - the tested flow produced no browser console or page errors

@@ -67,6 +67,8 @@ After the transcript and edit direction are clear:
 
 The tool choice should serve the edit. The edit should not exist to justify a tool.
 
+Read [references/hyperframes.md](references/hyperframes.md) before writing a HyperFrames composition. It covers the composition shape, the paused timeline registration, the clip timing attributes, the theme token wiring, caption markup from real word timings, the motion rules that lint rejects, and the verification sequence. It also gives the FFmpeg comparison so you can tell when HyperFrames is not worth it.
+
 ## Build compositions from a flexible starter kit
 
 Bare Video includes reusable composition ingredients. They are not a finite template library and they are not a strict allow-list unless the user explicitly asks for that restriction.
@@ -99,6 +101,8 @@ Anchor visual changes to the meaning of the speech. Use real supporting material
 ## Apply one editing theme across the allowed building blocks
 
 The selected theme is a starting visual skin. It controls the default typography, color, background treatment, cards, proof presentation, caption styling, spacing, and motion. It does not lock composition or limit what the agent can build.
+
+Read [references/themes.md](references/themes.md) for the exact token values: palette hexes, type stacks, weights, letter spacing, card radius, shadow, caption rules, and motion timing for each of the five themes. Use those values instead of inventing an interpretation of the theme name. If the user's reference or brand forces a change, change the named token and say so.
 
 The five Bare Video starter themes are:
 

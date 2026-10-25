@@ -31,7 +31,7 @@ nav a:hover{color:var(--ink)}
 .hero{padding:116px 0 84px;min-height:100svh;display:flex;align-items:center;background:linear-gradient(180deg,#fff 0%,#fafafd 100%)}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.78fr);gap:76px;align-items:center}
 .hero-copy-block{max-width:720px}
-.hero h1{font-size:clamp(56px,6.7vw,96px);line-height:.92;letter-spacing:-.07em;margin:0;font-weight:820;max-width:780px}
+.hero h1{font-size:clamp(52px,6.2vw,88px);line-height:.97;letter-spacing:-.055em;margin:0;font-weight:820;max-width:780px}
 .hero-copy{font-size:17px;line-height:1.62;color:#515154;max-width:660px;margin:27px 0 0}
 .hero-actions{display:flex;gap:10px;margin-top:27px;flex-wrap:wrap}
 .button{border:1px solid var(--ink);background:transparent;color:var(--ink);padding:11px 15px;border-radius:999px;font-size:12px;font-weight:760;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease}
@@ -42,9 +42,12 @@ nav a:hover{color:var(--ink)}
 .hero-note{font:10px/1.55 var(--mono);color:var(--muted);margin:15px 0 0;max-width:620px}
 
 .hero-phone-wrap,.looks-phone-stage{position:relative;display:flex;justify-content:center;align-items:center}
-.hero-phone-wrap{min-height:620px;border-radius:32px;background:radial-gradient(circle at 75% 10%,rgba(240,220,78,.18),transparent 30%),linear-gradient(145deg,#17171a,#050506 74%);overflow:hidden}
-.hero-phone-wrap:before{content:"9:16 PREVIEW";position:absolute;top:20px;left:22px;color:#77777d;font:700 9px var(--mono);letter-spacing:.14em}
-.hero-phone-wrap:after{content:"Your footage. Your tools. Your agent.";position:absolute;bottom:20px;left:22px;color:#77777d;font:9px var(--mono)}
+.hero-phone-wrap{min-height:600px;border-radius:28px;background:linear-gradient(180deg,#131316,#08080a 70%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);overflow:hidden}
+.hero-phone-wrap:before{content:"";position:absolute;inset:0;background:
+  radial-gradient(circle at 50% 38%,rgba(255,255,255,.07),transparent 55%),
+  repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 100%),
+  repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 100%)}
+.hero-phone-wrap:after{content:"9:16 · your footage";position:absolute;bottom:18px;left:22px;color:#6c6c74;font:9px var(--mono);letter-spacing:.04em}
 .phone{
   width:min(300px,28vw);
   aspect-ratio:9/16;

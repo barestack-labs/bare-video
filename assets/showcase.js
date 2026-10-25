@@ -1,106 +1,124 @@
-/* One component, five styles. Same skeleton, different variables.
-   No drawn people, no invented numbers: footage slots are labelled honestly
-   and real clips can drop into the same slot later. */
+/* One component, five styles. Same skeleton, different tokens.
+   No drawn people, no invented metrics: footage areas are labelled slots and
+   every card carries real words so the type is visible. */
 
 const SHOWCASE = document.querySelector("#showcase");
 if (SHOWCASE) {
   const THEMES = [
-    { key: "product", name: "Product Clean", desc: "Bright, generous space, soft cards, tight sans." },
-    { key: "creator", name: "Creator Utility", desc: "Dark, wide type, lime accent, fast proof." },
-    { key: "data", name: "Data Editorial", desc: "Warm paper, serif numerals, rust accent." },
-    { key: "tutorial", name: "Tutorial Steps", desc: "Cool light, blue accent, obvious steps." },
-    { key: "minimal", name: "Bare Minimal", desc: "Black, wide caps, one hairline, no cards." }
+    { key: "product", name: "Product Clean", desc: "White, tight sans, soft cards." },
+    { key: "creator", name: "Creator Utility", desc: "Near-black, wide caps, lime accent." },
+    { key: "data", name: "Data Editorial", desc: "Warm paper, serif, rust accent, hairlines." },
+    { key: "tutorial", name: "Tutorial Steps", desc: "Cool grey, blue accent, numbered steps." },
+    { key: "minimal", name: "Bare Minimal", desc: "Black, wide caps, hairline only." }
   ];
 
   const COMPONENTS = [
-    { key: "face", name: "Talking head", kind: "layout" },
-    { key: "split", name: "Split screen", kind: "layout" },
-    { key: "full", name: "Full-screen proof", kind: "layout" },
-    { key: "card", name: "Floating card", kind: "layout" },
-    { key: "bigcard", name: "Big card", kind: "layout" },
-    { key: "stat", name: "Stat card", kind: "data" },
-    { key: "step", name: "Step card", kind: "data" },
-    { key: "ui", name: "Screenshot / UI", kind: "proof" },
-    { key: "cards", name: "Multiple cards", kind: "layout" },
-    { key: "green", name: "Green screen", kind: "layout" }
+    { key: "face", name: "Talking head" },
+    { key: "split", name: "Split screen" },
+    { key: "full", name: "Full-screen proof" },
+    { key: "card", name: "Floating card" },
+    { key: "bigcard", name: "Big card" },
+    { key: "stat", name: "Stat card" },
+    { key: "step", name: "Step card" },
+    { key: "ui", name: "Screenshot / UI" },
+    { key: "cards", name: "Multiple cards" },
+    { key: "green", name: "Green screen" }
   ];
 
   const foot = (label = "your footage") =>
     `<div class="cs-foot"><span class="cs-slot">${label}</span></div>`;
 
-  const doc = (lines = 3) =>
-    `<div class="cs-doc"><div class="cs-bar"><b></b><b></b><b></b></div><div class="cs-body">${
-      Array.from({ length: lines }, (_, i) => `<i style="width:${[86, 62, 74, 48][i % 4]}%"></i>`).join("")
-    }</div></div>`;
+  const cap = (html = "THE PART THAT <mark>MATTERS</mark>") =>
+    `<div class="cs-cap">${html}</div>`;
 
-  const cap = (text = 'THIS IS THE <mark>PART</mark> THAT MATTERS') =>
-    `<div class="cs-cap">${text}</div>`;
-
-  const card = (small = "proof", strong = "12x") =>
+  const card = (small, strong) =>
     `<div class="cs-card"><small>${small}</small><strong>${strong}</strong></div>`;
+
+  const lines = (widths = [84, 58, 72]) =>
+    `<div class="cs-lines">${widths.map((w) => `<i style="width:${w}%"></i>`).join("")}</div>`;
+
+  const doc = (title, widths = [84, 58, 72]) =>
+    `<div class="cs-doc"><div class="cs-bar"><b></b><b></b><b></b></div><div class="cs-docbody"><span class="cs-doc-title">${title}</span>${lines(widths)}</div></div>`;
 
   const build = (comp) => {
     switch (comp) {
       case "face":
         return foot() + cap();
+
       case "split":
-        return foot("speaker") + cap() + doc(3);
+        return foot("speaker") + cap("SHOW THE <mark>REAL</mark> THING") + doc("open the file");
+
       case "full":
-        return foot("real screen, demo, or result") + `<div class="cs-kicker">proof</div>` + cap("HERE IS THE <mark>REAL</mark> THING");
+        return foot("real screen, demo, or result") + `<span class="cs-kicker">proof</span>` + cap("HERE IT <mark>IS</mark>");
+
       case "card":
-        return foot() + card() + cap();
+        return foot() + card("measured", "3.4x") + cap("SAME <mark>EDIT</mark>");
+
       case "bigcard":
-        return foot() + `<div class="cs-big"><small>the point</small><strong>SHOW THE RESULT</strong></div>`;
+        return foot() + `<div class="cs-big"><small>the point</small><strong>SHOW THE<br>RESULT</strong>${lines([70, 44])}</div>`;
+
       case "stat":
-        return `<div class="cs-stat"><div class="cs-kicker">measured</div><div class="cs-num">4<b>7</b>%</div><div class="cs-bars">${
-          [28, 46, 62, 88, 70, 54].map((h) => `<i style="height:${h}%"></i>`).join("")
-        }</div><div class="cs-legend">real numbers only</div></div>`;
+        return `<div class="cs-stat"><span class="cs-kicker">measured</span><div class="cs-num">4<b>7</b>%</div><div class="cs-bars">${
+          [26, 44, 60, 88, 66, 52].map((h) => `<i style="height:${h}%"></i>`).join("")
+        }</div><span class="cs-legend">real numbers only</span></div>`;
+
       case "step":
-        return `<div class="cs-badge">STEP 02</div>` + doc(2) + `<div class="cs-arrow"></div>` + cap("Click this");
+        return `<span class="cs-badge">STEP 02</span>` + doc("click this button", [64, 40]) +
+          `<div class="cs-arrow"></div>` + cap("THEN <mark>THIS</mark>");
+
       case "ui":
-        return `<div class="cs-doc"><div class="cs-bar"><b></b><b></b><b></b></div><span class="cs-doc-title">the real screen</span><div class="cs-body">${
-          Array.from({ length: 3 }, (_, i) => `<i style="width:${[86, 62, 74][i]}%"></i>`).join("")
-        }</div></div>`;
+        return doc("the real screen", [88, 62, 74]) +
+          `<div class="cs-toolbar"><i></i><i></i><i></i></div>`;
+
       case "cards":
         return card("before", "old way") + card("after", "this way") + card("cost", "free");
+
       case "green":
-        return foot("speaker") + doc(2) + cap("ON <mark>REAL</mark> MEDIA");
+        return `<div class="cs-keybg"></div>` + foot("speaker") + doc("the page you mean", [78, 54]) + cap("ON <mark>MEDIA</mark>");
+
       default:
         return foot();
     }
   };
 
+  const phone = (theme, comp) => `
+    <div class="sc-item">
+      <div class="sc-phone t-${theme.key}" data-comp="${comp}">
+        <div class="sc-stage">${build(comp)}</div>
+      </div>
+      <div class="sc-name"><strong>${theme.name}</strong></div>
+      <span class="sc-desc">${theme.desc}</span>
+    </div>`;
+
   const render = (comp) => {
     SHOWCASE.querySelectorAll(".sc-chip").forEach((chip) =>
       chip.classList.toggle("is-on", chip.dataset.comp === comp)
     );
-    SHOWCASE.querySelector("#sc-grid").innerHTML = THEMES.map(
-      (theme) => `
-      <div class="sc-item">
-        <div class="sc-phone t-${theme.key}" data-comp="${comp}">
-          <div class="sc-stage">${build(comp)}</div>
-        </div>
-        <div class="sc-name"><strong>${theme.name}</strong><em>${comp === "stat" ? "data" : comp === "step" || comp === "ui" ? "proof" : "layout"}</em></div>
-        <span class="sc-desc">${theme.desc}</span>
-      </div>`
-    ).join("");
+    SHOWCASE.querySelector("#sc-grid").innerHTML = THEMES.map((t) => phone(t, comp)).join("");
   };
 
-  SHOWCASE.querySelector("#sc-chips").innerHTML = COMPONENTS.map(
-    (c) => `<button class="sc-chip" type="button" data-comp="${c.key}">${c.name}</button>`
-  ).join("");
+  /* every component on one page, for checking: ?all=1 */
+  if (new URLSearchParams(location.search).get("all") === "1") {
+    document.querySelector("#looks").innerHTML =
+      COMPONENTS.map(
+        (c) => `<div class="wrap allrow"><p class="eyebrow">${c.name}</p><div class="sc-grid">${
+          THEMES.map((t) => phone(t, c.key)).join("")
+        }</div></div>`
+      ).join("");
+  } else {
+    SHOWCASE.querySelector("#sc-chips").innerHTML = COMPONENTS.map(
+      (c) => `<button class="sc-chip" type="button" data-comp="${c.key}">${c.name}</button>`
+    ).join("");
 
-  SHOWCASE.querySelector("#sc-chips").addEventListener("click", (event) => {
-    const chip = event.target.closest(".sc-chip");
-    if (chip) render(chip.dataset.comp);
-  });
+    SHOWCASE.querySelector("#sc-chips").addEventListener("click", (event) => {
+      const chip = event.target.closest(".sc-chip");
+      if (chip) render(chip.dataset.comp);
+    });
 
-  const initial = (() => {
-    const fromQuery = new URLSearchParams(location.search).get("comp");
-    const fromHash = location.hash.startsWith("#looks=") ? location.hash.slice(7) : "";
-    const wanted = fromQuery || fromHash;
-    return COMPONENTS.some((c) => c.key === wanted) ? wanted : "split";
-  })();
+    const wanted =
+      new URLSearchParams(location.search).get("comp") ||
+      (location.hash.startsWith("#looks=") ? location.hash.slice(7) : "");
 
-  render(initial);
+    render(COMPONENTS.some((c) => c.key === wanted) ? wanted : "split");
+  }
 }
