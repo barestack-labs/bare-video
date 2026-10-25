@@ -79,6 +79,19 @@
   color:var(--ink);
 }
 .builder-goal::placeholder{color:#9a9aa0}
+.builder-input{
+  width:100%;
+  border:1px solid #c8c9ce;
+  border-radius:12px;
+  background:#fff;
+  padding:12px 14px;
+  outline:none;
+  font:400 14px/1.4 var(--sans);
+  letter-spacing:-.01em;
+  color:var(--ink);
+}
+.builder-input::placeholder{color:#9a9aa0}
+.builder-input:focus{border-color:var(--ink)}
 .builder-goal:focus{border-color:var(--ink)}
 .segmented{
   display:inline-flex;

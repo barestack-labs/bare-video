@@ -2,6 +2,7 @@ const builder=document.querySelector("#build");
 if(builder){
   const state={
     goal:"",
+    reference:"",
     transcription:"faster",
     planning:"plan",
     theme:"product",
@@ -68,6 +69,14 @@ if(builder){
     none:"Do not add sound effects."
   };
 
+  function referenceText(){
+    const reference=state.reference.trim();
+    if(reference){
+      return "I am giving you this reference: "+reference+". Open the real file, image, or link and look at it before planning. Let it override the starter style and components where it clearly differs, and tell me which parts you copied.";
+    }
+    return "If I mention a reference video, image, channel, or screenshot, study the real thing before planning and let it override the starter style where it clearly differs. If I do not give you one, do not invent it.";
+  }
+
   function buildPrompt(){
     const selected=state.visuals.map(key=>componentCopy[key]).filter(Boolean);
     const goal=state.goal.trim()||"Make the strongest truthful short-form edit from the video I give you while keeping my meaning and personality.";
@@ -80,6 +89,9 @@ if(builder){
       "",
       "GOAL",
       goal,
+      "",
+      "REFERENCE",
+      referenceText(),
       "",
       "TRANSCRIPTION",
       transcriptionCopy[state.transcription],
@@ -115,6 +127,7 @@ if(builder){
       "- Prefer real screenshots, demos, websites, results, logos, images, and footage over invented proof.",
       "- Treat the starter components as a kit you can creatively adapt, not a finite template library.",
       "- My direct feedback and real references override the starter style and component defaults.",
+      "- Do not copy protected branding, watermarks, or another creator's identity from a reference. Recreate the useful visual logic with my own assets.",
       "- Never invent data, proof, screenshots, assets, or results.",
       "- Check picture, audio, caption timing, duration, and A/V sync before claiming the edit works.",
       "",
@@ -186,6 +199,7 @@ if(builder){
   }));
   $("#agent-improvise").addEventListener("change",event=>{state.improvise=event.target.checked;sync();});
   $("#builder-goal").addEventListener("input",event=>{state.goal=event.target.value;sync();});
+  $("#builder-reference").addEventListener("input",event=>{state.reference=event.target.value;sync();});
 
   $("#copy-builder-prompt").addEventListener("click",async()=>{
     const prompt=$("#builder-prompt");

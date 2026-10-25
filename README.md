@@ -53,12 +53,18 @@ Bare Video includes five starter editing languages:
 - **Tutorial Steps:** obvious step labels, screen takeovers, callouts, UI emphasis, high-contrast instructions, and minimal decoration.
 - **Bare Minimal:** strong talking-head framing, black-and-white typography, simple proof, purposeful crops or zooms, and almost no decorative motion.
 
-These themes style the same four structural building blocks:
+These themes style the same ten components:
 
-- Face-first
-- Split-screen
-- Light overlays
+- Talking head
+- Split screen, in either order (speaker on top, or information on top)
 - Full-screen proof
+- Floating card
+- Big card
+- Stat or data card
+- Step card
+- Screenshot or UI card
+- Multiple cards
+- Green-screen layout
 
 A theme is not a rigid template. Real reference videos, images, design systems, and direct feedback can override the starter theme.
 
