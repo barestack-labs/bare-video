@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <meta name="description" content="Build a Bare Video editing brief for your coding agent. Choose the video building blocks, captions, sound, transcription, and approval flow.">
 <link rel="canonical" href="https://shorts.paulablaza.com/create.html">
 <meta property="og:title" content="Build your Bare Video prompt">
@@ -69,12 +70,13 @@
         <div class="step-copy compact">
           <p class="eyebrow">Video building blocks</p>
           <h2>What can the edit use?</h2>
-          <p class="lead">Pick one or combine several. These are presentation modes the agent can switch between, not rigid templates.</p>
+          <p class="lead">Pick one or combine several. The agent can switch between these modes inside one video when the content calls for it.</p>
           <div class="preset-row">
             <button class="preset is-selected" data-visual-preset="agent" type="button">Agent decides</button>
             <button class="preset" data-visual-preset="all" type="button">Use all</button>
             <span>or choose below</span>
           </div>
+          <p class="preset-explain"><b>Agent decides</b> gives the agent no visual restriction. <b>Use all</b> explicitly allows all four without forcing every mode into the edit. Selecting cards below restricts the edit to only those choices.</p>
         </div>
 
         <div class="visual-options" id="visual-options">
@@ -144,9 +146,11 @@
         </section>
 
         <div class="taste-explainer">
-          <span><b>Dynamic captions</b> move faster and emphasize selected words.</span>
-          <span><b>Clean captions</b> stay simpler and calmer.</span>
-          <span><b>Lots of sound</b> allows frequent clicks, impacts, pops, and whooshes, but speech still wins.</span>
+          <span><b>Auto</b> lets the agent match the footage.</span>
+          <span><b>Lots</b> can use frequent purposeful accents.</span>
+          <span><b>Balanced</b> adds energy without hitting every beat.</span>
+          <span><b>Minimal</b> saves SFX for major moments.</span>
+          <span><b>None</b> adds no sound effects.</span>
         </div>
       </div>
     </article>

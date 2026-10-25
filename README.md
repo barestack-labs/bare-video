@@ -44,7 +44,7 @@ See [setup](SETUP.md) and the [editing workflow](docs/WORKFLOW.md).
 
 ## Verification
 
-The static pages were exercised on desktop and mobile, including preference generation, clipboard copying, draft restoration, reset, and local navigation.
+The static pages were exercised on desktop and mobile, including preference generation, clipboard copying, draft restoration, reset, and local navigation. The prompt builder was also checked at 1366×768 and 1440×900: all six desktop steps fit without page scrolling or nested scroll areas, and the mobile layout has no horizontal overflow.
 
 A direct-tool smoke run on Windows used FFmpeg 9.0.1 to cut a generated clip with speech, then HyperFrames 0.8.195 to check, preview, and render it. The five-second MP4 decoded successfully, displayed the expected picture, and preserved the edited audio. This checks the native tool path that the Bare Video skill asks agents to use.
 

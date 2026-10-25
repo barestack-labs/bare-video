@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <meta name="description" content="Bare Video is an open-source video-editing skill for coding agents. Choose how your edit should look, hand the prompt to your agent, then preview and revise the result.">
 <link rel="canonical" href="https://shorts.paulablaza.com/">
 <meta property="og:title" content="Bare Video">
@@ -29,11 +30,11 @@
   <div class="wrap hero-grid">
     <div class="hero-copy-block">
       <p class="eyebrow reveal">Open source · Bare Stack Labs</p>
-      <h1 class="reveal">Tell your agent<br>how the video<br>should <span>feel.</span></h1>
-      <p class="hero-copy reveal">Bare Video is a skill your coding agent reads before editing. You choose the goal and the kinds of visuals you want. The agent uses FFmpeg, HyperFrames, transcription tools, and its own judgment to build the edit.</p>
+      <h1 class="reveal">Edit video with<br>the coding agent<br>you already use.</h1>
+      <p class="hero-copy reveal">Bare Video is a small editing skill, not another editor to learn. Build a brief here, hand it to your coding agent, and let the agent work with FFmpeg, HyperFrames, and transcription tools already available to it.</p>
       <div class="hero-actions reveal">
         <a class="button primary" href="create.html">Build my edit prompt</a>
-        <a class="button secondary" href="#looks">See the video styles</a>
+        <a class="button secondary" href="#looks">See the building blocks</a>
       </div>
       <p class="hero-note reveal">Your video stays with your agent and tools. This website only builds the instructions.</p>
     </div>
@@ -64,7 +65,7 @@
     <div class="looks-copy reveal">
       <p class="eyebrow">Video building blocks</p>
       <h2>Pick what the agent is allowed to use.</h2>
-      <p>These are not templates. They are ways the video can switch presentation when the moment calls for it. Choose one, combine several, or let the agent decide.</p>
+      <p>These are not templates. They are four visual building blocks the agent can combine inside one edit. Choose a subset, allow all four, or leave the choice to the agent.</p>
       <div class="mode-tabs" role="tablist" aria-label="Preview editing building blocks">
         <button class="mode-tab is-active" data-demo-mode="face" type="button"><b>Face-first</b><span>Speaker fills the frame.</span></button>
         <button class="mode-tab" data-demo-mode="split" type="button"><b>Split-screen</b><span>Speaker + screen/demo.</span></button>
@@ -108,38 +109,36 @@
 <section class="how" id="how">
   <div class="wrap">
     <div class="section-head reveal">
-      <p class="eyebrow">How Bare Video actually works</p>
-      <h2>The website decides nothing.<br>Your agent does the editing.</h2>
-      <p>Bare Video gives your agent a clear editing brief and a reusable skill. The tools still run in your own project workspace.</p>
+      <p class="eyebrow">How Bare Video works</p>
+      <h2>The browser builds the brief.<br>Your coding agent edits the video.</h2>
+      <p>Nothing is rendered on this website. The prompt tells your coding agent what you want, and the Bare Video skill tells it how to make good editing decisions with the tools in your project.</p>
     </div>
 
-    <div class="architecture reveal">
+    <div class="architecture reveal" aria-label="Bare Video workflow">
       <article>
         <span>01</span>
-        <div class="arch-icon folder-icon"><i></i><i></i></div>
-        <h3>Your project folder</h3>
-        <p>Put the original video, references, and optional assets together. Keep the source footage untouched.</p>
+        <b>Build the brief</b>
+        <p>Choose the goal, visual building blocks, captions, sound, transcription, and review flow.</p>
       </article>
-      <div class="arch-arrow">→</div>
       <article>
         <span>02</span>
-        <div class="arch-icon skill-icon"><img src="assets/logo.svg" alt=""></div>
-        <h3>Agent reads Bare Video</h3>
-        <p>The skill tells the agent how to think about cuts, visuals, references, privacy, preview, and QA.</p>
+        <b>Agent reads the skill</b>
+        <p>Your coding agent reads Bare Video before it touches the footage. The skill supplies the editing rules and safety checks.</p>
       </article>
-      <div class="arch-arrow">→</div>
       <article>
         <span>03</span>
-        <div class="arch-icon tools-icon"><b>ff</b><b>hf</b><b>asr</b></div>
-        <h3>It uses the right tools</h3>
-        <p>FFmpeg for media work. HyperFrames when composed visuals help. Groq, Deepgram, or local transcription when speech timing helps.</p>
+        <b>Inspect footage + tools</b>
+        <p>The agent checks the video, existing assets, FFmpeg, HyperFrames, and available transcription before downloading anything.</p>
       </article>
-      <div class="arch-arrow">→</div>
       <article>
         <span>04</span>
-        <div class="arch-icon preview-icon"><i></i><i></i></div>
-        <h3>You review the edit</h3>
-        <p>Preview it, tell the agent what to change in plain language, then export the final video.</p>
+        <b>Edit with judgment</b>
+        <p>FFmpeg handles direct media work. HyperFrames helps when composed visuals, animation, or browser preview genuinely improve the edit.</p>
+      </article>
+      <article>
+        <span>05</span>
+        <b>Preview, revise, export</b>
+        <p>You react to a real draft. The agent fixes what matters, checks picture and audio, then exports the final video.</p>
       </article>
     </div>
   </div>
@@ -148,8 +147,8 @@
 <section class="why">
   <div class="wrap why-grid">
     <div class="why-title reveal">
-      <p class="eyebrow">Built for beginners, not only beginners</p>
-      <h2>You can use the guide.<br>Or skip straight to the skill.</h2>
+      <p class="eyebrow">Use the guide or skip it</p>
+      <h2>Start guided.<br>Stay flexible.</h2>
     </div>
     <div class="why-items">
       <article class="reveal"><b>New to coding agents?</b><p>Use the prompt builder. It explains the decisions and gives you one copy-paste handoff.</p></article>

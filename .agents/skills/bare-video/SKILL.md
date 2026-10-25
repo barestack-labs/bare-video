@@ -1,6 +1,6 @@
 ---
 name: bare-video
-description: Edit videos with a coding agent using FFmpeg and HyperFrames. Use for footage cleanup, captions, supporting visuals, reference-led edits, local setup, browser previews, and final exports. The agent supplies the creative judgment; Bare Video supplies guidance.
+description: Edit videos with a coding agent using FFmpeg and HyperFrames. Use for footage cleanup, captions, supporting visuals, reference-guided edits, local setup, browser previews, and final exports. The agent supplies the creative judgment; Bare Video supplies guidance.
 ---
 
 # Bare Video
@@ -14,6 +14,16 @@ Find the source footage, the desired outcome, and any references. Inspect the me
 If a transcript would help, use an existing transcript, a configured tool, or an approved provider. Do not pretend to understand unheard speech. If transcription needs credentials or a model download, explain that boundary and finish what you can without it.
 
 Use an existing workspace as it is. For a new project, `input/`, `assets/`, `workspace/`, and `output/` are enough; add other folders only when needed. Keep the user's originals separate from outputs.
+
+## Stay grounded
+
+Before making editing claims, verify the inputs and tools that actually exist. List or inspect the relevant media, assets, transcripts, and installed commands instead of guessing from filenames or the user's intent.
+
+- Never claim you watched, heard, transcribed, rendered, previewed, or verified something you did not actually inspect.
+- Never invent footage, screenshots, proof, logos, B-roll, transcripts, tool capabilities, command flags, or successful outputs.
+- If a requested visual needs an asset that is not present, stay with the footage or ask for the asset. Do not fabricate evidence.
+- If a tool is unavailable, use another verified path or explain the limitation. Do not create a Bare Video engine, CLI, template runtime, or wrapper to hide the missing tool.
+- Keep the plan proportional to the edit. A simple cut should stay simple.
 
 ## Make the edit
 
