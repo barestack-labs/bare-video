@@ -2,7 +2,7 @@
 
 **A video-editing skill for your coding agent.**
 
-Give your agent footage, a goal, and an optional reference. It uses its judgment to make the edit with FFmpeg and HyperFrames, then shows you a preview. Bare Video supplies the guidance, not another editing engine.
+Give your agent footage, a goal, and an optional reference. It uses its judgment to make the edit with FFmpeg and HyperFrames, then shows you a preview. Bare Video supplies a reusable editing skill and a prompt builder that tells your coding agent how you want the video handled.
 
 Website: [shorts.paulablaza.com](https://shorts.paulablaza.com/)  
 Prompt builder: [create your editing prompt](https://shorts.paulablaza.com/create.html)
@@ -46,7 +46,7 @@ See [setup](SETUP.md) and the [editing workflow](docs/WORKFLOW.md).
 
 The static pages were exercised on desktop and mobile, including preference generation, clipboard copying, draft restoration, reset, and local navigation.
 
-A direct-tool smoke run on Windows used FFmpeg 9.0.1 to cut a generated clip with speech, then HyperFrames 0.8.195 to check, preview, and render it. The five-second MP4 decoded successfully, displayed the expected picture, and preserved the edited audio. This checks the native tool path, not an automatic editing engine.
+A direct-tool smoke run on Windows used FFmpeg 9.0.1 to cut a generated clip with speech, then HyperFrames 0.8.195 to check, preview, and render it. The five-second MP4 decoded successfully, displayed the expected picture, and preserved the edited audio. This checks the native tool path that the Bare Video skill asks agents to use.
 
 Live transcription and the creative quality of edits on your own footage still depend on your agent and chosen tools. No cloud transcription was called during that smoke run.
 
