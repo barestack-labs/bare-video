@@ -20,7 +20,7 @@ Work inside the video project the user opened. If the user has no project folder
 
 These names are suggestions, not requirements. Do not move or duplicate the user's original footage without a reason.
 
-Before media work, make sure the user has identified the exact source video inside the project folder. The website does not collect this path. If the user has not pointed to a file yet, ask which video to edit. Do not assume ./input/video.mp4 exists.
+Before media work, identify the source video from the user's project or instructions. If there is more than one plausible source and the choice is genuinely ambiguous, ask which one to edit. Do not assume a particular filename or folder structure.
 
 ## Transcribe before making speech-driven edit decisions
 
@@ -67,34 +67,38 @@ After the transcript and edit direction are clear:
 
 The tool choice should serve the edit. The edit should not exist to justify a tool.
 
-## Make short-form visuals respond to the speech
+## Build compositions from a flexible starter kit
 
-Treat these as optional visual building blocks:
+Bare Video includes reusable composition ingredients. They are not a finite template library and they are not a strict allow-list unless the user explicitly asks for that restriction.
 
-- **Face-first:** the speaker fills the vertical frame when delivery is the strongest visual.
-- **Split-screen:** the speaker remains visible while a real screen, demo, or screenshot shares the frame.
-- **Light overlays:** small real screenshots, logos, labels, cards, stats, or proof appear over the footage.
-- **Full-screen proof:** a real result, repo, website, screenshot, or demo temporarily takes over the frame.
+Starter components include:
 
-If the prompt says **Agent decides**, all four are available and the agent chooses by meaning.
+- **Talking head:** let the speaker own the frame when delivery is the strongest visual.
+- **Split screen:** combine the speaker with a real screen, screenshot, demo, image, or other useful visual.
+- **Full-screen media:** let real proof, UI, a website, screenshot, image, or demo take over when it deserves the frame.
+- **Floating card:** place a compact card over footage for a label, quote, proof point, image, UI detail, or short piece of information.
+- **Big card:** use an oversized card as a major composition for proof, a statement, UI, or another focal visual.
+- **Stat / data card:** present real numbers, percentages, progress, charts, or comparisons with clear hierarchy. Never invent data.
+- **Step card:** show a numbered action, instruction, or stage with enough room for the viewer to understand what happens next.
+- **Screenshot / UI card:** frame real interface proof clearly as a card, crop, device-like frame, or focused screen region.
+- **Multiple cards:** arrange several useful cards around or beside the subject for comparison, accumulation, options, or spatial storytelling.
+- **Green-screen layout:** place a keyed or isolated speaker over real supporting media or a designed composition when the footage and tools support it.
 
-If it says **Allow all four**, all four are explicitly allowed but none is mandatory.
+Treat the user's selected components as useful starting ingredients. Unless the user disables improvisation or explicitly gives a strict constraint, you may resize, reposition, repeat, combine, restyle, or create a new composition when the footage, reference, or direct instruction calls for it. A request such as "make the card huge," "put several cards around me," or "use this reference layout" should change the composition rather than be rejected because the exact arrangement is not named above.
 
-If the user selected a custom subset, that subset is a strict allow-list. Do not introduce an unselected building block.
+Do not rotate through components mechanically. Choose them by meaning and let strong footage stay simple when it works.
 
 Respect the requested visual pace:
 
-- **Active:** most meaningful spoken phrases should receive a useful visible response. This can be a layout change, real proof, an overlay, a purposeful crop or motion change, or caption emphasis.
+- **Active:** most meaningful spoken phrases can receive a useful visible response when it helps. This can be a composition change, real proof, a card, purposeful crop or motion change, or caption emphasis.
 - **Balanced:** change presentation when it improves understanding, supports proof, or prevents a dead stretch.
-- **Calm:** let the speaker stay on screen longer and change visuals only when the content clearly benefits.
+- **Calm:** let the speaker or proof stay on screen longer and change visuals only when the content clearly benefits.
 
-Do not mechanically switch something on every word. Short-form should feel responsive, not random. Anchor each visual change to the meaning of the speech.
-
-Use real supporting material first. If the requested screenshot, proof, logo, result, or B-roll does not exist, stay with the speaker or ask for the asset. Never fabricate evidence.
+Anchor visual changes to the meaning of the speech. Use real supporting material first. If requested proof, logos, screenshots, results, or B-roll do not exist, stay with available material or ask for the asset. Never fabricate evidence.
 
 ## Apply one editing theme across the allowed building blocks
 
-The selected theme is the primary visual language. It controls typography, color, background treatment, cards, proof presentation, caption styling, and motion. It does not change which structural building blocks are allowed.
+The selected theme is a starting visual skin. It controls the default typography, color, background treatment, cards, proof presentation, caption styling, spacing, and motion. It does not lock composition or limit what the agent can build.
 
 The five Bare Video starter themes are:
 
@@ -104,9 +108,9 @@ The five Bare Video starter themes are:
 - **Tutorial Steps:** instructional clarity. Use obvious step labels, screen takeovers, callouts, cursor or UI emphasis, high-contrast captions, and minimal decoration. The viewer should always know what to click, read, or do next.
 - **Bare Minimal:** stripped-back short-form editing. Favor strong talking-head framing, clean black-and-white typography, simple proof, purposeful crops or zooms, and very little decorative motion.
 
-These are starting languages, not rigid templates. The same Face-first, Split-screen, Light overlays, and Full-screen proof building blocks can look different under each theme.
+These are starting languages, not rigid templates. Any starter component can be resized, combined, repeated, or composed differently under each theme. The user's direct instruction can also change an individual card, layout, color, scale, or motion treatment without requiring a new named theme.
 
-If the user provides a reference video, image, or design system, study the real reference and let it override specific theme details where appropriate. Do not copy protected branding or fabricate missing assets.
+If the user provides a reference video, image, or design system, study the real reference and let it override theme and composition defaults where appropriate. Recreate the useful visual logic with the user's real assets rather than treating the starter kit as a ceiling. Do not copy protected branding or fabricate missing assets.
 
 ## Captions should be precise and intentionally styled
 
