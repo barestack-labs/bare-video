@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Build a Bare Video handoff for your coding agent. Nothing is uploaded.">
+<meta name="description" content="Build a Bare Video editing brief for your coding agent. Choose the video building blocks, captions, sound, transcription, and approval flow.">
 <link rel="canonical" href="https://shorts.paulablaza.com/create.html">
 <meta property="og:title" content="Build your Bare Video prompt">
-<meta property="og:description" content="A guided handoff for agent-directed video editing.">
+<meta property="og:description" content="Choose how the edit should work, then copy one prompt to your coding agent.">
 <title>Build your Bare Video prompt</title>
 <link rel="stylesheet" href="assets/create.css">
 </head>
 <body>
 <header class="bar">
-  <a class="brand" href="/">Bare Video</a>
+  <a class="brand-lockup" href="/" aria-label="Bare Video home"><img src="assets/logo.svg" alt=""><span>Bare Video</span></a>
   <div class="bar-right">
     <button class="text-btn" id="start-over" type="button">Start over</button>
     <a class="repo" href="https://github.com/barestack-labs/bare-video" target="_blank" rel="noopener">GitHub ↗</a>
@@ -22,20 +22,20 @@
 <main class="shell">
   <div class="progress-wrap" aria-hidden="true">
     <div class="progress-track"><i id="progress"></i></div>
-    <span id="progress-copy">1 of 5</span>
+    <span id="progress-copy">1 of 6</span>
   </div>
 
-  <section class="stage" id="stage">
+  <section class="stage">
     <article class="step is-active" data-step="0">
       <div class="step-copy">
         <p class="eyebrow">Your video</p>
         <h1>What are we making?</h1>
-        <p class="lead">One sentence is enough. Your agent can figure out the rest from the footage.</p>
+        <p class="lead">One sentence is enough. The agent can inspect the footage and work out the details.</p>
       </div>
       <div class="fields">
         <label class="big-field">
           <span>Goal <small>optional</small></span>
-          <textarea id="goal" rows="3" placeholder="A 45-second tutorial about a free AI tool. Keep it fast, useful, and not obnoxious."></textarea>
+          <textarea id="goal" rows="3" placeholder="A 45-second tutorial about a free AI tool. Keep it fast, useful, and natural."></textarea>
         </label>
         <label class="small-field">
           <span>Video path</span>
@@ -46,107 +46,181 @@
 
     <article class="step" data-step="1">
       <div class="step-copy">
-        <p class="eyebrow">How hands-on?</p>
-        <h2>Do you want a plan first?</h2>
-        <p class="lead">This only changes when the agent pauses for your approval.</p>
+        <p class="eyebrow">Planning</p>
+        <h2>How should the agent start?</h2>
+        <p class="lead">This controls whether you approve the direction before the agent builds the first edit.</p>
       </div>
-      <div class="choices two" data-key="mode">
+      <div class="choices two" data-single="mode">
         <button class="choice" data-value="draft" type="button">
           <span class="choice-num">A</span>
           <strong>Make the first draft</strong>
-          <small>Use your judgment. Give me something concrete to react to.</small>
+          <small>The agent watches the footage, decides the first cut, and gives you something concrete to react to.</small>
         </button>
         <button class="choice" data-value="plan" type="button">
           <span class="choice-num">B</span>
-          <strong>Show me a plan first</strong>
-          <small>Give me the cut and visual direction, then wait before building.</small>
+          <strong>Show me the plan first</strong>
+          <small>The agent explains the cut, pacing, and visual approach, then waits for your approval before editing.</small>
         </button>
       </div>
     </article>
 
-    <article class="step" data-step="2">
-      <div class="step-copy">
-        <p class="eyebrow">Visual direction</p>
-        <h2>What should it lean toward?</h2>
-        <p class="lead">Pick a bias, not a template. The agent still decides what each moment needs.</p>
+    <article class="step visual-step" data-step="2">
+      <div class="visual-config">
+        <div class="step-copy compact">
+          <p class="eyebrow">Video building blocks</p>
+          <h2>What can the edit use?</h2>
+          <p class="lead">Pick several. These are presentation modes the agent can switch between, not rigid templates.</p>
+          <div class="preset-row">
+            <button class="preset is-selected" data-visual-preset="agent" type="button">Agent decides</button>
+            <button class="preset" data-visual-preset="all" type="button">Use all</button>
+            <span>or choose below</span>
+          </div>
+        </div>
+
+        <div class="visual-options" id="visual-options">
+          <button class="visual-option" data-visual="face" type="button">
+            <span class="mini-phone face-mini"><i class="mini-head"></i><i class="mini-body"></i><b>YOUR FACE</b></span>
+            <span><strong>Face-first</strong><small>Keep the speaker full-screen when the person is the strongest visual.</small></span>
+          </button>
+          <button class="visual-option" data-visual="split" type="button">
+            <span class="mini-phone split-mini"><i class="mini-screen"></i><i class="mini-head"></i><i class="mini-body"></i><b>SCREEN + YOU</b></span>
+            <span><strong>Split-screen</strong><small>Show a screen, demo, or screenshot while keeping the speaker visible.</small></span>
+          </button>
+          <button class="visual-option" data-visual="overlay" type="button">
+            <span class="mini-phone overlay-mini"><i class="mini-head"></i><i class="mini-body"></i><em>small proof</em><b>LIGHT OVERLAY</b></span>
+            <span><strong>Light overlays</strong><small>Add small screenshots, labels, logos, cards, or stats over the footage.</small></span>
+          </button>
+          <button class="visual-option" data-visual="proof" type="button">
+            <span class="mini-phone proof-mini"><em>REAL SCREEN</em><strong>SHOW THE THING</strong><i></i><i></i><i></i></span>
+            <span><strong>Full-screen proof</strong><small>Let a real repo, result, website, or demo temporarily take over the whole frame.</small></span>
+          </button>
+        </div>
+
+        <label class="reference-toggle">
+          <input id="reference-led" type="checkbox">
+          <span class="switch"></span>
+          <span><strong>Use a reference video too</strong><small>The agent studies the pacing, captions, framing, motion, and sound of files in <code>./references/</code>. It should copy the editing language, not protected branding or assets.</small></span>
+        </label>
       </div>
-      <div class="choices visual" data-key="style">
-        <button class="choice visual-card" data-value="agent" type="button">
-          <div class="visual-demo agent-demo"><i></i><i></i><i></i></div>
-          <strong>Agent decides</strong><small>Best default. Read the footage and choose.</small>
-        </button>
-        <button class="choice visual-card" data-value="bare" type="button">
-          <div class="visual-demo editorial-demo"><b>ONE IDEA.</b><span>full frame.</span></div>
-          <strong>Bare / editorial</strong><small>Clean, premium, restrained.</small>
-        </button>
-        <button class="choice visual-card" data-value="captions" type="button">
-          <div class="visual-demo caption-demo"><div></div><b>KEEP IT <mark>SIMPLE</mark></b></div>
-          <strong>Captions only</strong><small>Footage first. No routine graphic scenes.</small>
-        </button>
-        <button class="choice visual-card" data-value="tutorial" type="button">
-          <div class="visual-demo tutorial-demo"><div class="screen"></div><div class="person"></div></div>
-          <strong>Tutorial / proof</strong><small>Screens, repos, demos, results.</small>
-        </button>
-        <button class="choice visual-card" data-value="face" type="button">
-          <div class="visual-demo face-demo"><div class="person"></div></div>
-          <strong>Face-first</strong><small>Stay on the speaker unless something better exists.</small>
-        </button>
-        <button class="choice visual-card" data-value="reference" type="button">
-          <div class="visual-demo reference-demo"><i></i><i></i><i></i><i></i></div>
-          <strong>Use my reference</strong><small>Borrow the editing language from references/.</small>
-        </button>
+
+      <div class="phone-preview-side">
+        <div class="phone preview-phone" id="visual-phone" data-phone-mode="face">
+          <div class="phone-speaker"><div class="avatar-head"></div><div class="avatar-body"></div></div>
+          <div class="split-panel"><div class="screen-ui"><div class="screen-bar"><i></i><i></i><i></i></div><strong>your demo</strong><span>real screen or screenshot</span></div></div>
+          <div class="phone-overlay-card"><small>QUICK PROOF</small><strong>Free plan</strong><span>small overlay, footage stays visible</span></div>
+          <div class="proof-screen"><small>REAL SCREEN</small><strong>Let the proof<br>take the frame.</strong><div class="proof-lines"><i></i><i></i><i></i></div></div>
+          <div class="phone-caption">MAKE THE <mark>POINT</mark> CLEAR</div>
+        </div>
+        <p class="preview-copy" id="visual-preview-copy">Agent decides which of these modes helps each moment.</p>
       </div>
     </article>
 
     <article class="step" data-step="3">
-      <div class="step-copy">
-        <p class="eyebrow">Taste</p>
+      <div class="step-copy compact">
+        <p class="eyebrow">Captions + sound</p>
         <h2>How much should the edit add?</h2>
-        <p class="lead">These are nudges. Leave them on Auto if you do not care.</p>
+        <p class="lead">Pick the intensity. “Auto” leaves the call to the agent.</p>
       </div>
-      <div class="taste-grid">
-        <div class="taste-block">
-          <span>Captions</span>
-          <div class="segmented" data-key="captions">
-            <button type="button" data-value="agent">Auto</button><button type="button" data-value="dynamic">Dynamic</button><button type="button" data-value="clean">Clean</button><button type="button" data-value="none">None</button>
+      <div class="taste-stack">
+        <section class="taste-section">
+          <div class="taste-title"><b>Captions</b><span id="caption-help">Agent decides how much captioning the video needs.</span></div>
+          <div class="pill-options" data-single="captions">
+            <button data-value="agent" type="button">Auto</button>
+            <button data-value="dynamic" type="button">Dynamic</button>
+            <button data-value="clean" type="button">Clean</button>
+            <button data-value="none" type="button">None</button>
           </div>
-        </div>
-        <div class="taste-block">
-          <span>Sound design</span>
-          <div class="segmented" data-key="sfx">
-            <button type="button" data-value="agent">Auto</button><button type="button" data-value="restrained">Some</button><button type="button" data-value="minimal">Minimal</button><button type="button" data-value="none">None</button>
+        </section>
+
+        <section class="taste-section">
+          <div class="taste-title"><b>Sound design</b><span id="sound-help">Agent decides whether sound effects help.</span></div>
+          <div class="pill-options" data-single="sfx">
+            <button data-value="agent" type="button">Auto</button>
+            <button data-value="heavy" type="button">Lots</button>
+            <button data-value="balanced" type="button">Balanced</button>
+            <button data-value="minimal" type="button">Minimal</button>
+            <button data-value="none" type="button">None</button>
           </div>
-        </div>
-        <div class="taste-block">
-          <span>Transcription</span>
-          <div class="segmented" data-key="asr">
-            <button type="button" data-value="auto">Auto</button><button type="button" data-value="groq">Groq</button><button type="button" data-value="deepgram">Deepgram</button><button type="button" data-value="local">Local</button>
-          </div>
+        </section>
+
+        <div class="taste-explainer">
+          <span><b>Dynamic captions</b> move faster and emphasize selected words.</span>
+          <span><b>Clean captions</b> stay simpler and calmer.</span>
+          <span><b>Lots of sound</b> allows frequent clicks, impacts, pops, and whooshes, but speech still wins.</span>
         </div>
       </div>
-      <p class="privacy">Bare Video never needs your API key in chat. The agent should use credentials configured locally and ask before uploading private audio.</p>
     </article>
 
     <article class="step" data-step="4">
-      <div class="step-copy"><p class="eyebrow">Finish</p><h2>How should the agent hand it back?</h2></div>
-      <div class="choices two" data-key="finish">
-        <button class="choice" data-value="preview" type="button"><span class="choice-num">A</span><strong>Preview first</strong><small>Show me the edit. I approve before final export.</small></button>
-        <button class="choice" data-value="final" type="button"><span class="choice-num">B</span><strong>Finish it in one go</strong><small>Self-check and export unless a real decision needs me.</small></button>
+      <div class="step-copy compact">
+        <p class="eyebrow">Transcription</p>
+        <h2>How should the agent understand speech?</h2>
+        <p class="lead">Transcription helps with cuts, timing, and captions. It is not mandatory for every video.</p>
       </div>
-      <label class="skill-toggle"><input id="skill-install" type="checkbox"><span class="switch"></span><span><strong>Keep Bare Video for future projects</strong><small>Ask the agent to offer installing the skill in its supported user-level skill folder after this edit works.</small></span></label>
+      <div class="asr-grid" data-single="asr">
+        <button class="asr-card" data-value="auto" type="button">
+          <span class="asr-tag">Recommended</span><strong>Auto</strong>
+          <p>Reuse whatever is already configured. Best for beginners. The agent asks before cloud upload or a large model download.</p>
+        </button>
+        <button class="asr-card" data-value="groq" type="button">
+          <span class="asr-tag">Cloud</span><strong>Groq</strong>
+          <p>Fast Whisper-based transcription. Pick this when Groq is already configured and speed matters.</p>
+        </button>
+        <button class="asr-card" data-value="deepgram" type="button">
+          <span class="asr-tag">Cloud</span><strong>Deepgram</strong>
+          <p>Cloud speech-to-text with detailed word timing. Pick this when Deepgram is already part of your workflow.</p>
+        </button>
+        <button class="asr-card" data-value="local" type="button">
+          <span class="asr-tag">Private</span><strong>Local</strong>
+          <p>Keep the audio on your machine. Better for privacy, but it may need a model download and more CPU time.</p>
+        </button>
+        <p class="privacy">Never paste API keys into the prompt. The coding agent should use credentials stored locally and ask before sending private audio to a cloud provider.</p>
+      </div>
+    </article>
+
+    <article class="step" data-step="5">
+      <div class="step-copy">
+        <p class="eyebrow">Finish</p>
+        <h2>When should the agent stop?</h2>
+        <p class="lead">Preview-first is safer for creative work. One-shot is useful when you already trust the direction.</p>
+      </div>
+      <div>
+        <div class="choices two finish-choices" data-single="finish">
+          <button class="choice" data-value="preview" type="button"><span class="choice-num">A</span><strong>Preview first</strong><small>Show me a playable/browser preview. Wait for feedback before final export.</small></button>
+          <button class="choice" data-value="final" type="button"><span class="choice-num">B</span><strong>Finish in one go</strong><small>Self-check and export unless a real decision needs me.</small></button>
+        </div>
+        <label class="skill-toggle">
+          <input id="skill-install" type="checkbox">
+          <span class="switch"></span>
+          <span><strong>Keep Bare Video for future projects</strong><small>After this edit works, ask the agent to offer installing the Bare Video skill in its supported user-level skills folder.</small></span>
+        </label>
+      </div>
     </article>
   </section>
 
-  <div class="nav-row"><button class="back" id="back" type="button">← Back</button><button class="next" id="next" type="button">Continue</button></div>
+  <div class="nav-row">
+    <button class="back" id="back" type="button">← Back</button>
+    <button class="next" id="next" type="button">Continue</button>
+  </div>
 </main>
 
 <section class="result" id="result" aria-hidden="true">
   <div class="result-inner">
-    <div class="result-top"><div><p class="eyebrow">Your handoff</p><h2>Give this to your agent.</h2></div><button class="text-btn" id="edit" type="button">Edit choices</button></div>
-    <div class="prompt-card"><textarea id="prompt" spellcheck="false" aria-label="Generated Bare Video prompt"></textarea><div class="prompt-actions"><button class="copy" id="copy" type="button">Copy prompt</button><a class="open-repo" href="https://github.com/barestack-labs/bare-video" target="_blank" rel="noopener">Open Bare Video repo ↗</a></div></div>
+    <div class="result-top">
+      <div><p class="eyebrow">Your handoff</p><h2>Give this to your agent.</h2></div>
+      <button class="text-btn" id="edit" type="button">Edit choices</button>
+    </div>
+    <div class="prompt-card">
+      <textarea id="prompt" spellcheck="false" aria-label="Generated Bare Video prompt"></textarea>
+      <div class="prompt-actions">
+        <button class="copy" id="copy" type="button">Copy prompt</button>
+        <a class="open-repo" href="https://github.com/barestack-labs/bare-video" target="_blank" rel="noopener">Open Bare Video repo ↗</a>
+      </div>
+    </div>
     <p class="result-note" id="copy-status">Nothing was uploaded. Your choices stay in this browser.</p>
   </div>
 </section>
+
 <script src="assets/create.js"></script>
 </body>
 </html>
