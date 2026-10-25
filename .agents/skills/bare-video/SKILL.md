@@ -27,13 +27,13 @@ Before media work, identify the source video from the user's project or instruct
 Use the transcription route the user selected:
 
 - **Faster Whisper:** local transcription. Check whether it and a suitable model already exist. Prefer word-level timestamps. Ask before downloading a model or another large dependency.
-- **Groq:** fast cloud Whisper transcription. Use credentials already configured locally. Never ask the user to paste an API key into chat.
-- **Deepgram:** cloud speech-to-text with detailed timing. Use credentials already configured locally. Never ask the user to paste an API key into chat.
+- **Groq:** fast cloud Whisper transcription. Check `GROQ_API_KEY` in the project `.env` and current environment first. If it is missing, create the project `.env` if needed and open that file in the user's normal text editor. On Windows, use Notepad. Add an empty `GROQ_API_KEY=` line and ask the user to save the key in the file, never in chat. Continue after the user saves it. Prefer detailed word timing when supported.
+- **Deepgram:** cloud speech-to-text with detailed timing. Check `DEEPGRAM_API_KEY` in the project `.env` and current environment first. If it is missing, create the project `.env` if needed and open that file in the user's normal text editor. On Windows, use Notepad. Add an empty `DEEPGRAM_API_KEY=` line and ask the user to save the key in the file, never in chat. Continue after the user saves it. Preserve detailed word timing when available.
 - **Existing transcript:** reuse a verified transcript the user already has. Prefer word-level timestamps. If the file cannot be found, ask for its path.
 
 A transcript gives words and timing. It does not decide what to cut. Review the speech in context and inspect the actual footage.
 
-If the selected cloud provider is not configured, explain the missing setup instead of silently switching providers. If the selected local tool is missing, explain what would be installed and where before downloading it.
+If the selected cloud provider is not configured, handle the project-local `.env` setup above instead of claiming credentials already exist. Keep `.env` out of Git. If the user does not want to configure cloud transcription, offer Faster Whisper as the no-key fallback. Do not silently switch providers. If the selected local tool is missing, explain what would be installed and where before downloading it.
 
 ## Plan with the user when they ask to plan
 
@@ -161,4 +161,4 @@ Advanced users may copy or clone the Bare Video repo into their own video projec
 
 Report the output location, what changed, what was actually verified, which tools were used, and any real limitation that remains.
 
-If using the repository checkout, read docs/WORKFLOW.md for direct tool examples and SETUP.md for setup boundaries only when needed.
+Use the repository files that actually exist. Do not cite or depend on setup documentation that is not present in the checkout.
