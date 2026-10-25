@@ -1,6 +1,6 @@
-# Bare Video — agent instructions
+# Bare Video - agent instructions
 
-Bare Video is an opinionated, local-first video editing repository. It is NOT installed globally by default.
+Bare Video is a local-first video editing toolkit for coding agents. It is NOT installed globally by default.
 
 ## First principle
 
@@ -8,9 +8,9 @@ Read the user's intent before acting.
 
 - If they ask **how to use the repo**, explain the short workflow first. Do not install anything until they approve setup.
 - If they ask to **set it up**, inspect the machine and present one concise setup summary before downloads.
-- If they explicitly ask to **one-shot setup + edit**, proceed with recommended project-local defaults, but still ask before credentials, paid services, destructive actions, or unusually large downloads.
-- If they ask to **plan with them**, show a beat plan before building the edit.
-- Default behavior when intent is ambiguous: plan with the user before editing.
+- If they explicitly ask to **one-shot setup + edit**, proceed with recommended project-local defaults, but still ask before credentials, paid services, destructive actions, global configuration changes, or unusually large downloads.
+- If they ask to **plan with them**, show a beat plan before building the visual edit.
+- Default behavior when intent is ambiguous: plan with the user before final visual composition.
 
 ## Local-first setup contract
 
@@ -19,7 +19,7 @@ Read the user's intent before acting.
 3. Prefer project-local downloads under `runtime/` when a dependency is missing.
 4. Explain what will be downloaded, where it goes, and approximate size before large downloads.
 5. Do not expose API keys in chat, logs, screenshots, generated HTML, or commits.
-6. Cloud transcription is preferred when configured. Local transcription remains available without a key.
+6. Cloud transcription is preferred when configured. Local faster-whisper is opt-in because it may download a model.
 
 Run:
 
@@ -28,6 +28,8 @@ python scripts/doctor.py
 ```
 
 Use its report before proposing setup.
+
+For the full engine commands, read `docs/ENGINE.md`.
 
 ## Editing contract
 
@@ -42,6 +44,8 @@ Silence is a candidate, not a verdict.
 - Keep meaningful thinking, comedic timing, emphasis, reactions, demonstrations and useful pauses.
 - When uncertain, keep the material or ask the user during planning.
 - Rendering must use source-ordered keep windows. Never duplicate or overlap source ranges.
+- Use `bare-video semantic-candidates` and `bare-video cut-map` rather than inventing an unrelated cut format.
+- Auto-apply only high-confidence candidates when the user explicitly permits semantic automation.
 
 ### Layout selection
 
@@ -55,33 +59,41 @@ Pick layout by meaning, not by rotation:
 - `ui`: terminal, status, product-interface, AI workflow.
 - `collage`: reveal or dense summary. Use sparingly.
 
-Real material beats designed cards. Designed cards beat generic filler.
+Real material beats designed cards. Designed scenes beat generic filler.
 
 ### Captions
 
-Default: bold, word-synced, short chunks, one emphasized word when useful. Move captions with the layout. Never cover the face/hands or collide with proof.
+Default: word-synced, short chunks, restrained emphasis. Move captions with the layout. Never cover the face/hands or collide with proof.
 
 ### SFX
 
-Use `templates/sfx-map.json`. SFX follows visual events rather than requiring the model to invent sound design from scratch. Speech always wins. User requests such as “less SFX” override the default globally.
+Use the Bare Video SFX mapping. The engine can synthesize its own small SFX set locally, avoiding third-party audio licensing for the defaults. Speech always wins. User requests such as "less SFX" override the default globally.
 
 ## References
 
 References are optional.
 
-If `references/` exists, derive a style grammar: layout frequency, caption treatment, motion cadence, graphic density, SFX density and framing. Recreate the general editing language with Bare Video components. Do not copy third-party branding or copyrighted assets into the project unless the user has rights to them.
+Use `bare-video reference` to create a compact contact sheet and selected-frame packet before asking a vision model to inspect individual frames.
 
-If there is no reference, use `bare-default` from `templates/registry.json`.
+Derive layout frequency, caption treatment, motion cadence, graphic density, SFX density and framing. Recreate the general editing language with Bare Video components. Do not copy third-party branding or copyrighted assets unless the user has rights to them.
+
+If there is no reference, use `bare-default`.
 
 ## Preview gate
 
-Do not final-render automatically.
+Unless the user explicitly requests one-shot final export:
 
-1. Build the edit.
-2. Launch the HyperFrames preview when that integration is enabled.
-3. Ask the user to review or provide requested changes.
-4. Export only after approval, unless the user explicitly asked for one-shot final export.
+1. Build the mechanical autocut.
+2. Create/edit the beat plan.
+3. Generate the HyperFrames project.
+4. Run HyperFrames lint/check where available.
+5. Open the preview.
+6. Wait for user feedback.
+7. Render final only after approval.
+8. Run final media QA and optional final ASR re-scan.
 
 ## Current repository status
 
-v0.1 is design-first. The landing page, layout prototypes, registry, SFX mapping and setup doctor are implemented. ASR adapters, DeepCut integration and HyperFrames rendering are the next engineering phase. Do not claim those are implemented until the code exists.
+The v0.5 engine path is implemented: ASR adapters, normalized transcript schema, conservative semantic cut candidates, DeepCut-style keep maps, direct FFmpeg autocut, transcript retiming, semantic layout planning, captions, synthetic SFX, reference packets, HyperFrames project generation, CLI orchestration, and media QA.
+
+Do not overclaim external validation. Cloud provider calls require user-owned keys, and HyperFrames CLI execution still needs a live package-network-enabled environment.
