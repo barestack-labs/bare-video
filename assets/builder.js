@@ -11,6 +11,7 @@ if(builder){
     pace:"active",
     captions:"punchy",
     sound:"balanced",
+    cuts:"balanced",
     finish:"preview"
   };
 
@@ -69,6 +70,12 @@ if(builder){
     none:"Do not add sound effects."
   };
 
+  const cutCopy={
+    tight:"Cut tight. Remove every silence longer than 300ms, remove repeated takes, filler and false starts, and keep the speech density high. Do not cut mid-word and do not remove the breath a line needs to land.",
+    balanced:"Cut by meaning. Remove dead air longer than about 800ms when it serves the edit, plus obvious false starts, but keep pauses that carry emphasis or let a point sit. Silence removal serves the story, it does not set the pace.",
+    loose:"Cut loose. Keep the natural rhythm, breaths, and pauses. Remove only dead air longer than about 1.5 seconds or a take that is clearly unusable."
+  };
+
   function referenceText(){
     const reference=state.reference.trim();
     if(reference){
@@ -117,6 +124,9 @@ if(builder){
       "",
       "SOUND DESIGN",
       soundCopy[state.sound],
+      "",
+      "CUTS",
+      cutCopy[state.cuts],
       "",
       "TOOLS",
       "Use FFmpeg directly for normal media work. After the transcript and direction are clear, use HyperFrames only if it materially improves composition, motion graphics, or previewing. If it is missing and would help, ask before adding it locally to the project.",

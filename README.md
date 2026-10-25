@@ -29,6 +29,7 @@ It lets you choose:
 - one editing theme
 - which visual building blocks are allowed
 - visual pace
+- cuts: tight, balanced, or loose
 - captions
 - sound design
 - preview-first or one-pass output

@@ -123,6 +123,18 @@ These are starting languages, not rigid templates. Any starter component can be 
 
 If the user provides a reference video, image, or design system, study the real reference and let it override theme and composition defaults where appropriate. Recreate the useful visual logic with the user's real assets rather than treating the starter kit as a ceiling. Do not copy protected branding or fabricate missing assets.
 
+## Cut with intent
+
+Speech-driven edits live or die on the cuts. Work from the transcript and the waveform together, never from a silence threshold alone.
+
+- **Tight:** remove silences longer than 300ms, repeated takes, filler, and false starts. Keep the density high. Never cut mid-word, and leave the breath a line needs to land.
+- **Balanced:** remove dead air longer than about 800ms when it serves the edit, plus obvious false starts. Keep pauses that carry emphasis or let a point sit.
+- **Loose:** keep the natural rhythm, breaths, and pauses. Remove only dead air longer than about 1.5 seconds, or a take that is clearly unusable.
+
+Cut on the syllable boundary, not on a fixed time. Check the joins by playing them back: a cut that sounds clean in a waveform can still click or clip the first consonant. Handles of 10 to 30ms either side are usually enough.
+
+Silence removal serves the story. It does not set the pace. A pause before a reveal is content, not dead air.
+
 ## Captions should be precise and intentionally styled
 
 Use transcript timing to keep captions synchronized with speech. Check the rendered captions against the actual audio.
