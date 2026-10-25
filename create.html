@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Build a copy-paste Bare Video prompt for your coding agent.">
+<link rel="canonical" href="https://shorts.paulablaza.com/create.html">
+<title>Create your Bare Video prompt</title>
+<link rel="stylesheet" href="assets/create.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="/">Bare Video</a>
+    <button class="quiet" data-guide>Beginner guide</button>
+  </div>
+</header>
+
+<main>
+<section class="wrap intro">
+  <p class="eyebrow">Prompt builder</p>
+  <h1>Build the handoff.<br>Then give it to your agent.</h1>
+  <p class="lede">Choose how you want the video edited. Bare Video turns the choices into one copy-paste prompt. Nothing is uploaded here.</p>
+  <div class="beginner-note"><b>New to this?</b> Use one dedicated folder per video. <button data-guide>See the recommended setup</button></div>
+</section>
+
+<section class="wrap builder">
+  <aside class="rail">
+    <div class="meter"><i id="meter"></i></div>
+    <a href="#setup">01 Setup</a>
+    <a href="#mode">02 Edit mode</a>
+    <a href="#style">03 Style</a>
+    <a href="#captions">04 Captions</a>
+    <a href="#sound">05 Sound</a>
+    <a href="#asr">06 Transcription</a>
+    <a href="#finish">07 Finish</a>
+  </aside>
+
+  <div id="questions"></div>
+
+  <aside class="summary">
+    <p class="eyebrow">Your edit</p>
+    <div id="summary"></div>
+    <button class="primary small" id="generate-side">Generate prompt</button>
+  </aside>
+</section>
+</main>
+
+<footer class="wrap footer">
+  <div><b>Bare Video</b><br>shorts.paulablaza.com</div>
+  <div>Paul Martin Ablaza<br>Bare Stack Labs · MIT</div>
+</footer>
+
+<dialog id="guide">
+  <button class="close" data-close>×</button>
+  <p class="eyebrow">Beginner setup</p>
+  <h2>One video. One folder.</h2>
+  <p>Keep the source video, references, repo, secrets, temporary files, and output together. It makes cleanup and agent handoffs much less stupid.</p>
+  <pre>my-video/
+├── input/
+│   └── video.mp4
+├── references/
+├── assets/
+├── bare-video/
+├── .env
+├── runtime/
+├── workspace/
+└── output/</pre>
+  <div class="guide-steps">
+    <span>1</span><p>Create the project folder and put the raw video in <code>input/</code>.</p>
+    <span>2</span><p><a class="repo-link" href="https://github.com/barestack-labs/bare-video">Open Bare Video on GitHub ↗</a> and clone/download it into <code>bare-video/</code>.</p>
+    <span>3</span><p>Generate your prompt on this page and paste it into your coding agent.</p>
+    <span>4</span><p>If cloud transcription needs a key, the agent creates and opens <code>.env</code>. Paste the key there, not into chat.</p>
+    <span>5</span><p>Review the browser preview before export.</p>
+  </div>
+  <p class="expert"><b>Experienced user?</b> Put the repo wherever you want. You can also keep the Bare Video skill in your agent's supported user-level skills folder for repeated use.</p>
+</dialog>
+
+<dialog id="result" class="result">
+  <button class="close" data-close>×</button>
+  <p class="eyebrow">Generated prompt</p>
+  <h2>Paste this into your coding agent.</h2>
+  <textarea id="prompt" spellcheck="false"></textarea>
+  <div class="result-actions">
+    <button class="primary" id="copy">Copy prompt</button>
+    <a class="secondary" href="https://github.com/barestack-labs/bare-video">Open repo ↗</a>
+  </div>
+</dialog>
+
+<div class="toast" id="toast">Prompt copied.</div>
+<script src="assets/create.js"></script>
+</body>
+</html>
