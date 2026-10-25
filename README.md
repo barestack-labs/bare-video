@@ -102,7 +102,7 @@ Verified behavior:
 - the prompt builder lives directly on the homepage
 - no video-path field exists in the builder
 - all five editing themes are selectable
-- all four visual building blocks can be enabled or disabled, with at least one kept active
+- all ten visual components can be enabled or disabled, with at least one kept active
 - transcription, planning, visual pace, captions, sound, and first-output selectors update the generated prompt
 - selecting Creator Utility updates the prompt to the Creator Utility theme
 - disabling Full-screen proof removes it from the allowed visual section

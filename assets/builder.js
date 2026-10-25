@@ -76,6 +76,7 @@ if(builder){
       "",
       "Bare Video repo: https://github.com/barestack-labs/bare-video",
       "Read .agents/skills/bare-video/SKILL.md first and use it as the editing guide.",
+      "If that file is not in this project, read it from the repo link above before you touch the media.",
       "",
       "GOAL",
       goal,
@@ -164,6 +165,12 @@ if(builder){
   $$("[data-visual]").forEach(button=>button.addEventListener("click",()=>{
     const key=button.dataset.visual;
     state.visuals=state.visuals.includes(key)?state.visuals.filter(item=>item!==key):[...state.visuals,key];
+    if(state.visuals.length===0){
+      state.visuals=[key];
+      $("#visual-help").textContent="Keep at least one component selected. The agent needs at least one composition to start from.";
+    }else{
+      $("#visual-help").textContent="These are starting components, not a strict allow-list.";
+    }
     sync();
   }));
   $("#agent-improvise").addEventListener("change",event=>{state.improvise=event.target.checked;sync();});
