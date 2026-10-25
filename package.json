@@ -1,0 +1,11 @@
+{
+  "name": "bare-video",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Opinionated, local-first agent-directed video editing.",
+  "license": "MIT",
+  "author": "Paul Martin Ablaza / Bare Stack Labs",
+  "scripts": {
+    "doctor": "python scripts/doctor.py"
+  }
+}
