@@ -13,6 +13,7 @@ Do not create a Bare Video CLI, media engine, template runtime, workflow graph, 
 
 - This file holds the judgment: what to inspect, what to decide, and what never to fake.
 - [references/themes.md](references/themes.md) holds the tokens: palette, type family, weight, tracking, radius, caption rules, motion timing. Use those numbers instead of reinterpreting a theme name.
+- [templates/themes.css](templates/themes.css) and [templates/components.css](templates/components.css) are the five token sets and the ten skeletons as real CSS. Copy them instead of reinterpreting a description.
 - [references/hyperframes.md](references/hyperframes.md) holds the build contract for HyperFrames: composition shape, timeline registration, clip timing, caption markup from word timings, the motion rules lint rejects, and the verification order.
 - A component is a parameterised skeleton, not a picture. Split screen has two orders, speaker on top with the information below, or the information above with the speaker below. A theme restyles the skeleton through tokens. Anything not named here can still be composed when the footage calls for it, as long as it stays inside the theme's tokens.
 
@@ -77,6 +78,8 @@ The tool choice should serve the edit. The edit should not exist to justify a to
 Read [references/hyperframes.md](references/hyperframes.md) before writing a HyperFrames composition. It covers the composition shape, the paused timeline registration, the clip timing attributes, the theme token wiring, caption markup from real word timings, the motion rules that lint rejects, and the verification sequence. It also gives the FFmpeg comparison so you can tell when HyperFrames is not worth it.
 
 ## Build compositions from a flexible starter kit
+
+Start from `templates/components.css`. Each component is one skeleton that reads only from the theme tokens; add `data-comp` to the frame and fill the slots. If you need a composition that is not there, write it the same way: geometry in the component, colour and type from the tokens.
 
 Bare Video includes reusable composition ingredients. They are not a finite template library and they are not a strict allow-list unless the user explicitly asks for that restriction.
 

@@ -1,0 +1,46 @@
+# Templates: the ten components as code
+
+Two files, so a coding agent can copy instead of interpret.
+
+- `themes.css`: five token sets. One class per theme on the frame wrapper.
+- `components.css`: ten skeletons. Each reads only from the theme tokens.
+
+## Use
+
+```html
+<link rel="stylesheet" href="templates/themes.css">
+<link rel="stylesheet" href="templates/components.css">
+
+<div class="bv-frame t-product" data-comp="split" data-order="speaker-top"
+     data-emphasis="block" style="width:1080px;aspect-ratio:9/16">
+  <div class="bv-stage">
+    <div class="bv-foot"><video src="workspace/bed.mp4" muted playsinline></video></div>
+    <div class="bv-cap">SHOW THE <mark>REAL</mark> THING</div>
+    <div class="bv-doc">
+      <div class="bv-bar"><b></b><b></b><b></b></div>
+      <div class="bv-docbody">
+        <span class="bv-doc-title">open the file</span>
+        <div class="bv-lines"><i style="width:84%"></i><i style="width:58%"></i></div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+## Rules the files already enforce
+
+- A theme sets tokens. A component sets geometry. No component writes a hex value, no theme writes a layout.
+- Sizes are in `cqw`, so one file works from a 78px preview to a 1080px render.
+- `data-comp` picks the skeleton. `data-order="info-top"` reverses split screen. `data-emphasis="none"` turns off the caption block, which Bare Minimal requires.
+- Bare Minimal's card fill is `transparent`, so a card is a hairline, not a black box.
+
+## What is still on the agent
+
+- Choosing which component serves which sentence.
+- Cutting, from word timestamps.
+- Caption chunking, from real word timings.
+- Motion: set resting states inside the tween, never as a CSS transform on the same property.
+
+## Extending
+
+Add a component by adding one `[data-comp="name"]` block to `components.css`. It may move captions and cards, and it may not add colour or type of its own. That rule is what keeps five themes working with one skeleton set.

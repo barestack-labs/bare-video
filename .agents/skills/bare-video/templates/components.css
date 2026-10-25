@@ -1,0 +1,119 @@
+/* Bare Video components: ten skeletons that read only from theme tokens.
+   Usage: wrap in .bv-frame with a theme class, set data-comp, add the markup.
+
+   <div class="bv-frame t-product" data-comp="split">
+     <div class="bv-stage">
+       <div class="bv-foot"><span>speaker</span></div>
+       <div class="bv-cap">SHOW THE <mark>REAL</mark> THING</div>
+       <div class="bv-doc">...</div>
+     </div>
+   </div>
+
+   Sizes below are in cqw (percent of the frame width), so the same file works
+   at a 78px preview or a 1080px composition. */
+
+.bv-frame{position:relative;overflow:hidden;background:var(--bg);color:var(--ink);container-type:inline-size}
+.bv-stage{position:absolute;inset:0;font-family:var(--ui)}
+
+/* footage slot: put a <video> inside and it fills the slot */
+.bv-foot{position:absolute;inset:0;background:linear-gradient(165deg,#cfd2d8,#9aa0aa 46%,#6d747f);overflow:hidden}
+.bv-foot video{width:100%;height:100%;object-fit:cover;display:block}
+.bv-foot:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.42),transparent 58%)}
+.bv-slot{position:absolute;z-index:2;left:0;right:0;top:42%;text-align:center;font:700 6.5px var(--mono);
+  letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+
+/* caption */
+.bv-cap{position:absolute;z-index:6;left:8%;right:8%;bottom:15%;font-family:var(--head);
+  font-weight:var(--weight);font-size:8.4cqw;line-height:.95;letter-spacing:var(--track);
+  text-transform:var(--caps);color:var(--cap-ink);text-shadow:var(--cap-shadow)}
+.bv-cap mark{background:var(--accent);color:var(--accent-ink);padding:0 .05em}
+.bv-frame[data-emphasis="none"] .bv-cap mark{background:none;color:inherit;padding:0}
+
+/* card parts */
+.bv-doc{position:absolute;z-index:5;background:var(--card);color:var(--card-ink);border-radius:var(--radius);
+  box-shadow:0 10px 24px rgba(0,0,0,.18);overflow:hidden}
+.bv-bar{height:9px;display:flex;align-items:center;gap:3px;padding:0 7px;border-bottom:1px solid var(--line)}
+.bv-bar b{width:3px;height:3px;border-radius:50%;background:var(--line)}
+.bv-docbody{padding:4% 4.5% 5%}
+.bv-doc-title{display:block;font-family:var(--head);font-weight:var(--weight);font-size:6.2cqw;
+  line-height:.98;letter-spacing:var(--track);text-transform:var(--caps);margin-bottom:3.5%}
+.bv-lines{display:grid;gap:4px}
+.bv-lines i{display:block;height:3px;border-radius:2px;background:var(--line)}
+
+.bv-card{position:absolute;z-index:5;background:var(--card);color:var(--card-ink);border-radius:var(--radius);
+  box-shadow:0 10px 24px rgba(0,0,0,.18);padding:4% 4.6%}
+.bv-card small{display:block;font:700 5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.bv-card strong{display:block;margin-top:3px;font-family:var(--head);font-weight:var(--weight);font-size:6cqw;
+  line-height:1;letter-spacing:var(--track);text-transform:var(--caps)}
+
+.bv-kicker{position:absolute;z-index:6;font:700 5.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--sub)}
+.bv-badge{position:absolute;z-index:6;background:var(--accent);color:var(--accent-ink);
+  font:700 5.5px var(--mono);letter-spacing:.14em;padding:5px 7px;border-radius:2px}
+
+/* ---------- components ---------- */
+
+/* 01 talking head */
+.bv-frame[data-comp="face"] .bv-cap{bottom:15%}
+
+/* 02 split screen, speaker on top (default) */
+.bv-frame[data-comp="split"] .bv-foot{inset:0 0 44% 0}
+.bv-frame[data-comp="split"] .bv-cap{bottom:47%;font-size:7.4cqw}
+.bv-frame[data-comp="split"] .bv-doc{left:7%;right:7%;top:59%;bottom:8%;height:auto}
+/* reversed: information on top, speaker below */
+.bv-frame[data-comp="split"][data-order="info-top"] .bv-foot{inset:48% 0 0 0}
+.bv-frame[data-comp="split"][data-order="info-top"] .bv-doc{top:6%;bottom:auto;height:36%}
+.bv-frame[data-comp="split"][data-order="info-top"] .bv-cap{bottom:auto;top:49%}
+
+/* 03 full-screen proof */
+.bv-frame[data-comp="full"] .bv-kicker{left:8%;top:8%;color:rgba(255,255,255,.78)}
+.bv-frame[data-comp="full"] .bv-cap{bottom:17%}
+
+/* 04 floating card */
+.bv-frame[data-comp="card"] .bv-card{left:8%;right:22%;top:12%}
+
+/* 05 big card */
+.bv-frame[data-comp="bigcard"] .bv-foot{opacity:.5}
+.bv-frame[data-comp="bigcard"] .bv-card{inset:20% 8% 22%;left:8%;right:8%;top:20%;bottom:22%;
+  display:flex;flex-direction:column;gap:4%}
+.bv-frame[data-comp="bigcard"] .bv-card strong{font-size:10.5cqw;line-height:.9}
+.bv-frame[data-comp="bigcard"] .bv-cap{display:none}
+
+/* 06 stat card */
+.bv-frame[data-comp="stat"] .bv-stat{position:absolute;inset:15% 9% 17%;display:flex;flex-direction:column;
+  justify-content:center;gap:4%}
+.bv-frame[data-comp="stat"] .bv-num{font-family:var(--head);font-weight:var(--weight);font-size:23cqw;line-height:.78;
+  letter-spacing:var(--track)}
+.bv-frame[data-comp="stat"] .bv-num b{color:var(--accent)}
+.bv-frame[data-comp="stat"] .bv-bars{display:flex;align-items:flex-end;gap:3px;height:15%}
+.bv-frame[data-comp="stat"] .bv-bars i{flex:1;background:var(--line);border-radius:var(--bradius,2px)}
+.bv-frame[data-comp="stat"] .bv-bars i.is-on{background:var(--accent)}
+.bv-frame[data-comp="stat"] .bv-foot,.bv-frame[data-comp="stat"] .bv-cap{display:none}
+
+/* 07 step card */
+.bv-frame[data-comp="step"] .bv-badge{left:8%;top:7%}
+.bv-frame[data-comp="step"] .bv-doc{left:8%;right:8%;top:22%;height:40%;bottom:auto}
+.bv-frame[data-comp="step"] .bv-cap{bottom:12%;color:var(--ink);text-shadow:none}
+.bv-arrow{position:absolute;z-index:6;right:17%;top:42%;width:11px;height:11px;
+  border-top:2px solid var(--accent);border-right:2px solid var(--accent);transform:rotate(45deg)}
+
+/* 08 screenshot or UI */
+.bv-frame[data-comp="ui"] .bv-doc{left:6%;right:6%;top:13%;bottom:17%;height:auto}
+.bv-frame[data-comp="ui"] .bv-cap{display:none}
+.bv-toolbar{position:absolute;z-index:6;left:6%;right:6%;bottom:6%;display:flex;gap:4px}
+.bv-toolbar i{flex:1;height:7px;border-radius:99px;background:var(--line)}
+
+/* 09 multiple cards */
+.bv-frame[data-comp="cards"] .bv-card{left:11%;right:11%}
+.bv-frame[data-comp="cards"] .bv-card:nth-of-type(1){top:14%;transform:rotate(-2.2deg)}
+.bv-frame[data-comp="cards"] .bv-card:nth-of-type(2){top:38%;transform:rotate(1.4deg)}
+.bv-frame[data-comp="cards"] .bv-card:nth-of-type(3){top:62%;transform:rotate(-1deg)}
+.bv-frame[data-comp="cards"] .bv-cap,.bv-frame[data-comp="cards"] .bv-foot{display:none}
+
+/* 10 green screen */
+.bv-frame[data-comp="green"]{background:var(--accent)}
+.bv-frame[data-comp="green"] .bv-foot{opacity:.72}
+.bv-frame[data-comp="green"] .bv-cap{top:9%;bottom:auto;color:var(--accent-ink);text-shadow:none}
+.bv-frame[data-comp="green"] .bv-doc{left:6%;right:6%;top:47%;bottom:6%;height:auto}
+
+/* motion: set the resting state in the tween, never in CSS */
+.bv-anim-y{will-change:transform,opacity}
