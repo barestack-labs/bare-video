@@ -31,7 +31,7 @@ code{font-family:var(--mono)}
 .progress-track{height:2px;background:#d8d1c5;flex:1;overflow:hidden}
 .progress-track i{display:block;height:100%;width:16.666%;background:var(--ink);transition:width .42s cubic-bezier(.2,.7,.2,1)}
 .progress-wrap span{font:10px var(--mono);color:var(--muted);white-space:nowrap}
-.stage{position:relative;min-height:0}
+.stage{position:relative;min-height:0;overflow-x:clip}
 
 .step{position:absolute;inset:0;display:grid;grid-template-columns:minmax(300px,.8fr) minmax(500px,1.2fr);gap:64px;align-items:center;opacity:0;transform:translateX(30px);pointer-events:none;transition:opacity .28s ease,transform .48s cubic-bezier(.2,.7,.2,1)}
 .step.is-active{opacity:1;transform:none;pointer-events:auto}
@@ -45,10 +45,10 @@ code{font-family:var(--mono)}
 .big-field,.small-field{display:block}
 .big-field>span,.small-field>span{display:block;font:700 10px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
 .big-field small{font-weight:400;text-transform:none;letter-spacing:0}
-textarea,input{width:100%;border:0;border-bottom:1px solid var(--line);background:transparent;outline:none;padding:11px 0}
+textarea,.small-field input{width:100%;border:0;border-bottom:1px solid var(--line);background:transparent;outline:none;padding:11px 0}
 .big-field textarea{font-size:27px;line-height:1.17;letter-spacing:-.035em;resize:none;min-height:145px}
 .small-field input{font:12px var(--mono)}
-textarea:focus,input:focus{border-color:var(--ink)}
+textarea:focus,.small-field input:focus{border-color:var(--ink)}
 
 .choices{display:grid;gap:12px}
 .choices.two{grid-template-columns:1fr 1fr}

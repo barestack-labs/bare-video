@@ -234,7 +234,7 @@ function visualInstruction(){
     text="All four building blocks are available. Use Face-first, Split-screen, Light overlays, and Full-screen proof when each one genuinely helps. Do not force every mode into the video.";
   }else{
     const chosen=state.visuals.map(item=>descriptions[item]).filter(Boolean);
-    text="Use only these preferred building blocks unless the footage clearly requires something else:\n- "+chosen.join("\n- ");
+    text="Use only these selected building blocks:\n- "+chosen.join("\n- ")+"\nDo not introduce an unselected building block.";
   }
   if(state.reference){
     text+="\nAlso inspect files in ./references/ and borrow their editing language: pacing, framing, caption treatment, motion, density, and sound. Do not copy protected branding or assets.";

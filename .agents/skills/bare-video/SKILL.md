@@ -18,11 +18,11 @@ Use an existing workspace as it is. For a new project, `input/`, `assets/`, `wor
 ## Make the edit
 
 - Judge cuts from meaning and delivery. Keep useful pauses, reactions, emphasis, and personality. Short speech and repeated words may be intentional.
-- Start with the footage. Treat Face-first, Split-screen, Light overlays, and Full-screen proof as optional building blocks. Respect the website prompt's selected set; choose by meaning, not by rotation.
+- Start with the footage. Treat Face-first, Split-screen, Light overlays, and Full-screen proof as optional building blocks. If the prompt says `Agent decides`, all four are available and the agent chooses by meaning. If it says `Use all`, all four are available but none is required. If the user selects a custom subset, use only that subset.
 - Treat references separately from building blocks. Use them for editing language: pacing, framing, motion, density, captions, and sound. Do not copy protected branding or assets without rights.
 - Prefer real supporting material. If evidence is missing, stay with the speaker or ask for the asset rather than inventing proof.
-- Respect the requested sound intensity: heavy can use frequent purposeful accents, balanced uses regular but selective accents, minimal reserves them for major moments, and none adds no SFX. Speech always wins.
-- Respect explicit choices in a website-generated prompt. They are creative constraints and preferences.
+- Respect the requested sound intensity: Lots can use frequent purposeful accents, Balanced uses regular but selective accents, Minimal reserves them for major moments, and None adds no SFX. Auto leaves the choice to the agent. Speech always wins.
+- Treat explicit website choices as constraints, not suggestions. Do not silently override a selected building-block subset, caption setting, sound level, transcription choice, planning mode, or finish mode.
 
 Use FFmpeg directly for trims, joins, reframing, audio, and caption sidecars. Use HyperFrames when a browser composition, animated visuals, or an interactive preview helps. These are tools, not mandatory stages. Use their installed skills and current documentation when available. Do not build a replacement editing framework.
 
