@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-<meta name="description" content="Build a Bare Video editing brief for your coding agent. Choose the video building blocks, captions, sound, transcription, and approval flow.">
+<meta name="description" content="Build a Bare Video editing brief for your coding agent. Choose the footage, transcription, planning style, visuals, captions, sound, and review flow.">
 <link rel="canonical" href="https://shorts.paulablaza.com/create.html">
 <meta property="og:title" content="Build your Bare Video prompt">
-<meta property="og:description" content="Choose how the edit should work, then copy one prompt to your coding agent.">
+<meta property="og:description" content="Tell Bare Video how you want to work, then copy one clear brief to your coding agent.">
 <title>Build your Bare Video prompt</title>
 <link rel="stylesheet" href="assets/create.css">
 </head>
@@ -29,79 +29,120 @@
   <section class="stage">
     <article class="step is-active" data-step="0">
       <div class="step-copy">
-        <p class="eyebrow">Your video</p>
-        <h1>What are we making?</h1>
-        <p class="lead">One sentence is enough. The agent can inspect the footage and work out the details.</p>
+        <p class="eyebrow">1 · Your footage</p>
+        <h1>Where is your video?</h1>
+        <p class="lead">Paste the file path your coding agent can access. Bare Video does not upload the file or move it anywhere.</p>
       </div>
       <div class="fields">
-        <label class="big-field">
-          <span>Goal <small>optional</small></span>
-          <textarea id="goal" rows="3" placeholder="A 45-second tutorial about a free AI tool. Keep it fast, useful, and natural."></textarea>
-        </label>
-        <label class="small-field">
+        <label class="big-field path-field">
           <span>Video path</span>
-          <input id="video-path" value="./input/video.mp4" spellcheck="false" autocomplete="off">
+          <input id="video-path" placeholder="./input/my-video.mp4" spellcheck="false" autocomplete="off">
+          <small class="field-note">Examples: <code>./input/video.mp4</code> or <code>C:\Videos\short.mov</code>. You choose the path.</small>
+          <small class="field-error" id="video-error" aria-live="polite"></small>
+        </label>
+        <label class="goal-field">
+          <span>What should the finished video do? <small>optional</small></span>
+          <textarea id="goal" rows="3" placeholder="Turn this into a fast 45-second tutorial. Keep my personality, make the proof easy to follow, and avoid dead moments."></textarea>
         </label>
       </div>
     </article>
 
     <article class="step" data-step="1">
+      <div class="step-copy compact">
+        <p class="eyebrow">2 · Transcript</p>
+        <h2>How should we understand the speech?</h2>
+        <p class="lead">The transcript gives the agent words and timing for cuts and captions. Pick the tool you want to use.</p>
+      </div>
+      <div class="asr-grid" data-single="asr">
+        <button class="asr-card" data-value="faster" type="button">
+          <span class="asr-tag">Local</span><strong>Faster Whisper</strong>
+          <p>Runs on your machine. Best when privacy matters. It may need a model download and can take longer on a slower PC.</p>
+        </button>
+        <button class="asr-card" data-value="groq" type="button">
+          <span class="asr-tag">Fast cloud</span><strong>Groq</strong>
+          <p>Fast Whisper-based transcription. Good when Groq is already configured and you are okay sending the audio to a cloud service.</p>
+        </button>
+        <button class="asr-card" data-value="deepgram" type="button">
+          <span class="asr-tag">Cloud + timing</span><strong>Deepgram</strong>
+          <p>Good word timing for captions and cut planning. Use it when Deepgram is already part of your setup.</p>
+        </button>
+        <button class="asr-card" data-value="existing" type="button">
+          <span class="asr-tag">No new transcription</span><strong>I already have one</strong>
+          <p>Reuse an existing transcript. Word-level timestamps are best, but the agent should use whatever verified transcript you provide.</p>
+        </button>
+        <p class="privacy">Cloud choices use credentials stored on your machine. Never paste API keys into this prompt. If a tool is missing, the agent explains the setup before downloading or uploading anything.</p>
+      </div>
+    </article>
+
+    <article class="step" data-step="2">
       <div class="step-copy">
-        <p class="eyebrow">Planning</p>
-        <h2>How should the agent start?</h2>
-        <p class="lead">This controls whether you approve the direction before the agent builds the first edit.</p>
+        <p class="eyebrow">3 · Work together</p>
+        <h2>How hands-on do you want to be?</h2>
+        <p class="lead">Both options use the transcript first. The difference is when you want to give feedback.</p>
       </div>
       <div class="choices two" data-single="mode">
-        <button class="choice" data-value="draft" type="button">
-          <span class="choice-num">A</span>
-          <strong>Make the first draft</strong>
-          <small>The agent watches the footage, decides the first cut, and gives you something concrete to react to.</small>
-        </button>
         <button class="choice" data-value="plan" type="button">
-          <span class="choice-num">B</span>
-          <strong>Show me the plan first</strong>
-          <small>The agent explains the cut, pacing, and visual approach, then waits for your approval before editing.</small>
+          <span class="choice-num">Recommended</span>
+          <strong>Plan it with me</strong>
+          <small>The agent shows the hook, cuts, visual ideas, captions, and sound direction first. You can change the plan before it builds the edit.</small>
+        </button>
+        <button class="choice" data-value="draft" type="button">
+          <span class="choice-num">Faster</span>
+          <strong>Give me a first draft</strong>
+          <small>The agent makes a draft after transcribing and inspecting the footage. You give feedback by reacting to the actual video.</small>
         </button>
       </div>
     </article>
 
-    <article class="step visual-step" data-step="2">
+    <article class="step visual-step" data-step="3">
       <div class="visual-config">
         <div class="step-copy compact">
-          <p class="eyebrow">Video building blocks</p>
-          <h2>What can the edit use?</h2>
-          <p class="lead">Pick one or combine several. The agent can switch between these modes inside one video when the content calls for it.</p>
+          <p class="eyebrow">4 · What viewers see</p>
+          <h2>What can appear while you talk?</h2>
+          <p class="lead">These are visual building blocks, not templates. Combine them inside one short when the words call for a change.</p>
           <div class="preset-row">
             <button class="preset is-selected" data-visual-preset="agent" type="button">Agent decides</button>
-            <button class="preset" data-visual-preset="all" type="button">Use all</button>
-            <span>or choose below</span>
+            <button class="preset" data-visual-preset="all" type="button">Allow all four</button>
+            <span>or choose your own set</span>
           </div>
-          <p class="preset-explain"><b>Agent decides</b> gives the agent no visual restriction. <b>Use all</b> explicitly allows all four without forcing every mode into the edit. Selecting cards below restricts the edit to only those choices.</p>
+          <p class="preset-explain"><b>Agent decides</b> leaves the visual choice open. <b>Allow all four</b> makes every block available but does not force every block into the edit. Selecting blocks below becomes a strict allow-list.</p>
         </div>
 
         <div class="visual-options" id="visual-options">
           <button class="visual-option" data-visual="face" type="button">
             <span class="mini-phone face-mini"><i class="mini-head"></i><i class="mini-body"></i><b>YOUR FACE</b></span>
-            <span><strong>Face-first</strong><small>Keep the speaker full-screen when the person is the strongest visual.</small></span>
+            <span><strong>Face-first</strong><small>Keep you full-screen when your delivery is the strongest thing to watch.</small></span>
           </button>
           <button class="visual-option" data-visual="split" type="button">
             <span class="mini-phone split-mini"><i class="mini-screen"></i><i class="mini-head"></i><i class="mini-body"></i><b>SCREEN + YOU</b></span>
-            <span><strong>Split-screen</strong><small>Show a screen, demo, or screenshot while keeping the speaker visible.</small></span>
+            <span><strong>Split-screen</strong><small>Show you and the real screen, demo, or screenshot at the same time.</small></span>
           </button>
           <button class="visual-option" data-visual="overlay" type="button">
             <span class="mini-phone overlay-mini"><i class="mini-head"></i><i class="mini-body"></i><em>small proof</em><b>LIGHT OVERLAY</b></span>
-            <span><strong>Light overlays</strong><small>Add small screenshots, labels, logos, cards, or stats over the footage.</small></span>
+            <span><strong>Light overlays</strong><small>Place small proof, labels, logos, stats, or screenshots over the footage.</small></span>
           </button>
           <button class="visual-option" data-visual="proof" type="button">
             <span class="mini-phone proof-mini"><em>REAL SCREEN</em><strong>SHOW THE THING</strong><i></i><i></i><i></i></span>
-            <span><strong>Full-screen proof</strong><small>Let a real repo, result, website, or demo temporarily take over the whole frame.</small></span>
+            <span><strong>Full-screen proof</strong><small>Let the real result, repo, website, or demo take over when viewers need to see it clearly.</small></span>
           </button>
         </div>
+
+        <section class="compact-control">
+          <div class="compact-title">
+            <b>Visual pace</b>
+            <span id="pace-help">Most meaningful phrases should trigger a useful visual response.</span>
+          </div>
+          <div class="pill-options" data-single="visualPace">
+            <button data-value="active" type="button">Active</button>
+            <button data-value="balanced" type="button">Balanced</button>
+            <button data-value="calm" type="button">Calm</button>
+          </div>
+        </section>
 
         <label class="reference-toggle">
           <input id="reference-led" type="checkbox">
           <span class="switch"></span>
-          <span><strong>Use a reference video too</strong><small>The agent studies the pacing, captions, framing, motion, and sound of files in <code>./references/</code>. It should copy the editing language, not protected branding or assets.</small></span>
+          <span><strong>I have a reference video too</strong><small>The agent studies its pacing, framing, caption treatment, motion, and sound. It borrows the editing language, not protected branding or assets.</small></span>
         </label>
       </div>
 
@@ -113,90 +154,70 @@
           <div class="proof-screen"><small>REAL SCREEN</small><strong>Let the proof<br>take the frame.</strong><div class="proof-lines"><i></i><i></i><i></i></div></div>
           <div class="phone-caption">MAKE THE <mark>POINT</mark> CLEAR</div>
         </div>
-        <p class="preview-copy" id="visual-preview-copy">Agent decides which of these modes helps each moment.</p>
+        <p class="preview-copy" id="visual-preview-copy">The agent chooses the best visual block for each moment.</p>
       </div>
     </article>
 
-    <article class="step" data-step="3">
+    <article class="step style-step" data-step="4">
       <div class="step-copy compact">
-        <p class="eyebrow">Captions + sound</p>
-        <h2>How much should the edit add?</h2>
-        <p class="lead">Pick the intensity. “Auto” leaves the call to the agent.</p>
+        <p class="eyebrow">5 · Style + sound</p>
+        <h2>How should the edit feel?</h2>
+        <p class="lead">Pick a caption behavior, a visual theme, and how much sound design the agent should add.</p>
       </div>
-      <div class="taste-stack">
+
+      <div class="style-controls">
         <section class="taste-section">
-          <div class="taste-title"><b>Captions</b><span id="caption-help">Agent decides how much captioning the video needs.</span></div>
+          <div class="taste-title"><b>Captions</b><span id="caption-help">Punchy captions follow the speech closely and emphasize the important word in each chunk.</span></div>
           <div class="pill-options" data-single="captions">
-            <button data-value="auto" type="button">Auto</button>
-            <button data-value="dynamic" type="button">Dynamic</button>
+            <button data-value="dynamic" type="button">Punchy</button>
             <button data-value="clean" type="button">Clean</button>
             <button data-value="none" type="button">None</button>
           </div>
         </section>
 
+        <section class="taste-section theme-section">
+          <div class="taste-title"><b>Caption + overlay theme</b><span>Start here. Your own design rules always win later.</span></div>
+          <div class="theme-options" data-single="theme">
+            <button class="theme-option mono-theme" data-value="mono" type="button"><span class="theme-sample"><i>THIS IS</i><b>IMPORTANT</b></span><span><strong>Mono</strong><small>Black + white. Hard contrast.</small></span></button>
+            <button class="theme-option graphite-theme" data-value="graphite" type="button"><span class="theme-sample"><i>THIS IS</i><b>IMPORTANT</b></span><span><strong>Graphite</strong><small>Charcoal + soft gray.</small></span></button>
+            <button class="theme-option plain-theme" data-value="plain" type="button"><span class="theme-sample"><i>THIS IS</i><b>IMPORTANT</b></span><span><strong>Plain</strong><small>Simple text. Minimal box treatment.</small></span></button>
+            <button class="theme-option orange-theme" data-value="orange" type="button"><span class="theme-sample"><i>THIS IS</i><b>IMPORTANT</b></span><span><strong>Orange</strong><small>Black + white with orange emphasis.</small></span></button>
+          </div>
+        </section>
+
         <section class="taste-section">
-          <div class="taste-title"><b>Sound design</b><span id="sound-help">Agent decides whether sound effects help.</span></div>
+          <div class="taste-title"><b>Sound design</b><span id="sound-help">Balanced adds energy to useful actions and transitions without turning every cut into a sound effect.</span></div>
           <div class="pill-options" data-single="sfx">
-            <button data-value="auto" type="button">Auto</button>
             <button data-value="lots" type="button">Lots</button>
             <button data-value="balanced" type="button">Balanced</button>
             <button data-value="minimal" type="button">Minimal</button>
             <button data-value="none" type="button">None</button>
           </div>
         </section>
-
-        <div class="taste-explainer">
-          <span><b>Auto</b> lets the agent match the footage.</span>
-          <span><b>Lots</b> can use frequent purposeful accents.</span>
-          <span><b>Balanced</b> adds energy without hitting every beat.</span>
-          <span><b>Minimal</b> saves SFX for major moments.</span>
-          <span><b>None</b> adds no sound effects.</span>
-        </div>
       </div>
     </article>
 
-    <article class="step" data-step="4">
-      <div class="step-copy compact">
-        <p class="eyebrow">Transcription</p>
-        <h2>How should the agent understand speech?</h2>
-        <p class="lead">Transcription helps with cuts, timing, and captions. It is not mandatory for every video.</p>
-      </div>
-      <div class="asr-grid" data-single="asr">
-        <button class="asr-card" data-value="auto" type="button">
-          <span class="asr-tag">Recommended</span><strong>Auto</strong>
-          <p>Reuse whatever is already configured. Best for beginners. The agent asks before cloud upload or a large model download.</p>
-        </button>
-        <button class="asr-card" data-value="groq" type="button">
-          <span class="asr-tag">Cloud</span><strong>Groq</strong>
-          <p>Fast Whisper-based transcription. Pick this when Groq is already configured and speed matters.</p>
-        </button>
-        <button class="asr-card" data-value="deepgram" type="button">
-          <span class="asr-tag">Cloud</span><strong>Deepgram</strong>
-          <p>Cloud speech-to-text with detailed word timing. Pick this when Deepgram is already part of your workflow.</p>
-        </button>
-        <button class="asr-card" data-value="local" type="button">
-          <span class="asr-tag">Private</span><strong>Local</strong>
-          <p>Keep the audio on your machine. Better for privacy, but it may need a model download and more CPU time.</p>
-        </button>
-        <p class="privacy">Never paste API keys into the prompt. The coding agent should use credentials stored locally and ask before sending private audio to a cloud provider.</p>
-      </div>
-    </article>
-
-    <article class="step" data-step="5">
+    <article class="step finish-step" data-step="5">
       <div class="step-copy">
-        <p class="eyebrow">Finish</p>
-        <h2>When should the agent stop?</h2>
-        <p class="lead">Preview-first is safer for creative work. One-shot is useful when you already trust the direction.</p>
+        <p class="eyebrow">6 · First output</p>
+        <h2>What should the agent give you first?</h2>
+        <p class="lead">A preview is the safer default. You can react in plain language, then the agent fixes the edit before final export.</p>
       </div>
-      <div>
+      <div class="finish-panel">
         <div class="choices two finish-choices" data-single="finish">
-          <button class="choice" data-value="preview" type="button"><span class="choice-num">A</span><strong>Preview first</strong><small>Show me a playable/browser preview. Wait for feedback before final export.</small></button>
-          <button class="choice" data-value="final" type="button"><span class="choice-num">B</span><strong>Finish in one go</strong><small>Self-check and export unless a real decision needs me.</small></button>
+          <button class="choice" data-value="preview" type="button"><span class="choice-num">Recommended</span><strong>Show me a preview</strong><small>Give me a playable draft or browser preview, then wait for my feedback before final export.</small></button>
+          <button class="choice" data-value="final" type="button"><span class="choice-num">One pass</span><strong>Finish it in one go</strong><small>Build, self-check, and export unless a real blocker needs my decision.</small></button>
         </div>
+
+        <div class="hyperframes-note">
+          <img src="assets/logo.svg" alt="">
+          <div><strong>HyperFrames is optional.</strong><p>After the transcript and plan, the agent checks whether FFmpeg alone is enough. If HyperFrames would genuinely help and it is not already available in this video folder, the agent asks before adding it locally. No global install by default.</p></div>
+        </div>
+
         <label class="skill-toggle">
           <input id="skill-install" type="checkbox">
           <span class="switch"></span>
-          <span><strong>Keep Bare Video for future projects</strong><small>After this edit works, ask the agent to offer installing the Bare Video skill in its supported user-level skills folder.</small></span>
+          <span><strong>Help me reuse this workflow later</strong><small>After this edit works, ask the agent to offer a user-level Bare Video skill or a personal style skill based on the rules I approved. Do not silently change global configuration.</small></span>
         </label>
       </div>
     </article>

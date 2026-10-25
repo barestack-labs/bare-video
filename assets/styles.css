@@ -90,8 +90,8 @@ nav a:hover{color:var(--ink)}
 .phone[data-phone-mode="proof"] .phone-caption,.phone[data-phone-mode="proof"] .phone-meta,.phone[data-phone-mode="proof"] .short-ui{opacity:0}
 .hero-phone[data-phone-mode="overlay"] .phone-overlay-card{opacity:1;transform:none}
 
-.looks{background:var(--black);color:#fff;padding:108px 0}
-.looks-grid{display:grid;grid-template-columns:minmax(0,.88fr) minmax(340px,1.12fr);gap:84px;align-items:center}
+.looks{background:var(--black);color:#fff;height:360svh;padding:0;position:relative}
+.looks-grid{display:grid;grid-template-columns:minmax(0,.88fr) minmax(340px,1.12fr);gap:84px;align-items:center;position:sticky;top:0;min-height:100svh;padding:72px 0}
 .looks-copy .eyebrow{color:#8e8e93}
 .looks-copy h2{font-size:clamp(46px,5.6vw,78px);line-height:.92;letter-spacing:-.065em;margin:0;max-width:660px}
 .looks-copy>p:last-of-type{font-size:15px;line-height:1.62;color:#a7a7ad;max-width:600px;margin:24px 0 28px}
@@ -156,7 +156,9 @@ nav a:hover{color:var(--ink)}
   .hero h1{font-size:54px;line-height:.94}
   .hero-copy{font-size:15px}
   .hero-phone-wrap{min-height:530px;border-radius:24px}
-  .looks,.how,.why{padding:78px 0}
+  .how,.why{padding:78px 0}
+  .looks{height:330svh}
+  .looks-grid{padding:70px 0}
   .looks-copy h2,.section-head h2,.why-title h2{font-size:45px}
   .mode-tab{grid-template-columns:112px 1fr}
   .architecture{grid-template-columns:1fr}
@@ -172,4 +174,4 @@ nav a:hover{color:var(--ink)}
   .phone,.demo-phone{width:min(278px,76vw)}
   .hero-phone-wrap{min-height:500px}
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.phone *,.mode-tab{transition:none!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.looks{height:auto;padding:78px 0}.looks-grid{position:relative;min-height:auto;padding:0}.reveal,.phone *,.mode-tab{transition:none!important}}
