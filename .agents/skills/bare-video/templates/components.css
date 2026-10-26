@@ -1,4 +1,4 @@
-/* Bare Video components: ten skeletons that read only from theme tokens.
+/* Bare Video components: fourteen skeletons that read only from theme tokens.
    Usage: wrap in .bv-frame with a theme class, set data-comp, add the markup.
 
    <div class="bv-frame t-product" data-comp="split">
