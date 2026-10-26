@@ -22,6 +22,7 @@ The website renders the same values with a `--cs-` prefix in `assets/showcase.cs
 | `--card` | card fill, `transparent` means hairline only |
 | `--card-ink` | text on cards |
 | `--accent` | the one emphasis colour |
+| `--card-accent` | accent for small labels inside a card, chosen to stay legible on `--card` |
 | `--accent-ink` | text on an accent block |
 | `--cap-ink` | caption text colour |
 | `--cap-shadow` | caption shadow, `none` allowed |

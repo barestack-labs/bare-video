@@ -19,7 +19,7 @@
 .bv-foot{position:absolute;inset:0;background:linear-gradient(165deg,#cfd2d8,#9aa0aa 46%,#6d747f);overflow:hidden}
 .bv-foot video{width:100%;height:100%;object-fit:cover;display:block}
 .bv-foot:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.42),transparent 58%)}
-.bv-slot{position:absolute;z-index:2;left:0;right:0;top:42%;text-align:center;font:700 6.5px var(--mono);
+.bv-slot{position:absolute;z-index:2;left:0;right:0;top:42%;text-align:center;font:700 2.9cqw var(--mono);
   letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.85)}
 
 /* caption */
@@ -42,13 +42,13 @@
 
 .bv-card{position:absolute;z-index:5;background:var(--card);color:var(--card-ink);border-radius:var(--radius);
   box-shadow:0 10px 24px rgba(0,0,0,.18);padding:4% 4.6%}
-.bv-card small{display:block;font:700 5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.bv-card small{display:block;font:700 2.7cqw var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--card-accent)}
 .bv-card strong{display:block;margin-top:3px;font-family:var(--head);font-weight:var(--weight);font-size:6cqw;
   line-height:1;letter-spacing:var(--track);text-transform:var(--caps)}
 
-.bv-kicker{position:absolute;z-index:6;font:700 5.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--sub)}
+.bv-kicker{position:absolute;z-index:6;font:700 2.7cqw var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--sub)}
 .bv-badge{position:absolute;z-index:6;background:var(--accent);color:var(--accent-ink);
-  font:700 5.5px var(--mono);letter-spacing:.14em;padding:5px 7px;border-radius:2px}
+  font:700 2.7cqw var(--mono);letter-spacing:.14em;padding:.45em .6em;border-radius:2px}
 
 /* ---------- components ---------- */
 
@@ -107,6 +107,10 @@
 .bv-frame[data-comp="cards"] .bv-card:nth-of-type(1){top:14%;transform:rotate(-2.2deg)}
 .bv-frame[data-comp="cards"] .bv-card:nth-of-type(2){top:38%;transform:rotate(1.4deg)}
 .bv-frame[data-comp="cards"] .bv-card:nth-of-type(3){top:62%;transform:rotate(-1deg)}
+/* preferred: data-slot survives extra siblings; nth-of-type above is the fallback */
+.bv-frame[data-comp="cards"] .bv-card[data-slot="1"]{top:14%;transform:rotate(-2.2deg)}
+.bv-frame[data-comp="cards"] .bv-card[data-slot="2"]{top:38%;transform:rotate(1.4deg)}
+.bv-frame[data-comp="cards"] .bv-card[data-slot="3"]{top:62%;transform:rotate(-1deg)}
 .bv-frame[data-comp="cards"] .bv-cap,.bv-frame[data-comp="cards"] .bv-foot{display:none}
 
 /* 10 green screen */
@@ -114,6 +118,10 @@
 .bv-frame[data-comp="green"] .bv-foot{opacity:.72}
 .bv-frame[data-comp="green"] .bv-cap{top:9%;bottom:auto;color:var(--accent-ink);text-shadow:none}
 .bv-frame[data-comp="green"] .bv-doc{left:6%;right:6%;top:47%;bottom:6%;height:auto}
+
+/* keep the speaker: stat, cards and ui hide the footage by default.
+   data-foot="show" puts it back, which is what most scenes should do. */
+.bv-frame[data-foot="show"] .bv-foot{display:block}
 
 /* motion: set the resting state in the tween, never in CSS */
 .bv-anim-y{will-change:transform,opacity}

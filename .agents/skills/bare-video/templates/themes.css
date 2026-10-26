@@ -5,7 +5,7 @@
 .bv-frame.t-product{
   --bg:#ffffff; --ink:#0b0b0c; --sub:#8a8a90; --line:#e4e4e8;
   --card:#ffffff; --card-ink:#0b0b0c;
-  --accent:#0b0b0c; --accent-ink:#ffffff;
+  --accent:#0b0b0c; --accent-ink:#ffffff; --card-accent:#0b0b0c;
   --cap-ink:#ffffff; --cap-shadow:0 1px 6px rgba(0,0,0,.55); --cap-emphasis:block;
   --radius:14px; --weight:800; --track:-0.05em; --caps:none;
   --head:Inter,ui-sans-serif,system-ui,sans-serif;
@@ -17,7 +17,7 @@
 .bv-frame.t-creator{
   --bg:#0d0d0f; --ink:#ffffff; --sub:#9a9aa2; --line:#2c2c32;
   --card:#f2f2f4; --card-ink:#0b0b0c;
-  --accent:#d8ff3e; --accent-ink:#0b0b0c;
+  --accent:#d8ff3e; --accent-ink:#0b0b0c; --card-accent:#0b0b0c;
   --cap-ink:#ffffff; --cap-shadow:0 2px 10px rgba(0,0,0,.85); --cap-emphasis:block;
   --radius:8px; --weight:850; --track:-0.02em; --caps:uppercase;
   --head:"Archivo Exp",Inter,sans-serif;
@@ -29,7 +29,7 @@
 .bv-frame.t-data{
   --bg:#f2ede3; --ink:#1a1714; --sub:#8b8377; --line:#d9d0c1;
   --card:#fbf8f2; --card-ink:#1a1714;
-  --accent:#b4451f; --accent-ink:#fff8f2;
+  --accent:#b4451f; --accent-ink:#fff8f2; --card-accent:#b4451f;
   --cap-ink:#1a1714; --cap-shadow:none; --cap-emphasis:block;
   --radius:2px; --weight:800; --track:-0.02em; --caps:none;
   --head:Georgia,"Times New Roman",serif;
@@ -41,7 +41,7 @@
 .bv-frame.t-tutorial{
   --bg:#eef2f8; --ink:#0f1620; --sub:#7c8794; --line:#cdd7e4;
   --card:#ffffff; --card-ink:#0f1620;
-  --accent:#2f6bff; --accent-ink:#ffffff;
+  --accent:#2f6bff; --accent-ink:#ffffff; --card-accent:#2f6bff;
   --cap-ink:#0f1620; --cap-shadow:none; --cap-emphasis:block;
   --radius:12px; --weight:800; --track:-0.04em; --caps:none;
   --head:Inter,ui-sans-serif,system-ui,sans-serif;
@@ -53,7 +53,7 @@
 .bv-frame.t-minimal{
   --bg:#0a0a0a; --ink:#ffffff; --sub:#8d8d8d; --line:#2b2b2b;
   --card:transparent; --card-ink:#ffffff;
-  --accent:#ffffff; --accent-ink:#0a0a0a;
+  --accent:#ffffff; --accent-ink:#0a0a0a; --card-accent:#ffffff;
   --cap-ink:#ffffff; --cap-shadow:none; --cap-emphasis:none;
   --radius:0; --weight:850; --track:-0.03em; --caps:uppercase;
   --head:"Archivo Exp",Inter,sans-serif;

@@ -17,6 +17,7 @@ Each scene should contain:
 - persistent elements that stay visible
 - micro-events anchored to words or verified edit cues
 - optional SFX event names
+- for each micro-event, the word anchor and the resolved time
 
 A micro-event should contain:
 
@@ -41,6 +42,19 @@ Use one persistent comparison scene:
 - the scene exits when the explanation moves to another idea
 
 This preserves spatial memory while keeping the screen responsive.
+
+## Anchors, not seconds
+
+A micro-event names its trigger word, not a literal time.
+
+```json
+{"at_word": "Deepgram", "action": "enter", "target": "row-2"}
+```
+
+- Resolve each anchor to seconds through the current EDL when the composition is built.
+- Store the resolved `at` and the scene-local `local` next to the anchor, so the plan can be diffed against the HTML.
+- After building, assert that every planned cue appears in the generated scene file at its stated local time. A plan that cannot be checked will drift silently.
+- When the cut changes, rerun the resolver. Never hand-edit a cue time in two places.
 
 ## Semantic triggers
 

@@ -137,6 +137,13 @@ Starter components include:
 
 Treat the user's selected components as useful starting ingredients. Unless the user disables improvisation or explicitly gives a strict constraint, you may resize, reposition, repeat, combine, restyle, or create a new composition when the footage, reference, or direct instruction calls for it. A request such as "make the card huge," "put several cards around me," or "use this reference layout" should change the composition rather than be rejected because the exact arrangement is not named above.
 
+By default the speaker stays in frame. Splitting a card, a list, a stat or a proof across the frame is a scene decision, not a component default.
+
+- Stat, cards, screenshot and big-card skeletons hide the footage. Re-enable it with `data-foot="show"` unless the faceless frame is the point, and say why when it is.
+- Size the information band to its content. A fixed 36 percent doc under two lines leaves a white void that reads as a layout bug.
+- Multiple cards: give each card `data-slot="1|2|3"`. `nth-of-type` breaks as soon as any sibling element is added.
+- Micro type in the skeletons is in `cqw`. If a composition renders a 5 px label at 1080, the composition has overridden the template in pixels, not the template's fault.
+
 Do not rotate through components mechanically. Choose them by meaning and let strong footage stay simple when it works.
 
 Respect the requested visual pace:
@@ -226,6 +233,15 @@ Repeated takes and filler come primarily from transcript reasoning. Long pauses 
 
 If the transcript has no word timings, silence detection may still identify pauses, but do not present those cuts as speech-aligned. Prefer getting word timings before a tight talking-head edit.
 
+### Remove a pause by splitting the keep list
+
+A pause inside one kept range survives the cut. Concatenation is what removes source time, not a wider range.
+
+- To drop a pause, split the range at the pause and keep a small breath on the incoming edge, about 0.10 to 0.15 s.
+- Never widen a range back to the previous `source_out` to "join" it. That re-adds the silence, because the gap is still inside the range.
+- After building the bed, run `silencedetect` again on the bed itself and read the intervals. A pause that survives the EDL shows up here and nowhere else.
+- Any remaining pause above roughly 1.2 s needs a reason: a deliberate beat, a section turn, or a cut.
+
 ### Write the decision list before rendering
 
 Cuts without a decision list drift the moment you revise. Build it first:
@@ -243,6 +259,16 @@ source_in, source_out, output_in, output_out, note
 Map every downstream cue through the list: `out_t = output_in + (src_t - source_in)` for the segment that contains `src_t`. If a cue crosses a removed interval, split it at the seam. Every renderer, FFmpeg or HyperFrames, consumes the same list.
 
 Do not stream-copy across word boundaries. Frame accuracy at an arbitrary point needs a re-encode, or a verified keyframe-aligned copy. Check the join after rendering, not before.
+
+### Anchor cues to words, then resolve them once
+
+Seconds go stale the moment the cut changes. Author every downstream cue as a word anchor, not as a literal time.
+
+- A beat, a scene boundary, an SFX or a plan entry names the word that triggers it, or the word index in the word-timed transcript.
+- Resolve anchors to seconds through the current EDL in one function. Scenes, captions, SFX, the visual plan and any HTML must all consume that one function.
+- When the EDL changes, rerun the resolver. Do not hand-edit times.
+- Keep the previous EDL, so an old cue can be mapped back to source time and forward through the new list instead of being guessed.
+- Export the visual plan from the same resolved data as the composition, and assert that every plan cue exists in the generated file at its stated time. A plan built from the authored literals will lie after the first re-cut.
 
 ## Captions should be precise and intentionally styled
 
@@ -283,6 +309,7 @@ Separate **scene changes** from **micro-motion**.
 - Prefer roughly 1.04 to 1.12 scale for normal punch-ins, with occasional slightly stronger emphasis when the framing tolerates it.
 - Let them feel irregular rather than metronomic: use stressed words, sentence turns, small visual dead zones, or delivery changes as triggers. Avoid a fixed interval and avoid constant breathing zoom.
 - A punch-in can later return to 1.0 or step to a different crop so the talking head does not feel mechanically locked.
+- Every EDL join that lands inside a scene window needs a visual change on that exact frame. Two shots with identical framing across a source jump read as an error, not a cut. Compute the joins, compare them with the scene windows, and place a punch, entry or crop change where they coincide.
 - Every visual response must name, prove, contrast, point, clarify, or improve retention without obscuring meaning. Decorative pills that only repeat a word are usually noise.
 
 ## Proof should be cropped, not framed
@@ -294,6 +321,9 @@ Full-page screenshots prove nothing at 9:16. The viewer cannot read them and lea
 - When a screenshot goes full-frame, fit the whole thing (contain) rather than filling the frame (cover). Cropping the sides of a page deletes the text you are pointing at.
 - Label every proof beat with its real source in mono type.
 - Check each crop actually contains the text it claims before it enters the timeline.
+- For a website, app or repo, prefer a miniature built from the real page copy over a screenshot. A miniature uses real labels, real type and real palettes, reads at 1080 wide, and still feels like the product. A screenshot of a live page is usually unreadable at 9:16 and captures a state that may not be true.
+- Screenshot only what cannot be reproduced, such as a specific result, message or data state. Crop to it, then read the text back before it enters the timeline.
+
 
 ## Sound should support visible actions
 
@@ -340,6 +370,9 @@ Defaults for a 9:16 short unless the user asks otherwise:
 - Audio: AAC, 48kHz, stereo or mono as the source allows, 192kbps.
 - Loudness: -14 LUFS integrated, true peak at or below -1 dBTP. Speech sits on top; music ducks under it.
 - **Check what the renderer actually produced.** HyperFrames output measured -27 LUFS on the first real test. Normalise as a separate pass and measure again; do not assume the renderer normalises for you.
+- End the film with a hold, not a cut. Pad the bed with 1.5 to 2 s of frozen last frame and let the final caption sit through it, or the closing line leaves before it lands.
+- If the render measures below the loudness target, say so and either normalise as a separate audio pass or state that it was skipped on purpose. Do not claim -14 LUFS without measuring the exported file.
+
 - **Preview first unless the user asked for one pass.** Confirm which one, in words, before encoding anything. A render costs 8 minutes for 2 minutes of 720p30 on a laptop, and a misread instruction costs four renders.
 - VFR phone footage: normalise to a constant frame rate before cutting, or the word timings will drift against the picture.
 - Rotation metadata: read it and apply it. Do not ignore it and then wonder why the frame is sideways.

@@ -8,6 +8,21 @@ Use this after the transcript and the edit direction are clear, and only when a 
 2. Confirm Node.js 22 or newer and a Chromium the tool can drive.
 3. If the current version's flags or API are unclear, read `npx hyperframes --help` and its own docs. Do not invent commands.
 
+## One sub-composition per scene
+
+A long film does not belong in one file. Put the root timeline in `index.html` and mount each scene as a sub-composition:
+
+```html
+<div id="host-s01" data-composition-id="s01" data-composition-src="scenes/s01.html"
+     data-start="0" data-duration="5.50"></div>
+```
+
+- A scene file has its own `#root`, its own size, its own `data-duration` and its own paused timeline.
+- The host div carries the scene window on the root timeline. The scene file's clock starts at 0.
+- Timing both a `<video>` and its wrapper is an error: `video_nested_in_timed_element`. Time the video against its own composition and let the host window place the scene.
+- Root children with `data-start` are laid out full frame, so a scene host needs no positioning.
+- Captions and the mixed bed can stay in `index.html`; they are one continuous layer and must not be split per scene.
+
 ## Composition shape
 
 One standalone composition per finished vertical video is the simplest reliable form.
@@ -48,6 +63,14 @@ Rules that bite if ignored:
 3. Style only through the tokens. If a card needs a different radius than the theme, that is a token change: state it, and keep it in one place.
 4. Fonts: prefer the theme's system stack. If the project has the `.woff2` files, declare them with `@font-face` pointing at the local file. Do not fetch a font from a CDN without asking.
 
+## Media offsets must share the scene clock
+
+`data-media-start` is the source offset in seconds. It is not a styling detail: if the scene window moves and the offset does not, the picture plays from the wrong second and nothing errors.
+
+- Derive `data-media-start` from the same resolved clock that produced the host window.
+- After any re-cut or remap, regenerate every scene file and compare a few offsets against their host starts. They must match.
+- When a slot is longer than the source, the last frame holds only inside the scene's own `data-duration`. A longer host slot shows the frame background instead. Pad the bed with a freeze tail rather than leaving a gap.
+
 ## Footage and audio
 
 - Use `<video>` with a local `src`, muted, and no `crossorigin` attribute.
@@ -72,6 +95,13 @@ The framework supplies the animation runtime and the timeline registry. Register
 5. Keep captions inside the safe area: 8 percent from each side, 12 percent from the bottom.
 6. Never use `<br>` in body text. Size the block and let it wrap, or split into two clips.
 
+## Caption clips
+
+- Give every caption clip a stable `id`. Lint reports `studio_missing_editable_id` for each clipped element without one.
+- Clamp each phrase to the next phrase's start. Two phrases on screen at once reads as a layout bug, and it happens whenever a word is extended at the end of a chunk.
+- The last phrase may exceed the 1.6 s chunk rule when it is the closing line, and it must hold through the freeze tail.
+- Word states are GSAP `set` calls at absolute times, one for spoken, one for settled. Do not drive them from a CSS animation.
+
 ## Motion
 
 - Set animated starting states inside the tween with `gsap.fromTo`, never as a CSS `transform` plus a tween on the same property. Lint rejects the pair.
@@ -79,6 +109,14 @@ The framework supplies the animation runtime and the timeline registry. Register
 - No `repeat: -1`. Use a finite count.
 - Keep every transform on a block-level element with a resolved size.
 - Match the theme's pacing from [themes.md](themes.md): Product Clean is controlled, Creator Utility is snappy, Data Editorial is calm, Tutorial Steps lands on actions, Bare Minimal barely moves.
+
+## Type size at the real canvas
+
+The theme tokens describe a 1080 frame. A skeleton that still holds preview pixels renders 5 px type at 1080 and fails the type floor.
+
+- Run `check` and read `text_below_floor`. It names the string and the rendered size.
+- Prefer fixing the skeleton to overriding it in the composition. A per-project pixel override is a second source of truth.
+- Micro labels below about 28 px at 1080 are unreadable on a phone.
 
 ## Determinism
 

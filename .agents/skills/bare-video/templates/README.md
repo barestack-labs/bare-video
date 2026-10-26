@@ -40,9 +40,16 @@ The last four were added after the first real edit, because without them every s
 ## Rules the files already enforce
 
 - A theme sets tokens. A component sets geometry. No component writes a hex value, no theme writes a layout.
-- Sizes are in `cqw`, so one file works from a 78px preview to a 1080px render.
+- Sizes are in `cqw`, so one file works from a 78px preview to a 1080px render. That includes micro type: the badge, kicker and card label used to be preview pixels, which rendered at 5 px on a 1080 frame and failed the type floor.
 - `data-comp` picks the skeleton. `data-order="info-top"` reverses split screen. `data-emphasis="none"` turns off the caption block, which Bare Minimal requires.
 - Bare Minimal's card fill is `transparent`, so a card is a hairline, not a black box.
+- Multiple cards use `data-slot="1|2|3"`. `nth-of-type` is kept as a fallback but breaks as soon as any sibling element is added.
+- Stat, cards, screenshot and big-card hide the footage by default. `data-foot="show"` puts the speaker back, which is the usual choice for a short.
+
+## Known limits
+
+- A scene is a sub-composition in HyperFrames. The skeletons describe the inside of one scene, not the root timeline. Mount each scene with `data-composition-src`.
+- The information band is a percentage of the frame, not of its content. A two-line doc in a 36 percent band leaves visible white space, so set the band per scene.
 
 ## What is still on the agent
 
