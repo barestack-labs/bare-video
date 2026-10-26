@@ -4,7 +4,7 @@ Bare Video is a skill for agent-led video editing, plus a small static website. 
 
 ## Editing a video
 
-Read the Bare Video skill first. Use the user's goal, footage, references, design preferences, and feedback to decide the edit. Transcribe with the selected route before speech-driven planning. If the user wants to plan together, show the plan before the heavy build. Decide whether HyperFrames is useful only after that planning step. If it is useful, missing, and the user approves, add it locally to the video project rather than globally. Do not turn the skill into a rigid recipe or recreate a mechanical planning engine.
+Read the Bare Video skill first. Use the user's goal, footage, references, design preferences, and feedback to decide the edit. Transcribe with the selected route, run caption QA on names and domains, and use both word timings and a non-destructive FFmpeg silence scan for cut candidates. Before writing HTML, create the skill's visual plan with stable scenes and word-anchored micro-beats. If the user wants to plan together, show the plan before the heavy build. Decide whether HyperFrames is useful only after that planning step. If it is useful, missing, and the user approves, add it locally to the video project rather than globally. Do not turn the skill into a rigid media engine.
 
 - Preserve original footage and write outputs separately.
 - Inspect installed tools before proposing downloads. Use native `--help` when command syntax is uncertain.
