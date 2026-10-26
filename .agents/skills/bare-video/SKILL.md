@@ -124,6 +124,27 @@ The five Bare Video starter themes are:
 
 These are starting languages, not rigid templates. Any starter component can be resized, combined, repeated, or composed differently under each theme. The user's direct instruction can also change an individual card, layout, color, scale, or motion treatment without requiring a new named theme.
 
+### A theme has to be visibly executed
+
+A scene fails review if you cannot name which theme token it visibly uses. Every scene must show at least two of: type family, tracking or caps, card treatment, accent use.
+
+- Type family and tracking come from `--head`, `--track`, `--caps`, `--weight`.
+- Card treatment comes from `--card`, `--radius`, and the theme's shadow.
+- Accent comes from `--accent` and `--accent-ink`, used on one thing per scene.
+- Motion comes from `--motion-in` to `--motion-out`. Product Clean 300 to 420ms, Creator 180 to 300, Data 400 to 600, Tutorial 200 to 320, Bare Minimal 250 to 400.
+
+A white card with black text under every theme means the theme is not executing, whatever the tokens say.
+
+Popup language per theme, so two themes cannot render the same popup:
+
+| Theme | Popup treatment |
+| --- | --- |
+| Product Clean | white card, soft shadow, tight tracking, one black block, 14px radius |
+| Creator Utility | near-black card, wide caps, lime block, 8px radius |
+| Data Editorial | paper card, serif numerals, rust rule, 2px radius, hairline only |
+| Tutorial Steps | white card, blue step number, arrow callout, 12px radius |
+| Bare Minimal | no fill, white hairline box, emphasis by scale, no block |
+
 If the user provides a reference video, image, or design system, study the real reference and let it override theme and composition defaults where appropriate. Recreate the useful visual logic with the user's real assets rather than treating the starter kit as a ceiling. Do not copy protected branding or fabricate missing assets.
 
 ## Cut with intent
@@ -178,6 +199,15 @@ Do not stream-copy across word boundaries. Frame accuracy at an arbitrary point 
 
 ## Captions should be precise and intentionally styled
 
+Captions are word-level, not phrase-level. Every word carries its own start and end from the transcript, and the word being spoken is visibly lit while the rest of the line sits back. Chunking phrase-by-phrase without per-word timing reads dead on camera.
+
+- One phrase element on screen, 1 to 3 words, 1.6 seconds maximum.
+- Each word is a span with its own start and duration.
+- The spoken word runs at full `--cap-ink` and carries the emphasis block. Words already spoken drop to about 0.85, words not yet spoken sit at about 0.62.
+- Put a plate behind the caption (flat black at 40 to 45 percent, 12px radius) or the contrast audit fails on bright frames and dimmed words become unreadable.
+- Captions are never hidden because a card arrived. Move the card, keep the caption. When a card occupies the lower third, lift the caption above it.
+- Emphasis is one word per phrase. `--cap-emphasis: none` disables the block entirely, which Bare Minimal requires.
+
 Use transcript timing to keep captions synchronized with speech. Check the rendered captions against the actual audio.
 
 For **Punchy** captions, keep chunks short and readable. Give each caption chunk a deliberate emphasis treatment, usually one useful word or phrase. Do not highlight filler just to make the screen busy.
@@ -189,6 +219,28 @@ For **None**, do not burn captions into the video. The transcript can still guid
 The selected editing theme controls the caption and overlay treatment. The user's direct feedback and real references override the starter theme.
 
 Keep captions away from the speaker's mouth, important UI, and proof the viewer needs to read. Reposition captions when the layout changes instead of hiding them unnecessarily.
+
+## Scene density and rhythm
+
+A talking head with nothing on top of it is a podcast. The edit has to move.
+
+- Floor: one visual change every 3 seconds. Ceiling: 3.2 seconds on any single visual before it changes.
+- On a 2 minute edit that lands around 45 to 55 beats. Eighteen beats over 2 minutes is a slideshow.
+- Every beat has a job: name a thing, prove a thing, contrast two things, or point at a screen region. A beat with no job gets cut.
+- If a sentence is long, take a second shot of the same proof at a different zoom instead of holding one image. Never invent a claim to fill the time.
+- Zoom pushes are the cheapest stimulation and the most effective: 300 to 420ms, 1.05 to 1.15 scale, on a stressed word, then hold.
+- Never the same beat kind twice in a row.
+- Plain mono pills that only restate a label are decoration. Cut them.
+
+## Proof should be cropped, not framed
+
+Full-page screenshots prove nothing at 9:16. The viewer cannot read them and learns nothing.
+
+- Crop to the exact region being described and scale that crop to fill the frame width. A 1200px-wide crop of the transcription row is readable at 720p. A whole page is not.
+- One reveal at a time: Deepgram, then Groq, then Faster Whisper, each as its own beat with its own crop. Never one wide shot of a settings list.
+- When a screenshot goes full-frame, fit the whole thing (contain) rather than filling the frame (cover). Cropping the sides of a page deletes the text you are pointing at.
+- Label every proof beat with its real source in mono type.
+- Check each crop actually contains the text it claims before it enters the timeline.
 
 ## Sound should support visible actions
 
@@ -232,10 +284,28 @@ Defaults for a 9:16 short unless the user asks otherwise:
 - 1080x1920, 30fps, H.264 high, `yuv420p`, faststart, CRF 18 to 20.
 - Audio: AAC, 48kHz, stereo or mono as the source allows, 192kbps.
 - Loudness: -14 LUFS integrated, true peak at or below -1 dBTP. Speech sits on top; music ducks under it.
+- **Check what the renderer actually produced.** HyperFrames output measured -27 LUFS on the first real test. Normalise as a separate pass and measure again; do not assume the renderer normalises for you.
+- **Preview first unless the user asked for one pass.** Confirm which one, in words, before encoding anything. A render costs 8 minutes for 2 minutes of 720p30 on a laptop, and a misread instruction costs four renders.
 - VFR phone footage: normalise to a constant frame rate before cutting, or the word timings will drift against the picture.
 - Rotation metadata: read it and apply it. Do not ignore it and then wonder why the frame is sideways.
+- **Check whether the source is mirrored.** Phone and webcam recordings often are. A shirt with backwards text is the tell. Ask before flipping; it changes the framing.
 - Before delivery: decode the whole file once, confirm the audio stream exists, and check three frames plus the first and last second.
 
 Keep the decision list, the word-timed transcript, the theme overrides, and the render command with the project. A revision should reuse them, not rebuild the edit from scratch.
+
+## Before you deliver
+
+Run this list and answer each one honestly. Any no is unfinished work, not a limitation.
+
+- Beat count: 45 to 55 for a 2 minute edit, and no visual held longer than 3.2 seconds.
+- Captions: every phrase has word-level timings, and no caption was hidden for a card.
+- Caption coverage: the percentage of spoken time that carries a caption. Under 95 percent is a defect.
+- Components used: at least split screen, full-screen proof, floating card, big card, and one data or step card.
+- Theme: for each scene you can name two theme tokens it visibly uses.
+- Proof: every screenshot was cropped to the point being made and its text was read back before use.
+- Contrast: the tool's contrast audit passes, and no white caption sits on a bright frame without a plate.
+- Audio: measured LUFS after the render, not assumed.
+- Source: mirrored or not, and the user knows which.
+- Preview: the user watched it, or explicitly asked for one pass.
 
 Use the repository files that actually exist. Do not cite or depend on setup documentation that is not present in the checkout.

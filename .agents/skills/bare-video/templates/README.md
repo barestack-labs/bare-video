@@ -3,7 +3,17 @@
 Two files, so a coding agent can copy instead of interpret.
 
 - `themes.css`: five token sets. One class per theme on the frame wrapper.
-- `components.css`: ten skeletons. Each reads only from the theme tokens.
+- `components.css`: fourteen skeletons. Each reads only from the theme tokens.
+
+## The fourteen
+
+Layouts: talking head, split screen (speaker top or info top), full-screen proof, floating card, big card, multiple cards, green screen.
+
+Content: stat card, step card, screenshot or UI.
+
+Motion beat: popup, callout, highlight box, list reveal.
+
+The last four were added after the first real edit, because without them every scene collapsed into the same white card and the theme had nothing to express.
 
 ## Use
 

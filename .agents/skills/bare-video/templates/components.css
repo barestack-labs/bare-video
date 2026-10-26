@@ -117,3 +117,34 @@
 
 /* motion: set the resting state in the tween, never in CSS */
 .bv-anim-y{will-change:transform,opacity}
+
+/* ---------- 11 popup: a small card over footage, the workhorse ---------- */
+.bv-frame[data-comp="popup"] .bv-popup{position:absolute;z-index:6;left:8%;right:8%;bottom:24%;
+  background:var(--card);color:var(--card-ink);border-radius:var(--radius);
+  box-shadow:0 16px 40px rgba(0,0,0,.30);padding:5% 5.4%}
+.bv-frame[data-comp="popup"] .bv-popup small{display:block;font:700 4.6cqw var(--mono);
+  letter-spacing:.14em;text-transform:uppercase;color:var(--sub)}
+.bv-frame[data-comp="popup"] .bv-popup b{display:block;margin-top:2.5%;font-family:var(--head);
+  font-weight:var(--weight);font-size:9cqw;line-height:.98;letter-spacing:var(--track);text-transform:var(--caps)}
+
+/* ---------- 12 callout: an arrow plus a box pointing at something ---------- */
+.bv-callout{position:absolute;z-index:7;display:flex;align-items:center;gap:2%}
+.bv-callout[data-side="right"]{right:8%;flex-direction:row-reverse}
+.bv-callout[data-side="left"]{left:8%}
+.bv-callout span{background:var(--accent);color:var(--accent-ink);font:700 4.4cqw/1.2 var(--mono);
+  letter-spacing:.04em;padding:2.6% 3.4%;border-radius:2%}
+.bv-callout i{width:0;height:0;border-top:1.6cqw solid transparent;border-bottom:1.6cqw solid transparent}
+.bv-callout[data-side="left"] i{border-right:2.6cqw solid var(--accent)}
+.bv-callout[data-side="right"] i{border-left:2.6cqw solid var(--accent)}
+
+/* ---------- 13 highlight: a box around existing UI, no fill ---------- */
+.bv-highlight{position:absolute;z-index:6;border:0.55cqw solid var(--accent);border-radius:1.4cqw;
+  box-shadow:0 0 0 0.6cqw rgba(255,255,255,.28)}
+
+/* ---------- 14 list: sequential reveal, one row at a time ---------- */
+.bv-frame[data-comp="list"] .bv-list{position:absolute;z-index:6;left:8%;right:8%;top:12%;display:grid;gap:2.4%}
+.bv-list .bv-row{display:flex;align-items:center;gap:3.4%;background:var(--card);color:var(--card-ink);
+  border-radius:var(--radius);box-shadow:0 10px 26px rgba(0,0,0,.22);padding:3.4% 4%}
+.bv-list .bv-row b{font-family:var(--head);font-weight:var(--weight);font-size:5cqw;letter-spacing:var(--track)}
+.bv-list .bv-row span{font-size:4.6cqw;line-height:1.2}
+/* rows animate in one by one; the timeline reveals each with its own tween */
