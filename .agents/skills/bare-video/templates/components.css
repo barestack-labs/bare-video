@@ -119,8 +119,8 @@
 .bv-frame[data-comp="green"] .bv-cap{top:9%;bottom:auto;color:var(--accent-ink);text-shadow:none}
 .bv-frame[data-comp="green"] .bv-doc{left:6%;right:6%;top:47%;bottom:6%;height:auto}
 
-/* keep the speaker: stat, cards and ui hide the footage by default.
-   data-foot="show" puts it back, which is what most scenes should do. */
+/* keep the speaker: stat and multiple-card hide footage by default.
+   data-foot="show" puts it back. UI keeps footage visible; big-card only dims it. */
 .bv-frame[data-foot="show"] .bv-foot{display:block}
 
 /* motion: set the resting state in the tween, never in CSS */
