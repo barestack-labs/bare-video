@@ -279,8 +279,11 @@ Separate **scene changes** from **micro-motion**.
 - Change the full scene when the idea, proof source, or spatial relationship changes.
 - Keep micro-beats anchored to real spoken words. Do not add random motion just to satisfy a timer.
 - A persistent scene can accumulate information. For example, Groq, Deepgram, and Faster Whisper can enter one comparison layout one by one as each name is spoken.
-- Zoom pushes remain useful micro-beats: roughly 300 to 420ms and 1.05 to 1.15 scale on a stressed word when they fit.
-- Every visual response must name, prove, contrast, point, or clarify. Decorative pills that only repeat a word are usually noise.
+- Use retention punch-ins and pull-backs as micro-beats. They may happen even when the composition stays the same.
+- Prefer roughly 1.04 to 1.12 scale for normal punch-ins, with occasional slightly stronger emphasis when the framing tolerates it.
+- Let them feel irregular rather than metronomic: use stressed words, sentence turns, small visual dead zones, or delivery changes as triggers. Avoid a fixed interval and avoid constant breathing zoom.
+- A punch-in can later return to 1.0 or step to a different crop so the talking head does not feel mechanically locked.
+- Every visual response must name, prove, contrast, point, clarify, or improve retention without obscuring meaning. Decorative pills that only repeat a word are usually noise.
 
 ## Proof should be cropped, not framed
 
