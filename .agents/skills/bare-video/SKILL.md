@@ -139,7 +139,8 @@ Treat the user's selected components as useful starting ingredients. Unless the 
 
 By default the speaker stays in frame. Splitting a card, a list, a stat or a proof across the frame is a scene decision, not a component default.
 
-- Stat, cards, screenshot and big-card skeletons hide the footage. Re-enable it with `data-foot="show"` unless the faceless frame is the point, and say why when it is.
+- Stat and multiple-card skeletons hide the footage by default. Re-enable it with `data-foot="show"` when the speaker should remain visible.
+- Screenshot/UI keeps the footage available behind the document frame, and big-card dims the footage instead of hiding it. A faceless frame should be an explicit scene choice, not an assumed component default.
 - Size the information band to its content. A fixed 36 percent doc under two lines leaves a white void that reads as a layout bug.
 - Multiple cards: give each card `data-slot="1|2|3"`. `nth-of-type` breaks as soon as any sibling element is added.
 - Micro type in the skeletons is in `cqw`. If a composition renders a 5 px label at 1080, the composition has overridden the template in pixels, not the template's fault.
