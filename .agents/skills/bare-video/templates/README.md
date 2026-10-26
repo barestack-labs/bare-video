@@ -44,7 +44,8 @@ The last four were added after the first real edit, because without them every s
 - `data-comp` picks the skeleton. `data-order="info-top"` reverses split screen. `data-emphasis="none"` turns off the caption block, which Bare Minimal requires.
 - Bare Minimal's card fill is `transparent`, so a card is a hairline, not a black box.
 - Multiple cards use `data-slot="1|2|3"`. `nth-of-type` is kept as a fallback but breaks as soon as any sibling element is added.
-- Stat, cards, screenshot and big-card hide the footage by default. `data-foot="show"` puts the speaker back, which is the usual choice for a short.
+- Stat and multiple-card hide the footage by default. `data-foot="show"` puts the speaker back.
+- Screenshot/UI keeps footage available behind the document frame. Big-card dims footage to keep the speaker present without competing with the card.
 
 ## Known limits
 
