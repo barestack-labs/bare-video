@@ -1,0 +1,8 @@
+All fonts in this folder are licensed under the SIL Open Font License 1.1 (https://openfontlicense.org).
+
+- Inter, by Rasmus Andersson and the Inter project authors
+- Instrument Serif, by Instrument
+- JetBrains Mono, by JetBrains
+- Archivo, by Omnibus-Type
+
+The fonts are bundled so renders look the same on every machine and never need the network.

@@ -1,127 +1,62 @@
 # Bare Video
 
-**A video-editing skill for your coding agent.**
+A free, open-source skill that lets a coding agent edit a talking-head video into a vertical short: clean cuts, captions timed to every word, simple motion graphics, 1080x1920 export.
 
-Bare Video is a small open-source editing guide plus a browser-only prompt builder. Your coding agent does the actual work with the video files and tools in your project.
+Website: https://shorts.paulablaza.com
 
-Website and prompt builder: https://shorts.paulablaza.com/#build
+## Use it
 
-## Start here
+Paste this into Claude Code, Codex, OpenCode, Cursor or any agent that can run commands:
 
-1. Create or open one project folder for the video.
-2. Put the source MP4 and any references, screenshots, images, logos, or other assets in that folder.
-3. Open the folder in your coding agent and point the agent to the exact video file you want edited.
-4. Build a prompt on the Bare Video homepage and paste it into the agent.
-5. Let the agent read the Bare Video skill before editing.
+```text
+Edit my video with Bare Video.
+1. If there is no bare-video folder here, run:
+   git clone --depth 1 https://github.com/barestack-labs/bare-video
+2. Read bare-video/SKILL.md and follow its steps in order.
 
-The website never needs the source video path and never uploads the media. The path belongs in the conversation with your coding agent because that agent is the thing that can actually access the project files.
+My video: path/to/your-video.mp4
+```
 
-One folder per video is recommended because temporary assets, transcripts, previews, and renders are then easy to remove together.
+The agent asks how long the short should be, which look you want and what captions you want, then does the rest. First time? [docs/setup.md](docs/setup.md) lists what to install and the folder layout that keeps disk use low.
 
-## Beginner path
+## How it works
 
-Use the builder on the homepage.
+The agent never writes HTML or FFmpeg commands by hand. It writes two small JSON files, and scripts do the rest:
 
-It lets you choose:
+| Step | The agent | The script |
+| --- | --- | --- |
+| 1 | runs it | `transcribe.mjs`: speech to timed words (Groq free tier, Deepgram, on-device, or an existing transcript) |
+| 2 | writes `cuts.json`: which sentences to keep, by line number | `cut.mjs`: cuts, removes pauses, keeps every word's timing |
+| 3 | writes `edit.json`: scenes anchored to spoken words | `check.mjs`: rejects invented numbers, missing files, text that is too long, scenes that are too short |
+| 4 | looks at the snapshots, shows you the preview | `build.mjs`: makes a HyperFrames project from the template |
+| 5 | renders after you approve | `finish.mjs`: loudness to -14 LUFS, verifies the file. `clean.mjs`: frees the disk space |
 
-- Faster Whisper, Groq, Deepgram, or an existing transcript
-- Plan with me or Start editing
-- one editing theme
-- which visual building blocks are allowed
-- visual pace
-- cuts: tight, balanced, or loose
-- captions
-- sound design
-- preview-first or one-pass output
+This split is what lets smaller, cheaper models do a good edit: the judgment calls are theirs (what to keep, what to show and when), and the error-prone parts are code.
 
-Copy the generated prompt, paste it into your coding agent, then point the agent to the exact video file inside the project folder.
+## Looks and scenes
 
-## Advanced path
+Four starting looks: `graphite` (dark, for cars, tech, gear), `daylight` (bright, for tutorials, products), `paper` (warm serif, for food, travel, stories) and `loud` (black and yellow caps, for fitness, sports, lists). Any of them takes your own accent colour.
 
-Copy or clone this repo into the video project and let your coding agent read the Bare Video skill directly.
+Scene types: title, label, list, steps, stat, compare, quote, chapter, media (your images and clips) and end card. Each can sit over the face, on a split screen with the face below, or full screen. The full reference with examples is in [docs/edit-json.md](docs/edit-json.md).
 
-The agent can customize that local project copy if you want to experiment or adapt the boilerplate. Keep private footage paths, credentials, and project-only details out of the public repository.
+## What is in the repo
 
-There is no Bare Video engine, CLI, template runtime, or media backend.
+```
+SKILL.md          the steps the agent follows
+docs/             edit.json reference, setup, troubleshooting, customizing
+scripts/          the Node scripts (no dependencies, Node 22+)
+template/         the HyperFrames template: runtime, CSS, looks, bundled fonts
+index.html        the website (assets/ holds its CSS and frames)
+```
 
-## Editing themes
+## Requirements
 
-Bare Video includes five starter editing languages:
+Node.js 22+, FFmpeg, [HyperFrames](https://www.npmjs.com/package/hyperframes) (installed once per computer), and a transcription route. Everything runs on your machine except the optional cloud transcription, which sends only a compressed audio copy.
 
-- **Product Clean:** premium product-demo language with white, black, soft gray, generous space, clean cards, controlled motion, selective accent color, and polished proof.
-- **Creator Utility:** talking head plus real UI, bold captions, quick screen proof, useful labels, practical cards, and faster creator pacing.
-- **Data Editorial:** strong information hierarchy with real percentages, progress, charts, counters, data cards, restrained warm or muted accents, and calmer editorial motion.
-- **Tutorial Steps:** obvious step labels, screen takeovers, callouts, UI emphasis, high-contrast instructions, and minimal decoration.
-- **Bare Minimal:** strong talking-head framing, black-and-white typography, simple proof, purposeful crops or zooms, and almost no decorative motion.
+## Customize and contribute
 
-These themes style the same ten components:
+Copy the repo and change anything: looks, scene types, rules. [docs/customize.md](docs/customize.md) shows how. If you build a look or scene type that suits a whole kind of video, open a pull request with an example `edit.json` and a contact sheet.
 
-- Talking head
-- Split screen, in either order (speaker on top, or information on top)
-- Full-screen proof
-- Floating card
-- Big card
-- Stat or data card
-- Step card
-- Screenshot or UI card
-- Multiple cards
-- Green-screen layout
+## License
 
-A theme is not a rigid template. Real reference videos, images, design systems, and direct feedback can override the starter theme.
-
-## What the agent does
-
-- Confirms the exact source video inside the project folder.
-- Uses the transcription route you choose.
-- Inspects the real footage, transcript, references, and assets.
-- Plans with you first when requested, or makes a first draft when requested.
-- Uses FFmpeg directly for normal media work.
-- Uses HyperFrames only when composition, motion graphics, or browser preview would materially improve the edit.
-- Asks before adding HyperFrames locally when it is missing.
-- Does not install HyperFrames globally by default.
-- Uses real proof and real assets instead of inventing them.
-- Shows a preview before final export unless you explicitly request one pass.
-- Checks the actual picture, audio, caption timing, duration, and A/V sync before claiming the edit works.
-
-## What is in this repo
-
-- .agents/skills/bare-video/SKILL.md: the portable editing guide
-- AGENTS.md: instructions for coding agents working from this checkout
-- index.html and assets/: the static website with the prompt builder directly on the homepage
-- create.html: compatibility redirect for old builder links
-- SETUP.md and docs/WORKFLOW.md: setup boundaries and direct tool examples
-
-## Tools
-
-FFmpeg and ffprobe handle media work.
-
-HyperFrames is optional. It needs Node.js 22+ and a compatible Chromium browser when used for preview or rendering.
-
-Transcription depends on the local tool or cloud provider you choose. Reuse existing installations and credentials. Ask before large downloads, paid calls, cloud uploads of private audio, or global configuration changes.
-
-## Verification
-
-The current homepage was exercised locally in Chromium at 1366x768 and 390x844.
-
-Verified behavior:
-
-- the component showcase renders every one of the ten components in all five styles
-- each style has its own palette, type family, card treatment, radius, and accent
-- the theme descriptions match what the frame actually shows
-- the prompt builder lives directly on the homepage
-- no video-path field exists in the builder
-- all five editing themes are selectable
-- all ten visual components can be enabled or disabled, with at least one kept active
-- transcription, planning, visual pace, captions, sound, and first-output selectors update the generated prompt
-- selecting Creator Utility updates the prompt with the Creator Utility tokens
-- disabling Full-screen proof removes it from the allowed visual section
-- the prompt tells the coding agent to fetch the skill from the repo when the file is not in the project
-- the 390px mobile layout has no horizontal overflow
-- create.html redirects old links to /#build
-- the tested flow produced no browser console or page errors
-
-A prior direct-tool smoke run used FFmpeg 9.0.1 and HyperFrames 0.8.195 to cut, preview, render, decode, and inspect a generated clip with speech. Creative quality on real footage still depends on the coding agent, the user's source material, and the chosen tools.
-
-## Project
-
-Created by **Paul Martin Ablaza**, under **Bare Stack Labs**. MIT licensed.
+MIT. Fonts in `template/fonts/` are under the SIL Open Font License. Made by Paul Martin Ablaza at [Barestack Labs](https://github.com/barestack-labs).

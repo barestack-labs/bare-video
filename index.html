@@ -3,253 +3,119 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bare Video</title>
+<meta name="description" content="A free, open-source skill that lets your coding agent edit talking-head videos into vertical shorts with clean cuts, word-timed captions and simple graphics.">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-<meta name="description" content="Bare Video is an open-source video-editing skill for coding agents. Choose how your edit should look, hand the prompt to your agent, then preview and revise the result.">
 <link rel="canonical" href="https://shorts.paulablaza.com/">
 <meta property="og:title" content="Bare Video">
-<meta property="og:description" content="Choose the edit. Let your coding agent build it.">
-<meta property="og:url" content="https://shorts.paulablaza.com/">
-<meta property="og:type" content="website">
-<title>Bare Video | Agent-directed short-form editing</title>
-<link rel="stylesheet" href="assets/styles.css">
-<link rel="stylesheet" href="assets/showcase.css">
-<link rel="stylesheet" href="assets/builder.css">
+<meta property="og:description" content="Paste one prompt into your coding agent. It edits your video into a vertical short. Free and open source.">
+<meta property="og:image" content="https://shorts.paulablaza.com/assets/frames/graphite.jpg">
+<link rel="preload" href="template/fonts/Inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<header class="site-nav">
-  <div class="wrap nav-inner">
-    <a class="brand-lockup" href="/" aria-label="Bare Video home"><img src="assets/logo.svg" alt=""><span>Bare Video</span></a>
-    <nav>
-      <a href="#looks">Styles</a>
-      <a href="#how">How it works</a>
-      <a class="nav-cta" href="#build">Build a prompt</a>
-    </nav>
-  </div>
+
+<header class="top wrap">
+  <a class="brand" href="/"><img src="assets/logo.svg" alt="" width="22" height="22"> Bare Video</a>
+  <nav><a href="#how">How it works</a><a href="https://github.com/barestack-labs/bare-video">GitHub</a></nav>
 </header>
 
 <main>
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div class="hero-copy-block">
-      <p class="eyebrow reveal">Open source · Bare Stack Labs</p>
-      <h1 class="reveal">Edit video with<br>the coding agent<br>you already use.</h1>
-      <p class="hero-copy reveal">Bare Video gives your coding agent a working kit for short-form video: type, cards, captions, motion, layouts. Pick a style, pick the blocks you like, or hand the agent a reference and let it follow that instead.</p>
-      <div class="hero-actions reveal">
-        <a class="button primary" href="#build">Build my edit prompt</a>
-        <a class="button secondary" href="#looks">See a block in every style</a>
-      </div>
-      <p class="hero-note reveal">Styles are a starting point. Your footage, references, and instructions win.</p>
-    </div>
+<section class="hero wrap">
+  <div class="hero-text">
+    <h1>Your coding agent can edit your videos.</h1>
+    <p class="lede">Bare Video is a free skill for Claude Code, Codex, OpenCode or any agent that can run commands. It cuts your talking-head video, adds captions timed to every word and simple graphics, and exports a vertical short for TikTok, Reels and Shorts.</p>
 
-    <div class="hero-phone-wrap reveal">
-      <div class="phone hero-phone" data-phone-mode="overlay">
-        <div class="phone-speaker"><span class="phone-slot">your footage</span></div>
-        <div class="phone-overlay-card">
-          <small>FLOATING CARD</small>
-          <strong>Your proof here</strong>
-          <span>real screenshots, results, UI</span>
-        </div>
-        <div class="phone-caption">THIS IS THE <mark>PART</mark> THAT MATTERS</div>
-        <div class="short-ui">
-          <span class="profile-dot"></span><span>♡</span><span>◌</span><span>↗</span>
-        </div>
-        <div class="phone-meta"><b>@yourvideo</b><span>edited with your coding agent</span></div>
+    <div class="prompt">
+      <div class="prompt-head">
+        <span>Paste this into your agent</span>
+        <button type="button" id="copy">Copy</button>
       </div>
-      <div class="phone-shadow"></div>
+<pre id="prompt-text">Edit my video with Bare Video.
+1. If there is no bare-video folder here, run:
+   git clone --depth 1 https://github.com/barestack-labs/bare-video
+2. Read bare-video/SKILL.md and follow its steps in order.
+
+My video: </pre>
+    </div>
+    <p class="note">Add the path to your video after "My video:", or let the agent ask. It will also ask how long the short should be, which look you want, and what captions you want.</p>
+  </div>
+
+  <figure class="hero-frame">
+    <img src="assets/frames/graphite.jpg" width="540" height="960" alt="A vertical video frame: a headline on a dark panel above the speaker, with a caption on the line between them.">
+  </figure>
+</section>
+
+<section class="looks wrap" aria-labelledby="looks-h">
+  <h2 id="looks-h">Four starting looks</h2>
+  <p class="section-lede">These are real frames rendered by the template, not mockups. Your agent can change the colour, or you can make your own look.</p>
+  <div class="frames">
+    <figure><img src="assets/frames/graphite.jpg" loading="lazy" width="540" height="960" alt="Graphite look: dark panel, white headline, orange highlight."><figcaption><b>Graphite</b> Cars, tech, gear, reviews</figcaption></figure>
+    <figure><img src="assets/frames/daylight.jpg" loading="lazy" width="540" height="960" alt="Daylight look: white panel with a large blue number."><figcaption><b>Daylight</b> Tutorials, apps, products</figcaption></figure>
+    <figure><img src="assets/frames/paper.jpg" loading="lazy" width="540" height="960" alt="Paper look: warm paper panel with a serif checklist."><figcaption><b>Paper</b> Food, travel, stories</figcaption></figure>
+    <figure><img src="assets/frames/loud.jpg" loading="lazy" width="540" height="960" alt="Loud look: black screen with wide uppercase text and yellow highlights."><figcaption><b>Loud</b> Fitness, sports, lists</figcaption></figure>
+  </div>
+</section>
+
+<section class="how wrap" id="how" aria-labelledby="how-h">
+  <h2 id="how-h">How it works</h2>
+  <ol class="steps">
+    <li><span><b>Transcribe.</b> Your speech becomes words with exact times. Groq does this for free with an API key, or it can run on your computer.</span></li>
+    <li><span><b>Choose what to keep.</b> The agent reads the transcript and keeps your best takes. Pauses and repeated starts are cut automatically.</span></li>
+    <li><span><b>Plan the visuals.</b> The agent writes a short plan: a title here, a list there, a number when you say one. A checker rejects made-up numbers, text that is too long and scenes that are too short.</span></li>
+    <li><span><b>Preview.</b> You watch it in the browser and ask for changes in plain words.</span></li>
+    <li><span><b>Export.</b> It renders 1080x1920, sets the loudness, checks the file, and asks before deleting the temporary files.</span></li>
+  </ol>
+  <p class="section-lede">The agent only writes two small plan files. Scripts handle the cutting, timing and layout, which is why smaller, cheaper models can do it too.</p>
+</section>
+
+<section class="need wrap" aria-labelledby="need-h">
+  <h2 id="need-h">What you need</h2>
+  <div class="grid2">
+    <ul class="plain">
+      <li><b>A coding agent</b> that can read files and run commands in a folder.</li>
+      <li><b>Node.js 22+ and FFmpeg.</b> The agent checks for them and tells you what is missing.</li>
+      <li><b>HyperFrames</b>, the open-source renderer: about 250 MB, installed once for all your videos.</li>
+      <li><b>A free Groq key</b> for transcription. It goes in a <code>.env</code> file, never in the chat.</li>
+    </ul>
+    <div class="tree">
+<pre>videos/            <span>open this folder in your agent</span>
+  bare-video/      <span>the skill</span>
+  node_modules/    <span>HyperFrames, shared</span>
+  .env             <span>your key</span>
+  car-review/      <span>one folder per video</span>
+    source.mp4
+    assets/        <span>your images and clips</span>
+    final.mp4</pre>
     </div>
   </div>
 </section>
 
-<section class="looks" id="looks">
-  <div class="wrap showcase" id="showcase">
-    <div class="sc-head">
-      <p class="eyebrow">Same component, five styles</p>
-      <h2>Pick a block. See it in every style.</h2>
-      <p>A style is one set of decisions: type, color, cards, spacing, captions, motion. Here is the exact same composition in all five, so you can see what actually changes and what stays put.</p>
-    </div>
-    <div class="sc-chips" id="sc-chips" aria-label="Choose a component"></div>
-    <div class="sc-ori" id="sc-ori" hidden>
-      <span>Order</span>
-      <button type="button" data-ori="top">Speaker on top</button>
-      <button type="button" data-ori="bottom">Speaker below</button>
-    </div>
-    <div class="sc-grid" id="sc-grid"></div>
-    <p class="sc-note">Grey blocks are footage slots, not fake mockups of people. Drop in your own clip and the same composition keeps its style. Styles are a starting baseline: your references and instructions override them.</p>
-  </div>
-</section>
-
-<section class="how" id="how">
-  <div class="wrap">
-    <div class="section-head reveal compact-how">
-      <p class="eyebrow">First-time setup</p>
-      <h2>Set it up once. Then just edit.</h2>
-      <p>Open the folder in your coding agent. If you pick Groq or Deepgram and there is no key yet, the agent opens a local <code>.env</code> file for you. Paste the key there, not in chat.</p>
-    </div>
-    <div class="setup-flow reveal" aria-label="Bare Video setup flow">
-      <article><span>01</span><b>Open the project</b><p>Your video, references, and Bare Video can live together in the working folder.</p></article>
-      <article><span>02</span><b>Add a cloud key only if needed</b><p>Groq uses <code>GROQ_API_KEY</code>. Deepgram uses <code>DEEPGRAM_API_KEY</code>. The agent opens the local env file instead of asking for the secret in chat.</p></article>
-      <article><span>03</span><b>Build the brief and preview</b><p>Choose the style, components, captions, sound, and review flow. The agent edits with your real footage and references.</p></article>
-    </div>
-  </div>
-</section>
-
-<section class="builder" id="build">
-  <div class="wrap">
-    <div class="builder-intro reveal">
-      <div>
-        <p class="eyebrow">Build the prompt</p>
-        <h2>Give the agent your taste.</h2>
-      </div>
-      <p class="builder-intro-copy">Skip anything you do not care about. Every pick is a default the agent can drop when your footage or your reference says otherwise.</p>
-    </div>
-
-    <div class="builder-layout">
-      <div class="builder-form">
-        <section class="builder-group">
-          <div class="builder-group-head">
-            <span>Goal</span>
-            <div><strong>What should the finished short do?</strong><p>Optional. One sentence is enough. The agent still inspects the real footage before deciding the edit.</p></div>
-          </div>
-          <textarea class="builder-goal" id="builder-goal" rows="2" placeholder="Turn this into a fast tutorial. Keep my personality, make the proof easy to follow, and remove dead moments."></textarea>
-        </section>
-
-        <section class="builder-group">
-          <div class="builder-group-head">
-            <span>Reference</span>
-            <div><strong>Are you pointing the agent at a reference?</strong><p>Optional. Put the file, clip, or screenshot in the project folder first, then name it here. You can also hand it over in chat after you paste the prompt.</p></div>
-          </div>
-          <input class="builder-input" id="builder-reference" type="text" placeholder="reference.mp4, the layout in this screenshot, my channel's usual style">
-        </section>
-
-        <section class="builder-group">
-          <div class="builder-group-head">
-            <span>Transcript</span>
-            <div><strong>How should the agent understand speech?</strong><p>Choose the transcription route. The agent checks what already exists before downloading models or using cloud services.</p></div>
-          </div>
-          <div class="segmented" aria-label="Transcription">
-            <button data-key="transcription" data-value="faster" type="button">Faster Whisper</button>
-            <button data-key="transcription" data-value="groq" type="button">Groq</button>
-            <button data-key="transcription" data-value="deepgram" type="button">Deepgram</button>
-            <button data-key="transcription" data-value="existing" type="button">I have a transcript</button>
-          </div>
-          <div class="cloud-key-help" id="cloud-key-help" hidden>
-            <div>
-              <span class="cloud-key-label">First-time cloud setup</span>
-              <strong id="cloud-key-title">Groq key</strong>
-              <p>The agent checks your project <code>.env</code> first. If the key is missing, it should create or open that file in your normal text editor. On Windows, use Notepad. Paste the key into the file, save it, then return to the agent. Never paste the key into chat.</p>
-            </div>
-            <code id="cloud-key-line">GROQ_API_KEY=</code>
-          </div>
-        </section>
-
-        <section class="builder-group">
-          <div class="builder-group-head">
-            <span>Collaboration</span>
-            <div><strong>When do you want to give feedback?</strong><p>Keep this simple. Plan first if you want control before editing, or let the agent make a concrete draft.</p></div>
-          </div>
-          <div class="segmented" aria-label="Planning style">
-            <button data-key="planning" data-value="plan" type="button">Plan with me</button>
-            <button data-key="planning" data-value="draft" type="button">Start editing</button>
-          </div>
-        </section>
-
-        <section class="builder-group">
-          <div class="builder-group-head">
-            <span>Editing theme</span>
-            <div><strong>Choose a starting style.</strong><p>This sets the visual skin: color, type, cards, captions, spacing, and motion. The agent can still change the composition.</p></div>
-          </div>
-          <div class="theme-grid">
-            <button class="theme-card" data-theme="product" type="button">
-              <span class="theme-preview" data-theme-preview="product"></span>
-              <span class="theme-copy"><strong>Product Clean</strong><small>Bright, polished, generous spacing, clean cards, controlled motion.</small></span>
-            </button>
-            <button class="theme-card" data-theme="creator" type="button">
-              <span class="theme-preview" data-theme-preview="creator"></span>
-              <span class="theme-copy"><strong>Creator Utility</strong><small>Speaker + real UI, bold captions, fast proof, practical cards.</small></span>
-            </button>
-            <button class="theme-card" data-theme="data" type="button">
-              <span class="theme-preview" data-theme-preview="data"></span>
-              <span class="theme-copy"><strong>Data Editorial</strong><small>Stats, charts, editorial hierarchy, restrained accents, calmer motion.</small></span>
-            </button>
-            <button class="theme-card" data-theme="tutorial" type="button">
-              <span class="theme-preview" data-theme-preview="tutorial"></span>
-              <span class="theme-copy"><strong>Tutorial Steps</strong><small>Step labels, screen takeovers, callouts, and clear UI emphasis.</small></span>
-            </button>
-            <button class="theme-card" data-theme="minimal" type="button">
-              <span class="theme-preview" data-theme-preview="minimal"></span>
-              <span class="theme-copy"><strong>Bare Minimal</strong><small>Strong framing, black-and-white type, clean proof, minimal decoration.</small></span>
-            </button>
-          </div>
-        </section>
-
-        <section class="builder-group">
-          <div class="builder-group-head">
-            <span>Layouts & elements</span>
-            <div><strong>Give the agent a useful kit.</strong><p>Select the compositions you like. They are ingredients, not restrictions: the agent can resize, combine, reposition, or adapt them to the footage.</p></div>
-          </div>
-          <div class="component-grid">
-            <button class="component-toggle" data-visual="face" type="button"><strong>Talking head</strong></button>
-            <button class="component-toggle" data-visual="split" type="button"><strong>Split screen</strong></button>
-            <button class="component-toggle" data-visual="fullscreen" type="button"><strong>Full-screen media</strong></button>
-            <button class="component-toggle" data-visual="card" type="button"><strong>Floating card</strong></button>
-            <button class="component-toggle" data-visual="bigcard" type="button"><strong>Big card</strong></button>
-            <button class="component-toggle" data-visual="stat" type="button"><strong>Stat / data card</strong></button>
-            <button class="component-toggle" data-visual="step" type="button"><strong>Step card</strong></button>
-            <button class="component-toggle" data-visual="ui" type="button"><strong>Screenshot / UI</strong></button>
-            <button class="component-toggle" data-visual="cards" type="button"><strong>Multiple cards</strong></button>
-            <button class="component-toggle" data-visual="green" type="button"><strong>Green-screen layout</strong></button>
-          </div>
-          <label class="improvise-toggle"><input id="agent-improvise" type="checkbox" checked><span><b>Agent can improvise</b><small>Resize, combine, restyle, or create another composition when your footage, reference, or instruction calls for it.</small></span></label>
-          <div class="visual-meta"><span id="visual-help">These are starting components, not a strict allow-list.</span><span id="visual-count"></span></div>
-        </section>
-
-        <section class="builder-group">
-          <div class="builder-group-head">
-            <span>Finishing touches</span>
-            <div><strong>Control the intensity.</strong><p>These choices shape how often the edit changes and how much captions and sound contribute.</p></div>
-          </div>
-          <div class="compact-pairs">
-            <div class="compact-control"><b>Visual pace</b><div class="segmented"><button data-key="pace" data-value="active" type="button">Active</button><button data-key="pace" data-value="balanced" type="button">Balanced</button><button data-key="pace" data-value="calm" type="button">Calm</button></div></div>
-            <div class="compact-control"><b>Captions</b><div class="segmented"><button data-key="captions" data-value="punchy" type="button">Punchy</button><button data-key="captions" data-value="clean" type="button">Clean</button><button data-key="captions" data-value="none" type="button">None</button></div></div>
-            <div class="compact-control"><b>Sound design</b><div class="segmented"><button data-key="sound" data-value="lots" type="button">Lots</button><button data-key="sound" data-value="balanced" type="button">Balanced</button><button data-key="sound" data-value="minimal" type="button">Minimal</button><button data-key="sound" data-value="none" type="button">None</button></div></div>
-            <div class="compact-control"><b>Cuts</b><div class="segmented"><button data-key="cuts" data-value="tight" type="button">Tight</button><button data-key="cuts" data-value="balanced" type="button">Balanced</button><button data-key="cuts" data-value="loose" type="button">Loose</button></div></div>
-            <div class="compact-control"><b>First output</b><div class="segmented"><button data-key="finish" data-value="preview" type="button">Preview first</button><button data-key="finish" data-value="final" type="button">One pass</button></div></div>
-          </div>
-        </section>
-      </div>
-
-      <aside class="builder-prompt-wrap" aria-label="Generated Bare Video prompt">
-        <div class="builder-prompt-head"><div><span>Live prompt</span><b>Paste this into your coding agent.</b></div><span>Local-first</span></div>
-        <textarea id="builder-prompt" readonly spellcheck="false"></textarea>
-        <div class="builder-prompt-actions">
-          <button class="copy-builder" id="copy-builder-prompt" type="button">Copy prompt</button>
-          <p class="builder-copy-status" id="builder-copy-status">Paste this into the coding agent working with your video project.</p>
-          <div class="advanced-note"><b>Advanced:</b> copy or clone the Bare Video repo into the project and let your agent read the skill directly. You can modify that local project copy however you want without turning the public skill into your personal config.</div>
-        </div>
-      </aside>
-    </div>
-  </div>
-</section>
-
-
-
-<section class="closing">
-  <div class="wrap closing-inner reveal">
-    <img class="closing-logo" src="assets/logo.svg" alt="">
-    <h2>Your footage. Your reference. Your edit.</h2>
-    <p>Use the kit as-is or push past it. It gives your agent somewhere to start, not a ceiling.</p>
-    <a class="button light" href="#build">Build my prompt</a>
-  </div>
+<section class="faq wrap" aria-labelledby="faq-h">
+  <h2 id="faq-h">Questions</h2>
+  <details><summary>Is it free?</summary><p>Yes. Bare Video is MIT licensed. HyperFrames and FFmpeg are free. Groq's transcription has a free tier. You pay only for the coding agent you already use. Smaller, cheaper models can follow it too, because scripts do the error-prone parts.</p></details>
+  <details><summary>Does my video get uploaded anywhere?</summary><p>The video stays on your computer. For cloud transcription, only a small compressed copy of the audio goes to Groq or Deepgram. Choose on-device transcription if you do not want that.</p></details>
+  <details><summary>Will it fill my disk?</summary><p>No. It never copies your source video. Temporary files go in one <code>work/</code> folder, and the agent offers to delete it after export. A few kilobytes of plan files stay, so you can re-make the edit later.</p></details>
+  <details><summary>Will it make things up?</summary><p>It is told not to, and the checker enforces part of it: a number on screen must be one you said, or come from a source you gave it. Images and clips come only from your <code>assets/</code> folder.</p></details>
+  <details><summary>What kind of videos does it suit?</summary><p>One person talking to the camera, filmed on a phone or webcam: reviews, recipes, tips, tutorials, workouts, stories. It is not made for multi-camera shoots or long YouTube edits.</p></details>
+  <details><summary>Can I change how it looks?</summary><p>Yes. Ask the agent for a different accent colour, or copy the repo and edit the looks and scene types yourself. <a href="https://github.com/barestack-labs/bare-video/blob/main/docs/customize.md">docs/customize.md</a> shows how.</p></details>
 </section>
 </main>
 
-<footer class="wrap footer">
-  <div><a class="brand-lockup footer-brand" href="/"><img src="assets/logo.svg" alt=""><span>Bare Video</span></a><small>shorts.paulablaza.com</small></div>
-  <div>Created by Paul Martin Ablaza<br>Bare Stack Labs · MIT</div>
+<footer class="wrap">
+  <span>Bare Video, by Paul Martin Ablaza at <a href="https://github.com/barestack-labs">Barestack Labs</a>. MIT license.</span>
+  <a href="https://github.com/barestack-labs/bare-video">Source on GitHub</a>
 </footer>
 
-<script src="assets/app.js"></script>
-<script src="assets/showcase.js"></script>
-<script src="assets/builder.js"></script>
+<script>
+  const btn = document.getElementById("copy");
+  btn.addEventListener("click", async () => {
+    const text = document.getElementById("prompt-text").textContent;
+    try { await navigator.clipboard.writeText(text); }
+    catch { const r = document.createRange(); r.selectNodeContents(document.getElementById("prompt-text")); getSelection().removeAllRanges(); getSelection().addRange(r); document.execCommand("copy"); }
+    btn.textContent = "Copied";
+    setTimeout(() => { btn.textContent = "Copy"; }, 1600);
+  });
+</script>
 </body>
 </html>

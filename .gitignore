@@ -2,15 +2,14 @@
 .env
 *.env
 
-# project media / generated work (root folders only, so skill references/ stay tracked)
-/input/
-/references/
-/workspace/
-/output/
-/runtime/
+# video work, if someone edits a video inside the repo folder
+/work/
+/edit/
+/assets/*.mp4
+*.mov
 
-# deps / caches
+# deps and caches
 node_modules/
-__pycache__/
+.hyperframes/
 .DS_Store
 Thumbs.db

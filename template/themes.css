@@ -1,0 +1,38 @@
+/* Four starting looks. Each is only tokens. Change --accent from edit.json ("accent": "#hex").
+   graphite: dark and calm. cars, tech, gear, reviews.
+   daylight: bright and clean. tutorials, products, apps, how-to.
+   paper:    warm editorial with a serif. food, travel, books, stories.
+   loud:     black, wide caps, block highlights. fitness, sports, hype, lists. */
+
+.t-graphite {
+  --bg: #111214; --surface: #1b1c20; --line: #2c2e34; --ink: #f3f3ef; --muted: #9c9ea6;
+  --accent: #ff5b37; --accent-ink: #111214;
+  --head: "BV Inter", system-ui, sans-serif; --head-weight: 800; --head-track: -0.045em; --head-case: none; --head-lh: 1.0;
+  --body: "BV Inter", system-ui, sans-serif; --mono: "BV Mono", ui-monospace, monospace;
+  --radius: 24px; --shadow: 0 24px 60px rgba(0,0,0,.45);
+  --cap-font: "BV Inter", system-ui, sans-serif; --cap-weight: 850; --cap-case: none; --cap-track: -0.035em;
+}
+.t-daylight {
+  --bg: #f5f5f2; --surface: #ffffff; --line: #e1e1db; --ink: #121212; --muted: #6c6c66;
+  --accent: #2354ff; --accent-ink: #ffffff;
+  --head: "BV Inter", system-ui, sans-serif; --head-weight: 780; --head-track: -0.05em; --head-case: none; --head-lh: 1.0;
+  --body: "BV Inter", system-ui, sans-serif; --mono: "BV Mono", ui-monospace, monospace;
+  --radius: 30px; --shadow: 0 20px 50px rgba(20,20,30,.14);
+  --cap-font: "BV Inter", system-ui, sans-serif; --cap-weight: 850; --cap-case: none; --cap-track: -0.035em;
+}
+.t-paper {
+  --bg: #f0ebe1; --surface: #faf7f0; --line: #dcd2c1; --ink: #201c17; --muted: #7c7264;
+  --accent: #c2410c; --accent-ink: #faf7f0; --cap-active: #ffb07a;
+  --head: "BV Serif", Georgia, serif; --head-serif: "BV Serif", Georgia, serif; --head-weight: 400; --head-track: -0.02em; --head-case: none; --head-lh: 0.98;
+  --body: "BV Inter", system-ui, sans-serif; --mono: "BV Mono", ui-monospace, monospace;
+  --radius: 8px; --shadow: 0 18px 40px rgba(60,40,20,.14);
+  --cap-font: "BV Inter", system-ui, sans-serif; --cap-weight: 800; --cap-case: none; --cap-track: -0.03em;
+}
+.t-loud {
+  --bg: #0a0a0a; --surface: #161616; --line: #2a2a2a; --ink: #ffffff; --muted: #a0a0a0;
+  --accent: #ffd60a; --accent-ink: #0a0a0a;
+  --head: "BV Wide", "BV Inter", sans-serif; --head-weight: 800; --head-track: -0.02em; --head-case: uppercase; --head-lh: 0.98;
+  --body: "BV Inter", system-ui, sans-serif; --mono: "BV Mono", ui-monospace, monospace;
+  --radius: 0px; --shadow: none;
+  --cap-font: "BV Wide", "BV Inter", sans-serif; --cap-weight: 800; --cap-case: uppercase; --cap-track: -0.01em;
+}
