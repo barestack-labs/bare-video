@@ -43,6 +43,7 @@ node BV/scripts/transcribe.mjs source.mp4 --terms "Brand Name,Model X,Person Nam
 - `--terms` is a comma list of names and words that are easy to mishear. Take them from the user's message and file names.
 - It uses Groq (free API key) or Deepgram, reading the key from a `.env` file in the video folder or any folder above it (usually `videos/.env`). If no key exists, the script says what to do. Create the `.env` file with an empty `GROQ_API_KEY=` line, open it in the user's editor, and ask them to paste the key there and save. Never ask for the key in chat.
 - Names, websites and model numbers are often misheard. Do not fix them now. Note the right spelling and fix the captions in Step 6 with `"fix"`.
+- Never guess how a name or website is spelled. Use the spelling from the user's message, their files or their assets. If you cannot find it, ask the user, or leave it off the screen. A wrong web address on screen is worse than none.
 - Output: `edit/lines.txt` (one sentence per line, numbered L1, L2...) and `edit/words.txt` (every word with its time).
 
 ## Step 4. Choose what to keep

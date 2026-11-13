@@ -2,7 +2,7 @@
 
 A free, open-source skill that lets a coding agent edit a talking-head video into a vertical short: clean cuts, captions timed to every word, simple motion graphics, 1080x1920 export.
 
-Website: https://shorts.paulablaza.com
+Website: https://shorts.paulablaza.com. New to this? Follow the [beginner tutorial](https://shorts.paulablaza.com/tutorial.html).
 
 ## Use it
 
@@ -32,6 +32,18 @@ The agent never writes HTML or FFmpeg commands by hand. It writes two small JSON
 | 5 | renders after you approve | `finish.mjs`: loudness to -14 LUFS, verifies the file. `clean.mjs`: frees the disk space |
 
 This split is what lets smaller, cheaper models do a good edit: the judgment calls are theirs (what to keep, what to show and when), and the error-prone parts are code.
+
+## Tested models
+
+Same 4-minute recording, same prompt, each agent working on its own (2026-11-13). Time and tokens are what each tool reported for planning and building the edit. Render time is not included.
+
+| Model | Through | Cost | Agent time | Tokens | Result |
+| --- | --- | --- | --- | --- | --- |
+| Claude Haiku 5.5 | Claude Code | paid plan | 3.2 min | about 91k | 52 s edit, picked the daylight look itself |
+| Nemotron 3 Ultra | OpenCode + Kilo Gateway | free | 5.9 min | about 102k plus 728k cached | 59 s edit, misspelled one web address |
+| Nemotron 3.5 Super VL | OpenCode + Kilo Gateway | free | 8.5 min | about 227k plus 1.3M cached | 44 s edit, checked its own snapshots |
+
+All three videos play on the website. Groq's free chat models could not run the agent, because their free tier allows fewer tokens per minute than a single agent request.
 
 ## Looks and scenes
 

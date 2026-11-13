@@ -93,7 +93,15 @@ export function loadPlan(file = "edit/edit.json") {
   });
   scenes.forEach((s, k) => { s.end = k + 1 < scenes.length ? scenes[k + 1].t : D; });
 
-  const said = N.join(" ");
+  // every number that was spoken, as digits or as a word ("three" counts as 3)
+  const WORDNUM = { zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90, hundred: 100, thousand: 1000 };
+  const spokenNums = new Set();
+  words.forEach(w => {
+    const t = w.w.toLowerCase().replace(/,/g, "");
+    (t.match(/\d+(?:\.\d+)?/g) || []).forEach(n => spokenNums.add(String(+n)));
+    const bare = t.replace(/[^a-z]/g, "");
+    if (bare in WORDNUM) spokenNums.add(String(WORDNUM[bare]));
+  });
   const kept = [];
   scenes.forEach((s, k) => {
     const len = s.end - s.t;
@@ -133,7 +141,7 @@ export function loadPlan(file = "edit/edit.json") {
       const nums = String(s.value || "").match(/\d[\d,.]*/g) || [];
       for (const n of nums) {
         const digits = n.replace(/[,.]$/, "");
-        const spoken = said.includes(norm(digits)) || said.includes(norm(digits.replace(/,/g, "")));
+        const spoken = spokenNums.has(String(+digits.replace(/,/g, "")));
         if (!spoken && !s.source) P.push(`${label}: the number ${digits} is not in what was said. Only show real numbers. If it was said in words (like "three point two") or comes from a real document, add "source": "where it is from".`);
       }
     }

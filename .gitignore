@@ -13,3 +13,7 @@ node_modules/
 .hyperframes/
 .DS_Store
 Thumbs.db
+
+# website videos live outside git, see site-media/README.md
+/site-media/files/
+/site-media/.wrangler/

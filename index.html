@@ -4,32 +4,37 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bare Video</title>
-<meta name="description" content="A free, open-source skill that lets your coding agent edit talking-head videos into vertical shorts with clean cuts, word-timed captions and simple graphics.">
+<meta name="description" content="A free, open-source skill that lets your coding agent, even a cheap or free model, edit your talking-head video into a vertical short with clean cuts, word-by-word captions and simple graphics.">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="canonical" href="https://shorts.paulablaza.com/">
 <meta property="og:title" content="Bare Video">
-<meta property="og:description" content="Paste one prompt into your coding agent. It edits your video into a vertical short. Free and open source.">
-<meta property="og:image" content="https://shorts.paulablaza.com/assets/frames/graphite.jpg">
+<meta property="og:description" content="Paste one prompt into your coding agent and it edits your video into a short. Free and open source.">
+<meta property="og:image" content="https://shorts.paulablaza.com/assets/frames/haiku-daylight.jpg">
 <link rel="preload" href="template/fonts/Inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/vendor/lenis.css">
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 
 <header class="top wrap">
   <a class="brand" href="/"><img src="assets/logo.svg" alt="" width="22" height="22"> Bare Video</a>
-  <nav><a href="#how">How it works</a><a href="https://github.com/barestack-labs/bare-video">GitHub</a></nav>
+  <nav>
+    <a href="#examples">Examples</a>
+    <a href="tutorial.html">Tutorial</a>
+    <a href="https://github.com/barestack-labs/bare-video">GitHub</a>
+  </nav>
 </header>
 
 <main>
 <section class="hero wrap">
   <div class="hero-text">
-    <h1>Your coding agent can edit your videos.</h1>
-    <p class="lede">Bare Video is a free skill for Claude Code, Codex, OpenCode or any agent that can run commands. It cuts your talking-head video, adds captions timed to every word and simple graphics, and exports a vertical short for TikTok, Reels and Shorts.</p>
+    <h1>Your AI agent can edit your videos, even the cheap ones.</h1>
+    <p class="lede">Bare Video is a free skill you give to Claude Code, OpenCode, Codex or any agent that can run commands, and it cuts your talking-head video, adds captions that follow every word, and puts simple graphics on top so it's ready for TikTok, Reels and Shorts.</p>
 
     <div class="prompt">
       <div class="prompt-head">
         <span>Paste this into your agent</span>
-        <button type="button" id="copy">Copy</button>
+        <button type="button" class="copy" data-copy="prompt-text">Copy</button>
       </div>
 <pre id="prompt-text">Edit my video with Bare Video.
 1. If there is no bare-video folder here, run:
@@ -38,84 +43,105 @@
 
 My video: </pre>
     </div>
-    <p class="note">Add the path to your video after "My video:", or let the agent ask. It will also ask how long the short should be, which look you want, and what captions you want.</p>
+    <p class="note">Put the path to your video after "My video:" or just let the agent ask you. First time doing this? The <a href="tutorial.html">tutorial</a> walks you through everything from installing the tools to exporting.</p>
   </div>
 
-  <figure class="hero-frame">
-    <img src="assets/frames/graphite.jpg" width="540" height="960" alt="A vertical video frame: a headline on a dark panel above the speaker, with a caption on the line between them.">
+  <figure class="hero-video">
+    <div class="player">
+      <video data-src="https://bare-video-media.ablazapaulmartin.workers.dev/haiku-daylight.mp4" poster="assets/frames/haiku-daylight.jpg" muted loop playsinline preload="none" aria-label="A short edited by Claude Haiku with the daylight look"></video>
+      <button type="button" class="sound" aria-label="Turn sound on" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="on" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M17 9l5 6M22 9l-5 6"/></svg>
+      </button>
+    </div>
+    <figcaption>Edited by <b>Claude Haiku</b> on its own, daylight look, about 3 minutes of agent time.</figcaption>
   </figure>
 </section>
 
+<section class="examples wrap" id="examples" aria-labelledby="ex-h">
+  <h2 id="ex-h">Same video, different models</h2>
+  <p class="section-lede">I gave every model the exact same 4-minute recording and the exact same prompt from above, and this is what each one made on its own. The time and tokens are what each agent used to plan and build the edit, as its own tool reported them, and the render itself takes a couple more minutes on a normal laptop. The two Nemotron models ran for free.</p>
+  <div class="cards">
+    <figure class="card">
+      <div class="player"><video data-src="https://bare-video-media.ablazapaulmartin.workers.dev/haiku-daylight.mp4" poster="assets/frames/haiku-daylight.jpg" muted loop playsinline preload="none" aria-label="Edit made by Claude Haiku 5.5"></video><button type="button" class="sound" aria-label="Turn sound on" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="on" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M17 9l5 6M22 9l-5 6"/></svg></button></div>
+      <figcaption class="meta">
+        <div class="model">Claude Haiku 5.5</div>
+        <div class="via">Claude Code</div>
+        <dl><dt>Agent time</dt><dd>3.2 min</dd><dt>Tokens</dt><dd>about 91k</dd><dt>Tool calls</dt><dd>19</dd><dt>Video</dt><dd>52 s</dd></dl>
+        <p class="note-small">Picked the daylight look by itself.</p>
+      </figcaption>
+    </figure>
+    <figure class="card">
+      <div class="player"><video data-src="https://bare-video-media.ablazapaulmartin.workers.dev/nemotron-ultra.mp4" poster="assets/frames/nemotron-ultra.jpg" muted loop playsinline preload="none" aria-label="Edit made by Nemotron 3 Ultra"></video><button type="button" class="sound" aria-label="Turn sound on" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="on" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M17 9l5 6M22 9l-5 6"/></svg></button></div>
+      <figcaption class="meta">
+        <div class="model">Nemotron 3 Ultra<span class="tag">Free</span></div>
+        <div class="via">OpenCode + Kilo Gateway</div>
+        <dl><dt>Agent time</dt><dd>5.9 min</dd><dt>Tokens</dt><dd>about 102k, plus 728k cached</dd><dt>Tool calls</dt><dd>30</dd><dt>Video</dt><dd>59 s</dd></dl>
+        <p class="note-small">It spelled the website wrong on screen, which I fixed by hand. Everything else is its own.</p>
+      </figcaption>
+    </figure>
+    <figure class="card">
+      <div class="player"><video data-src="https://bare-video-media.ablazapaulmartin.workers.dev/nemotron-vl.mp4" poster="assets/frames/nemotron-vl.jpg" muted loop playsinline preload="none" aria-label="Edit made by Nemotron 3.5 Super VL"></video><button type="button" class="sound" aria-label="Turn sound on" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="on" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M17 9l5 6M22 9l-5 6"/></svg></button></div>
+      <figcaption class="meta">
+        <div class="model">Nemotron 3.5 Super VL<span class="tag">Free</span></div>
+        <div class="via">OpenCode + Kilo Gateway</div>
+        <dl><dt>Agent time</dt><dd>8.5 min</dd><dt>Tokens</dt><dd>about 227k, plus 1.3M cached</dd><dt>Tool calls</dt><dd>35</dd><dt>Video</dt><dd>44 s</dd></dl>
+        <p class="note-small">Looked at its own snapshots before finishing.</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
 <section class="looks wrap" aria-labelledby="looks-h">
-  <h2 id="looks-h">Four starting looks</h2>
-  <p class="section-lede">These are real frames rendered by the template, not mockups. Your agent can change the colour, or you can make your own look.</p>
+  <h2 id="looks-h">Four looks to start from</h2>
+  <p class="section-lede">These are rendered straight from the template, so what you see here is what you get. You can ask your agent to change the colour to match your brand, or make a whole new look if you want.</p>
   <div class="frames">
-    <figure><img src="assets/frames/graphite.jpg" loading="lazy" width="540" height="960" alt="Graphite look: dark panel, white headline, orange highlight."><figcaption><b>Graphite</b> Cars, tech, gear, reviews</figcaption></figure>
-    <figure><img src="assets/frames/daylight.jpg" loading="lazy" width="540" height="960" alt="Daylight look: white panel with a large blue number."><figcaption><b>Daylight</b> Tutorials, apps, products</figcaption></figure>
-    <figure><img src="assets/frames/paper.jpg" loading="lazy" width="540" height="960" alt="Paper look: warm paper panel with a serif checklist."><figcaption><b>Paper</b> Food, travel, stories</figcaption></figure>
-    <figure><img src="assets/frames/loud.jpg" loading="lazy" width="540" height="960" alt="Loud look: black screen with wide uppercase text and yellow highlights."><figcaption><b>Loud</b> Fitness, sports, lists</figcaption></figure>
+    <figure><div class="player"><video data-src="https://bare-video-media.ablazapaulmartin.workers.dev/look-daylight.mp4" poster="assets/frames/daylight.jpg" muted loop playsinline preload="none"></video></div><figcaption><b>Daylight</b> Tutorials, apps, products</figcaption></figure>
+    <figure><div class="player"><video data-src="https://bare-video-media.ablazapaulmartin.workers.dev/look-graphite.mp4" poster="assets/frames/graphite.jpg" muted loop playsinline preload="none"></video></div><figcaption><b>Graphite</b> Cars, tech, gear, reviews</figcaption></figure>
+    <figure><div class="player"><video data-src="https://bare-video-media.ablazapaulmartin.workers.dev/look-paper.mp4" poster="assets/frames/paper.jpg" muted loop playsinline preload="none"></video></div><figcaption><b>Paper</b> Food, travel, stories</figcaption></figure>
+    <figure><div class="player"><video data-src="https://bare-video-media.ablazapaulmartin.workers.dev/look-loud.mp4" poster="assets/frames/loud.jpg" muted loop playsinline preload="none"></video></div><figcaption><b>Loud</b> Fitness, sports, lists</figcaption></figure>
   </div>
 </section>
 
-<section class="how wrap" id="how" aria-labelledby="how-h">
-  <h2 id="how-h">How it works</h2>
+<section class="how wrap" aria-labelledby="how-h">
+  <h2 id="how-h">Why a cheap model can do this</h2>
+  <p class="section-lede">Most AI video editing falls apart because the model has to write all the timing and layout code by itself, and smaller models get lost there. So with Bare Video the agent only makes the decisions, which parts of your video to keep and what to show on screen, and small scripts handle the rest.</p>
   <ol class="steps">
-    <li><span><b>Transcribe.</b> Your speech becomes words with exact times. Groq does this for free with an API key, or it can run on your computer.</span></li>
-    <li><span><b>Choose what to keep.</b> The agent reads the transcript and keeps your best takes. Pauses and repeated starts are cut automatically.</span></li>
-    <li><span><b>Plan the visuals.</b> The agent writes a short plan: a title here, a list there, a number when you say one. A checker rejects made-up numbers, text that is too long and scenes that are too short.</span></li>
-    <li><span><b>Preview.</b> You watch it in the browser and ask for changes in plain words.</span></li>
-    <li><span><b>Export.</b> It renders 1080x1920, sets the loudness, checks the file, and asks before deleting the temporary files.</span></li>
+    <li><span><b>It listens to your video.</b> Your speech becomes text with the exact time of every word, and a free Groq key does this in a few seconds.</span></li>
+    <li><span><b>It keeps your best takes.</b> The agent picks the sentences worth keeping, and the pauses and restarts get cut out automatically.</span></li>
+    <li><span><b>It plans what you see.</b> A title here, a list when you list things, a number when you say one, and a checker stops it from putting made-up numbers or long text on screen.</span></li>
+    <li><span><b>You preview it.</b> It opens in your browser, and you just tell the agent what to change the way you'd tell a friend.</span></li>
+    <li><span><b>It exports.</b> You get a 1080x1920 video at the right loudness, and it asks before deleting the temporary files so your disk stays clean.</span></li>
   </ol>
-  <p class="section-lede">The agent only writes two small plan files. Scripts handle the cutting, timing and layout, which is why smaller, cheaper models can do it too.</p>
-</section>
-
-<section class="need wrap" aria-labelledby="need-h">
-  <h2 id="need-h">What you need</h2>
-  <div class="grid2">
-    <ul class="plain">
-      <li><b>A coding agent</b> that can read files and run commands in a folder.</li>
-      <li><b>Node.js 22+ and FFmpeg.</b> The agent checks for them and tells you what is missing.</li>
-      <li><b>HyperFrames</b>, the open-source renderer: about 250 MB, installed once for all your videos.</li>
-      <li><b>A free Groq key</b> for transcription. It goes in a <code>.env</code> file, never in the chat.</li>
-    </ul>
-    <div class="tree">
-<pre>videos/            <span>open this folder in your agent</span>
-  bare-video/      <span>the skill</span>
-  node_modules/    <span>HyperFrames, shared</span>
-  .env             <span>your key</span>
-  car-review/      <span>one folder per video</span>
-    source.mp4
-    assets/        <span>your images and clips</span>
-    final.mp4</pre>
-    </div>
-  </div>
 </section>
 
 <section class="faq wrap" aria-labelledby="faq-h">
-  <h2 id="faq-h">Questions</h2>
-  <details><summary>Is it free?</summary><p>Yes. Bare Video is MIT licensed. HyperFrames and FFmpeg are free. Groq's transcription has a free tier. You pay only for the coding agent you already use. Smaller, cheaper models can follow it too, because scripts do the error-prone parts.</p></details>
-  <details><summary>Does my video get uploaded anywhere?</summary><p>The video stays on your computer. For cloud transcription, only a small compressed copy of the audio goes to Groq or Deepgram. Choose on-device transcription if you do not want that.</p></details>
-  <details><summary>Will it fill my disk?</summary><p>No. It never copies your source video. Temporary files go in one <code>work/</code> folder, and the agent offers to delete it after export. A few kilobytes of plan files stay, so you can re-make the edit later.</p></details>
-  <details><summary>Will it make things up?</summary><p>It is told not to, and the checker enforces part of it: a number on screen must be one you said, or come from a source you gave it. Images and clips come only from your <code>assets/</code> folder.</p></details>
-  <details><summary>What kind of videos does it suit?</summary><p>One person talking to the camera, filmed on a phone or webcam: reviews, recipes, tips, tutorials, workouts, stories. It is not made for multi-camera shoots or long YouTube edits.</p></details>
-  <details><summary>Can I change how it looks?</summary><p>Yes. Ask the agent for a different accent colour, or copy the repo and edit the looks and scene types yourself. <a href="https://github.com/barestack-labs/bare-video/blob/main/docs/customize.md">docs/customize.md</a> shows how.</p></details>
+  <h2 id="faq-h">Questions people ask</h2>
+  <details><summary>Is it really free?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><p>Bare Video itself is free and open source, and so are the tools it uses. Transcription with Groq is free. The only thing that can cost money is your AI agent, and there are free models that work too, which the <a href="tutorial.html#agent">tutorial</a> shows you how to set up.</p></details>
+  <details><summary>Does my video get uploaded somewhere?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><p>Your video stays on your computer. Only a small compressed copy of the audio goes to Groq for the transcript, and if you don't want that, you can transcribe on your own computer instead.</p></details>
+  <details><summary>Will it fill up my storage?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><p>No, it never copies your original video, everything temporary goes into one folder, and the agent offers to delete that folder once your final video is done. What stays behind is a few small text files, so you can still re-make the edit later.</p></details>
+  <details><summary>Will it make things up?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><p>It's told not to, and the checker actually blocks the common one, which is putting a number on screen that you never said. Images and clips only come from the assets folder you give it.</p></details>
+  <details><summary>What kind of videos is it for?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><p>Basically one person talking to the camera, filmed on a phone or a webcam, so reviews, recipes, tips, tutorials, workouts and stories. It's not made for multi-camera shoots or long YouTube edits.</p></details>
+  <details><summary>Can I change how it looks?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><p>Yes, you can just ask your agent for a different colour, or copy the repo and change the looks and scenes yourself. <a href="https://github.com/barestack-labs/bare-video/blob/main/docs/customize.md">docs/customize.md</a> shows how.</p></details>
+</section>
+
+<section class="custom wrap" aria-labelledby="custom-h">
+  <div>
+    <h2 id="custom-h">Want something like this made for you?</h2>
+    <p>If you want your own editing style, a template for your brand, or a whole setup like this built around how you work, just message me and we can figure it out together.</p>
+  </div>
+  <div class="contact">
+    <a class="btn" href="mailto:hello@paulablaza.com">hello@paulablaza.com</a>
+    <a class="link" href="https://bio.paulablaza.com">bio.paulablaza.com</a>
+  </div>
 </section>
 </main>
 
 <footer class="wrap">
-  <span>Bare Video, by Paul Martin Ablaza at <a href="https://github.com/barestack-labs">Barestack Labs</a>. MIT license.</span>
+  <span>Made by Paul Martin Ablaza at <a href="https://github.com/barestack-labs">Barestack Labs</a>. MIT license.</span>
   <a href="https://github.com/barestack-labs/bare-video">Source on GitHub</a>
 </footer>
 
-<script>
-  const btn = document.getElementById("copy");
-  btn.addEventListener("click", async () => {
-    const text = document.getElementById("prompt-text").textContent;
-    try { await navigator.clipboard.writeText(text); }
-    catch { const r = document.createRange(); r.selectNodeContents(document.getElementById("prompt-text")); getSelection().removeAllRanges(); getSelection().addRange(r); document.execCommand("copy"); }
-    btn.textContent = "Copied";
-    setTimeout(() => { btn.textContent = "Copy"; }, 1600);
-  });
-</script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script src="assets/site.js"></script>
 </body>
 </html>

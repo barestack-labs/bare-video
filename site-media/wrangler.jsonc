@@ -1,0 +1,6 @@
+{
+  "name": "bare-video-media",
+  "main": "worker.js",
+  "compatibility_date": "2026-11-10",
+  "assets": { "directory": "./files", "binding": "ASSETS", "run_worker_first": true }
+}

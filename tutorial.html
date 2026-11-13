@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bare Video tutorial</title>
+<meta name="description" content="A step-by-step beginner tutorial: install the tools, set up a free AI agent, and let it edit your first vertical video with Bare Video.">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://shorts.paulablaza.com/tutorial.html">
+<link rel="preload" href="template/fonts/Inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/vendor/lenis.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<header class="top wrap">
+  <a class="brand" href="/"><img src="assets/logo.svg" alt="" width="22" height="22"> Bare Video</a>
+  <nav>
+    <a href="/#examples">Examples</a>
+    <a href="tutorial.html" aria-current="page">Tutorial</a>
+    <a href="https://github.com/barestack-labs/bare-video">GitHub</a>
+  </nav>
+</header>
+
+<div class="doc wrap">
+  <nav class="toc" aria-label="On this page">
+    <b>On this page</b>
+    <ol>
+      <li><a href="#what">What you'll end up with</a></li>
+      <li><a href="#tools">Install the tools</a></li>
+      <li><a href="#agent">Pick your AI agent</a></li>
+      <li><a href="#folder">Make your videos folder</a></li>
+      <li><a href="#key">Get a free Groq key</a></li>
+      <li><a href="#record">Record your video</a></li>
+      <li><a href="#edit">Let the agent edit it</a></li>
+      <li><a href="#changes">Ask for changes</a></li>
+      <li><a href="#export">Export and clean up</a></li>
+      <li><a href="#stuck">If something goes wrong</a></li>
+    </ol>
+  </nav>
+
+  <article>
+    <h1>Edit your first video with Bare Video</h1>
+    <p>This is the whole thing from zero, so even if you've never opened a terminal before you can follow it. The setup takes around 20 minutes the first time, and after that every new video is basically just dropping a file into a folder and pasting one message.</p>
+
+    <h2 id="what">What you'll end up with</h2>
+    <p>You give the agent a video of you talking to the camera, and it gives you back a vertical 1080x1920 video with the boring parts cut out, captions that light up word by word, and simple graphics like titles, lists and numbers that show up when you say them. You watch a preview in your browser first, ask for changes in normal words, and only then does it export.</p>
+    <p>Everything runs on your own computer. The only thing that leaves it is a small audio file that gets sent for the transcript.</p>
+
+    <h2 id="tools">Install the tools</h2>
+    <p>You need three free tools. If you already have them, you can skip this part, and if you're not sure, your agent will check for you later anyway.</p>
+
+    <h3>On Windows</h3>
+    <p>Open <b>PowerShell</b> (press the Windows key, type PowerShell, press Enter) and paste these one at a time:</p>
+    <div class="cmd"><pre id="c-win">winget install OpenJS.NodeJS.LTS
+winget install Gyan.FFmpeg
+winget install Git.Git</pre><button type="button" class="copy" data-copy="c-win">Copy</button></div>
+    <p>Close PowerShell and open it again after installing, otherwise it won't find the new tools yet.</p>
+
+    <h3>On a Mac</h3>
+    <p>Open <b>Terminal</b>. If you don't have Homebrew yet, install it from <a href="https://brew.sh">brew.sh</a> first, then:</p>
+    <div class="cmd"><pre id="c-mac">brew install node ffmpeg git</pre><button type="button" class="copy" data-copy="c-mac">Copy</button></div>
+
+    <h3>Check that it worked</h3>
+    <div class="cmd"><pre id="c-check">node --version
+ffmpeg -version
+git --version</pre><button type="button" class="copy" data-copy="c-check">Copy</button></div>
+    <p>Node needs to say v22 or higher. If one of them says "not recognized" or "command not found", install that one again and reopen the terminal.</p>
+
+    <h2 id="agent">Pick your AI agent</h2>
+    <p>Bare Video works with any coding agent that can read files and run commands. Here's how they compare, and honestly you can start with the free one and switch later.</p>
+    <table class="small">
+      <tr><th>Agent</th><th>Cost</th><th>Notes</th></tr>
+      <tr><td>Claude Code</td><td>Paid plan</td><td>The smoothest, even the small Haiku model edits a video in a few minutes.</td></tr>
+      <tr><td>Codex</td><td>Paid plan</td><td>Works the same way, paste the prompt and go.</td></tr>
+      <tr><td>OpenCode</td><td>Free models available</td><td>The free route. Set it up below.</td></tr>
+    </table>
+
+    <h3>The free route with OpenCode</h3>
+    <p>Install OpenCode:</p>
+    <div class="cmd"><pre id="c-oc">npm install -g opencode-ai</pre><button type="button" class="copy" data-copy="c-oc">Copy</button></div>
+    <p>OpenCode comes with its own free models, but they have a daily limit that runs out fast on busy days. A steadier free option is Kilo Gateway, which has free models like Nemotron. Make a free account at <a href="https://kilo.ai">kilo.ai</a>, copy your API key, and put this in a file called <code>opencode.json</code> inside your videos folder (you'll make that folder in the next step):</p>
+    <div class="cmd"><pre id="c-kilo">{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "kilo": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Kilo Gateway",
+      "options": {
+        "baseURL": "https://api.kilo.ai/api/gateway",
+        "apiKey": "{env:KILOCODE_API_KEY}"
+      },
+      "models": {
+        "nvidia/nemotron-3-ultra-550b-a55b:free": { "name": "Nemotron 3 Ultra (free)" }
+      }
+    }
+  }
+}</pre><button type="button" class="copy" data-copy="c-kilo">Copy</button></div>
+    <p>Then save your Kilo key once so OpenCode can find it. On Windows, in PowerShell:</p>
+    <div class="cmd"><pre id="c-setx">setx KILOCODE_API_KEY "paste-your-kilo-key-here"</pre><button type="button" class="copy" data-copy="c-setx">Copy</button></div>
+    <p>On a Mac, run <code>echo 'export KILOCODE_API_KEY="paste-your-kilo-key-here"' &gt;&gt; ~/.zshrc</code>. Close and reopen the terminal either way, then start OpenCode in your videos folder and pick the Nemotron model with <code>/models</code>.</p>
+    <div class="tip"><p>Free models change all the time, so if one stops working, try another free one from the same list. Groq's free chat models don't work for this, because their free limit is smaller than what an agent sends in one go.</p></div>
+
+    <h2 id="folder">Make your videos folder</h2>
+    <p>This is the part that keeps things tidy and saves you storage. You make one folder for all your videos, install the editing tools in it once, and then every video gets its own small folder inside.</p>
+    <div class="cmd"><pre id="c-folder">mkdir videos
+cd videos
+git clone --depth 1 https://github.com/barestack-labs/bare-video
+npm install hyperframes
+npx hyperframes browser ensure</pre><button type="button" class="copy" data-copy="c-folder">Copy</button></div>
+    <p>That last part downloads HyperFrames and the browser it renders with, which is around 250 MB, but you only do it once for all your videos. Your folder ends up looking like this:</p>
+    <div class="cmd"><pre>videos/
+  bare-video/       the skill
+  node_modules/     HyperFrames, shared by every video
+  .env              your keys (next step)
+  car-review/       one folder per video
+    source.mp4
+    assets/         your own images or clips, if you have any</pre></div>
+    <div class="tip"><p>Don't put the videos folder inside Google Drive, OneDrive or Dropbox. They try to sync thousands of tiny files from node_modules and every temporary render, and it gets slow and messy really fast.</p></div>
+
+    <h2 id="key">Get a free Groq key</h2>
+    <p>Groq turns your speech into text with the exact time of every word, and the free tier is more than enough.</p>
+    <ol>
+      <li>Go to <a href="https://console.groq.com">console.groq.com</a> and sign up.</li>
+      <li>Open <b>API Keys</b> and create a key, then copy it.</li>
+      <li>In your <code>videos</code> folder, make a file called <code>.env</code> and put this in it, with your key after the equals sign:</li>
+    </ol>
+    <div class="cmd"><pre>GROQ_API_KEY=your-key-here</pre></div>
+    <p>Never paste your keys into the chat with the agent. If the agent needs a key and can't find it, it'll open the .env file for you so you can paste it there yourself.</p>
+
+    <h3>Want to skip Groq?</h3>
+    <p>You can transcribe on your own computer instead by telling the agent "use local transcription". It's slower and the first time needs a big download, so I'd only do that if you don't want any audio leaving your computer.</p>
+
+    <h2 id="record">Record your video</h2>
+    <p>Bare Video is made for one person talking to the camera, so a few small things make a big difference:</p>
+    <ul>
+      <li>Film vertical on your phone, or on a webcam, with your face around the upper middle of the frame.</li>
+      <li>Say the names of things clearly, especially brands and websites, because those are the words that get misheard most.</li>
+      <li>Don't worry about mistakes. If you mess up a sentence, just pause and say it again, and the agent keeps the last clean take.</li>
+      <li>Got photos or clips you want to show, like the car, the food or the app? Put them in an <code>assets</code> folder next to your video and mention them to the agent.</li>
+    </ul>
+    <p>Make a folder for the video inside <code>videos</code>, like <code>videos/car-review</code>, and put the video file in it.</p>
+
+    <h2 id="edit">Let the agent edit it</h2>
+    <p>Open your agent inside the <code>videos</code> folder. In Claude Code or OpenCode, that means opening the terminal in that folder and typing <code>claude</code> or <code>opencode</code>. Then paste this, with your video's path at the end:</p>
+    <div class="cmd"><pre id="c-prompt">Edit my video with Bare Video.
+1. If there is no bare-video folder here, run:
+   git clone --depth 1 https://github.com/barestack-labs/bare-video
+2. Read bare-video/SKILL.md and follow its steps in order.
+
+My video: car-review/source.mp4</pre><button type="button" class="copy" data-copy="c-prompt">Copy</button></div>
+    <p>The agent will ask you a few things in one message, which are what the video is about, how long you want it, which look you like (daylight, graphite, paper or loud) and what kind of captions. Answer however you want, even "you pick" is fine.</p>
+    <p>Then it works on its own. It transcribes, picks your best takes, cuts out the pauses, plans the titles and lists, checks its own plan, and builds a preview. In my tests on a 4-minute recording, Claude Haiku took about 3 minutes and the free Nemotron models took 6 to 9 minutes, and you can see what each of them made <a href="/#examples">on the homepage</a>.</p>
+
+    <h2 id="changes">Ask for changes</h2>
+    <p>When it's done it gives you a preview link. Open it, watch it, and just tell the agent what you think, the same way you'd tell a friend who's editing for you. For example:</p>
+    <ul>
+      <li>"Cut the part where I talk about the price, it's too long."</li>
+      <li>"Make the first title bigger news, like 'This car shocked me'."</li>
+      <li>"Use my brand color #e63946 instead of the blue."</li>
+      <li>"Show the interior photo when I say 'look at this'."</li>
+      <li>"Captions are too much, make them calmer."</li>
+    </ul>
+    <p>It only changes what you asked for, so you can go back and forth as many times as you want before anything gets exported.</p>
+
+    <h2 id="export">Export and clean up</h2>
+    <p>When you're happy, tell it to export. It renders the video, sets the loudness so it doesn't sound quiet on TikTok or Reels, checks the file, and puts <code>final.mp4</code> in your video's folder. On a normal laptop a one-minute video takes a few minutes to render.</p>
+    <p>Then it asks if you want to delete the temporary files. Say yes unless you're still planning to edit, because those can be a few hundred MB. It keeps your original video, your final video, and a few tiny text files with the plan, so you can still re-make the edit later without starting over.</p>
+
+    <h2 id="stuck">If something goes wrong</h2>
+    <p>Most of the time the agent fixes it by itself, because every script says exactly what went wrong and how to fix it. If you're stuck, these are the usual ones:</p>
+    <ul>
+      <li><b>"ffmpeg could not start" or "node is not recognized"</b> means a tool isn't installed or the terminal needs to be reopened.</li>
+      <li><b>"no transcription key found"</b> means the .env file is missing or in the wrong folder. It goes in <code>videos</code>, not inside bare-video.</li>
+      <li><b>The model stops halfway or says it hit a limit</b> means the free model ran out for the day, so switch to another free model or try again later.</li>
+      <li><b>Text covers your face</b>, just tell the agent "move the graphics so they don't cover my face".</li>
+    </ul>
+    <p>There's a longer list in <a href="https://github.com/barestack-labs/bare-video/blob/main/docs/troubleshooting.md">the troubleshooting doc</a>. And if you want your own editing style or a setup like this built for you, message me at <a href="mailto:hello@paulablaza.com">hello@paulablaza.com</a>.</p>
+  </article>
+</div>
+
+<footer class="wrap">
+  <span>Made by Paul Martin Ablaza at <a href="https://github.com/barestack-labs">Barestack Labs</a>. MIT license.</span>
+  <a href="https://github.com/barestack-labs/bare-video">Source on GitHub</a>
+</footer>
+
+<script src="assets/vendor/lenis.min.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
