@@ -20,6 +20,7 @@
   let lenis = null;
   if (!reduce && window.Lenis) {
     lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    window.lenis = lenis;
     const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
     requestAnimationFrame(raf);
   }
