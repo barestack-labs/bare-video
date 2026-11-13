@@ -29,7 +29,7 @@
 <section class="hero wrap">
   <div class="hero-text">
     <h1>Your AI agent can edit your videos, even the cheap ones.</h1>
-    <p class="lede">Bare Video is a free skill you give to Claude Code, OpenCode, Codex or any agent that can run commands, and it cuts your talking-head video, adds captions that follow every word, and puts simple graphics on top so it's ready for TikTok, Reels and Shorts.</p>
+    <p class="lede">Bare Video is a free skill you give to Kilo CLI, Claude Code, Codex or any agent that can run commands, and it cuts your talking-head video, adds captions that follow every word, and puts simple graphics on top so it's ready for TikTok, Reels and Shorts.</p>
 
     <div class="prompt">
       <div class="prompt-head">
@@ -48,7 +48,7 @@ My video: </pre>
 
   <figure class="hero-video">
     <div class="player">
-      <video data-src="https://bare-video-media.ablazapaulmartin.workers.dev/haiku-daylight.mp4" poster="assets/frames/haiku-daylight.jpg" muted loop playsinline preload="none" aria-label="A short edited by Claude Haiku with the daylight look"></video>
+      <video data-src="https://media.paulablaza.com/haiku-daylight.mp4" poster="assets/frames/haiku-daylight.jpg" muted loop playsinline preload="none" aria-label="A short edited by Claude Haiku with the daylight look"></video>
       <button type="button" class="sound" aria-label="Turn sound on" aria-pressed="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="on" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M17 9l5 6M22 9l-5 6"/></svg>
       </button>
@@ -62,7 +62,7 @@ My video: </pre>
   <p class="section-lede">I gave every model the exact same 4-minute recording and the exact same prompt from above, and this is what each one made on its own. The time and tokens are what each agent used to plan and build the edit, as its own tool reported them, and the render itself takes a couple more minutes on a normal laptop. The two Nemotron models ran for free.</p>
   <div class="cards">
     <figure class="card">
-      <div class="player"><video data-src="https://bare-video-media.ablazapaulmartin.workers.dev/haiku-daylight.mp4" poster="assets/frames/haiku-daylight.jpg" muted loop playsinline preload="none" aria-label="Edit made by Claude Haiku 5.5"></video><button type="button" class="sound" aria-label="Turn sound on" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="on" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M17 9l5 6M22 9l-5 6"/></svg></button></div>
+      <div class="player"><video data-src="https://media.paulablaza.com/haiku-daylight.mp4" poster="assets/frames/haiku-daylight.jpg" muted loop playsinline preload="none" aria-label="Edit made by Claude Haiku 5.5"></video><button type="button" class="sound" aria-label="Turn sound on" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="on" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M17 9l5 6M22 9l-5 6"/></svg></button></div>
       <figcaption class="meta">
         <div class="model">Claude Haiku 5.5</div>
         <div class="via">Claude Code</div>
@@ -71,19 +71,19 @@ My video: </pre>
       </figcaption>
     </figure>
     <figure class="card">
-      <div class="player"><video data-src="https://bare-video-media.ablazapaulmartin.workers.dev/nemotron-ultra.mp4" poster="assets/frames/nemotron-ultra.jpg" muted loop playsinline preload="none" aria-label="Edit made by Nemotron 3 Ultra"></video><button type="button" class="sound" aria-label="Turn sound on" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="on" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M17 9l5 6M22 9l-5 6"/></svg></button></div>
+      <div class="player"><video data-src="https://media.paulablaza.com/nemotron-ultra.mp4" poster="assets/frames/nemotron-ultra.jpg" muted loop playsinline preload="none" aria-label="Edit made by Nemotron 3 Ultra"></video><button type="button" class="sound" aria-label="Turn sound on" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="on" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M17 9l5 6M22 9l-5 6"/></svg></button></div>
       <figcaption class="meta">
         <div class="model">Nemotron 3 Ultra<span class="tag">Free</span></div>
-        <div class="via">OpenCode + Kilo Gateway</div>
+        <div class="via">OpenCode + Kilo free models</div>
         <dl><dt>Agent time</dt><dd>5.9 min</dd><dt>Tokens</dt><dd>about 102k, plus 728k cached</dd><dt>Tool calls</dt><dd>30</dd><dt>Video</dt><dd>59 s</dd></dl>
         <p class="note-small">It spelled the website wrong on screen, which I fixed by hand. Everything else is its own.</p>
       </figcaption>
     </figure>
     <figure class="card">
-      <div class="player"><video data-src="https://bare-video-media.ablazapaulmartin.workers.dev/nemotron-vl.mp4" poster="assets/frames/nemotron-vl.jpg" muted loop playsinline preload="none" aria-label="Edit made by Nemotron 3.5 Super VL"></video><button type="button" class="sound" aria-label="Turn sound on" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="on" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M17 9l5 6M22 9l-5 6"/></svg></button></div>
+      <div class="player"><video data-src="https://media.paulablaza.com/nemotron-vl.mp4" poster="assets/frames/nemotron-vl.jpg" muted loop playsinline preload="none" aria-label="Edit made by Nemotron 3.5 Super VL"></video><button type="button" class="sound" aria-label="Turn sound on" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="on" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M17 9l5 6M22 9l-5 6"/></svg></button></div>
       <figcaption class="meta">
         <div class="model">Nemotron 3.5 Super VL<span class="tag">Free</span></div>
-        <div class="via">OpenCode + Kilo Gateway</div>
+        <div class="via">OpenCode + Kilo free models</div>
         <dl><dt>Agent time</dt><dd>8.5 min</dd><dt>Tokens</dt><dd>about 227k, plus 1.3M cached</dd><dt>Tool calls</dt><dd>35</dd><dt>Video</dt><dd>44 s</dd></dl>
         <p class="note-small">Looked at its own snapshots before finishing.</p>
       </figcaption>
@@ -95,10 +95,10 @@ My video: </pre>
   <h2 id="looks-h">Four looks to start from</h2>
   <p class="section-lede">These are rendered straight from the template, so what you see here is what you get. You can ask your agent to change the colour to match your brand, or make a whole new look if you want.</p>
   <div class="frames">
-    <figure><div class="player"><video data-src="https://bare-video-media.ablazapaulmartin.workers.dev/look-daylight.mp4" poster="assets/frames/daylight.jpg" muted loop playsinline preload="none"></video></div><figcaption><b>Daylight</b> Tutorials, apps, products</figcaption></figure>
-    <figure><div class="player"><video data-src="https://bare-video-media.ablazapaulmartin.workers.dev/look-graphite.mp4" poster="assets/frames/graphite.jpg" muted loop playsinline preload="none"></video></div><figcaption><b>Graphite</b> Cars, tech, gear, reviews</figcaption></figure>
-    <figure><div class="player"><video data-src="https://bare-video-media.ablazapaulmartin.workers.dev/look-paper.mp4" poster="assets/frames/paper.jpg" muted loop playsinline preload="none"></video></div><figcaption><b>Paper</b> Food, travel, stories</figcaption></figure>
-    <figure><div class="player"><video data-src="https://bare-video-media.ablazapaulmartin.workers.dev/look-loud.mp4" poster="assets/frames/loud.jpg" muted loop playsinline preload="none"></video></div><figcaption><b>Loud</b> Fitness, sports, lists</figcaption></figure>
+    <figure><div class="player"><video data-src="https://media.paulablaza.com/look-daylight.mp4" poster="assets/frames/daylight.jpg" muted loop playsinline preload="none"></video></div><figcaption><b>Daylight</b> Tutorials, apps, products</figcaption></figure>
+    <figure><div class="player"><video data-src="https://media.paulablaza.com/look-graphite.mp4" poster="assets/frames/graphite.jpg" muted loop playsinline preload="none"></video></div><figcaption><b>Graphite</b> Cars, tech, gear, reviews</figcaption></figure>
+    <figure><div class="player"><video data-src="https://media.paulablaza.com/look-paper.mp4" poster="assets/frames/paper.jpg" muted loop playsinline preload="none"></video></div><figcaption><b>Paper</b> Food, travel, stories</figcaption></figure>
+    <figure><div class="player"><video data-src="https://media.paulablaza.com/look-loud.mp4" poster="assets/frames/loud.jpg" muted loop playsinline preload="none"></video></div><figcaption><b>Loud</b> Fitness, sports, lists</figcaption></figure>
   </div>
 </section>
 
@@ -116,7 +116,7 @@ My video: </pre>
 
 <section class="faq wrap" aria-labelledby="faq-h">
   <h2 id="faq-h">Questions people ask</h2>
-  <details><summary>Is it really free?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><p>Bare Video itself is free and open source, and so are the tools it uses. Transcription with Groq is free. The only thing that can cost money is your AI agent, and there are free models that work too, which the <a href="tutorial.html#agent">tutorial</a> shows you how to set up.</p></details>
+  <details><summary>Is it really free?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><p>Bare Video itself is free and open source, and so are the tools it uses. Transcription with Groq is free. The only thing that can cost money is your AI agent, but Kilo CLI has free models that work with no account at all, and the <a href="tutorial.html#kilo">tutorial</a> shows you how.</p></details>
   <details><summary>Does my video get uploaded somewhere?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><p>Your video stays on your computer. Only a small compressed copy of the audio goes to Groq for the transcript, and if you don't want that, you can transcribe on your own computer instead.</p></details>
   <details><summary>Will it fill up my storage?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><p>No, it never copies your original video, everything temporary goes into one folder, and the agent offers to delete that folder once your final video is done. What stays behind is a few small text files, so you can still re-make the edit later.</p></details>
   <details><summary>Will it make things up?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><p>It's told not to, and the checker actually blocks the common one, which is putting a number on screen that you never said. Images and clips only come from the assets folder you give it.</p></details>
@@ -131,7 +131,7 @@ My video: </pre>
   </div>
   <div class="contact">
     <a class="btn" href="mailto:hello@paulablaza.com">hello@paulablaza.com</a>
-    <a class="link" href="https://bio.paulablaza.com">bio.paulablaza.com</a>
+    <a class="link" href="https://paulablaza.com">paulablaza.com</a>
   </div>
 </section>
 </main>

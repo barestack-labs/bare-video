@@ -6,7 +6,7 @@ Website: https://shorts.paulablaza.com. New to this? Follow the [beginner tutori
 
 ## Use it
 
-Paste this into Claude Code, Codex, OpenCode, Cursor or any agent that can run commands:
+Paste this into Kilo CLI (free models, no account), Claude Code, Codex or any agent that can run commands:
 
 ```text
 Edit my video with Bare Video.
@@ -40,8 +40,8 @@ Same 4-minute recording, same prompt, each agent working on its own (2026-11-13)
 | Model | Through | Cost | Agent time | Tokens | Result |
 | --- | --- | --- | --- | --- | --- |
 | Claude Haiku 5.5 | Claude Code | paid plan | 3.2 min | about 91k | 52 s edit, picked the daylight look itself |
-| Nemotron 3 Ultra | OpenCode + Kilo Gateway | free | 5.9 min | about 102k plus 728k cached | 59 s edit, misspelled one web address |
-| Nemotron 3.5 Super VL | OpenCode + Kilo Gateway | free | 8.5 min | about 227k plus 1.3M cached | 44 s edit, checked its own snapshots |
+| Nemotron 3 Ultra | OpenCode + Kilo free models | free | 5.9 min | about 102k plus 728k cached | 59 s edit, misspelled one web address |
+| Nemotron 3.5 Super VL | OpenCode + Kilo free models | free | 8.5 min | about 227k plus 1.3M cached | 44 s edit, checked its own snapshots |
 
 All three videos play on the website. Groq's free chat models could not run the agent, because their free tier allows fewer tokens per minute than a single agent request.
 
