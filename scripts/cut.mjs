@@ -96,7 +96,7 @@ fs.mkdirSync("work", { recursive: true });
 fs.writeFileSync("work/cut.filter", g);
 console.log(`Cutting ${segs.length} pieces from ${info.duration.toFixed(1)}s of footage...`);
 const graphArgs = g.length < 24000 ? ["-filter_complex", g] : ["-/filter_complex", "work/cut.filter"];
-ffmpeg(["-i", video, ...graphArgs, "-map", "[v]", "-map", "[a]", "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
+ffmpeg(["-i", video, ...graphArgs, "-map", "[v]", "-map", "[a]", "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-g", "30",
   "-c:a", "aac", "-b:a", "192k", "-ac", "2", "-movflags", "+faststart", "work/cut.mp4"], "cutting");
 fs.rmSync("work/cut.filter", { force: true });
 
