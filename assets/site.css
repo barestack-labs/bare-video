@@ -59,14 +59,11 @@ p { text-wrap: pretty; }
 .btn.ghost:hover { color: var(--ink); background: color-mix(in srgb, var(--bg-2) 70%, var(--ink) 8%); }
 
 /* hero: text left, the prompt (the actual product) right */
-.hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 64px; align-items: center; padding: 80px 0 72px; }
-h1 { font-size: clamp(36px, 4.8vw, 56px); line-height: 1.04; letter-spacing: -.035em; font-weight: 600; }
-.lede { font-size: 18px; color: var(--ink-2); max-width: 32em; margin: 20px 0 28px; }
+.hero { padding: 104px 0 72px; }
+h1 { max-width: 12.5em; font-size: clamp(38px, 5.6vw, 64px); line-height: 1.04; letter-spacing: -.035em; font-weight: 600; }
+.lede { font-size: 19px; color: var(--ink-2); max-width: 36em; margin: 24px 0 0; }
 .cta { display: flex; gap: 10px; flex-wrap: wrap; }
-.works { font-size: 14px; color: var(--muted); margin: 22px 0 0; max-width: 30em; }
-.hero-prompt .small { margin: 14px 4px 0; }
-.hero-prompt .prompt { transform: rotate(-1deg); transition: transform .5s var(--ease-out); }
-.hero-prompt:hover .prompt { transform: none; }
+.works { font-size: 15px; color: var(--muted); margin: 18px 0 0; max-width: 40em; }
 
 /* the word "free" lights up like a spoken word in a Bare Video caption */
 mark.spoken { color: inherit; background: none; position: relative; white-space: nowrap; padding: 0 .08em; }
@@ -125,13 +122,10 @@ h1 { position: relative; z-index: 0; }
 /* sections */
 section { padding: 88px 0; }
 section h2 { font-size: clamp(26px, 3vw, 34px); letter-spacing: -.028em; line-height: 1.12; font-weight: 600; }
-.head-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: end; margin-bottom: 36px; }
-.head-row p { color: var(--muted); margin: 0; }
+.section-lede { color: var(--ink-2); max-width: 40em; margin: 14px 0 36px; font-size: 17px; }
+.paste .prompt { max-width: 760px; }
 
 
-.start { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 48px; align-items: center; }
-.start-text p { color: var(--ink-2); margin: 14px 0 0; }
-.start-text .small { color: var(--muted); }
 .prompt { background: var(--code); color: var(--code-ink); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); }
 .prompt-head { display: flex; justify-content: space-between; align-items: center; padding: 9px 9px 9px 16px; font: 500 12.5px "JB Mono", monospace; color: var(--code-muted); background: rgba(255,255,255,.03); }
 .prompt pre { margin: 0; padding: 18px 20px 22px; font: 500 14px/1.75 "JB Mono", ui-monospace, monospace; white-space: pre-wrap; word-break: break-word; }
@@ -146,10 +140,6 @@ section h2 { font-size: clamp(26px, 3vw, 34px); letter-spacing: -.028em; line-he
 .frames figcaption { font-size: 13.5px; color: var(--muted); margin-top: 12px; }
 .frames figcaption b { display: block; color: var(--ink); font-size: 15px; font-weight: 600; }
 
-.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.tile { background: var(--bg-2); border-radius: 16px; padding: 26px; }
-.tile h3 { font-size: 17px; font-weight: 600; letter-spacing: -.01em; }
-.tile p { color: var(--muted); margin: 8px 0 0; font-size: 15px; }
 
 .faq h2 { margin-bottom: 20px; }
 .faq-list { max-width: 760px; }
@@ -160,9 +150,9 @@ section h2 { font-size: clamp(26px, 3vw, 34px); letter-spacing: -.028em; line-he
 .faq details[open] summary svg { transform: rotate(180deg); }
 .faq details p { color: var(--muted); margin: -4px 0 20px; max-width: 42em; }
 
-.custom-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px; align-items: center; background: var(--bg-2); border-radius: 22px; padding: 44px; }
+.custom-card { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; align-items: center; background: var(--bg-2); border-radius: 22px; padding: 44px; }
 .custom-card p { color: var(--ink-2); margin: 12px 0 0; max-width: 34em; }
-.contact { display: flex; flex-direction: column; gap: 10px; }
+.contact { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
 
 footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 28px 0 48px; font-size: 13.5px; color: var(--muted); }
 
@@ -210,14 +200,12 @@ footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wr
 .folder-anim .done { color: #7ddc9a; }
 
 @media (max-width: 900px) {
-  .hero { grid-template-columns: minmax(0, 1fr); gap: 40px; padding: 48px 0 56px; }
-  .hero-prompt .prompt { transform: none; }
+  .hero { padding: 56px 0 48px; }
   .inspector { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .models { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .stage { max-width: 300px; width: 100%; margin: 0 auto; }
-  .start, .head-row { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .frames { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .grid3, .paths { grid-template-columns: minmax(0, 1fr); }
+  .paths { grid-template-columns: minmax(0, 1fr); }
   .custom-card { grid-template-columns: minmax(0, 1fr); padding: 30px; }
   .contact { flex-direction: row; flex-wrap: wrap; }
   .doc { grid-template-columns: minmax(0, 1fr); gap: 20px; padding-top: 24px; }

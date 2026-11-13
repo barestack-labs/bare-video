@@ -13,7 +13,7 @@
 <script>try{if(localStorage.getItem("bv-theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
 <link rel="preload" href="assets/fonts/InstrumentSans-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/vendor/lenis.css">
-<link rel="stylesheet" href="assets/site.css?v=r4">
+<link rel="stylesheet" href="assets/site.css?v=r5">
 </head>
 <body>
 
@@ -34,34 +34,14 @@
 
 <main>
 <section class="hero wrap">
-  <div class="hero-text">
-    <h1 class="rise">Your AI agent can edit your videos. Even the <mark class="spoken">free</mark> ones.</h1>
-    <p class="lede rise">Bare Video is a free skill you hand to your AI agent, and it cuts your talking-head video, adds captions that follow every word, and puts clean graphics on top for TikTok, Reels and Shorts.</p>
-    <div class="cta rise">
-      <a class="btn primary" href="#examples">See what it made</a>
-      <a class="btn ghost" href="tutorial.html">I'm new to this</a>
-    </div>
-    <p class="works rise">Works with Kilo CLI, Claude Code, Codex, OpenCode, Hermes Agent and any agent that can run commands.</p>
-  </div>
-  <div class="hero-prompt rise" id="start">
-    <div class="prompt">
-      <div class="prompt-head"><span>Paste this into your agent</span><button type="button" class="copy" data-copy="prompt-text">Copy</button></div>
-<pre id="prompt-text">Edit my video with Bare Video.
-1. If there is no bare-video folder here, run:
-   git clone --depth 1 https://github.com/barestack-labs/bare-video
-2. Read bare-video/SKILL.md and follow its steps in order.
-
-My video: </pre>
-    </div>
-    <p class="small">Add the path to your video at the end, or let the agent ask. It asks how long you want it, which look and what captions, then gets to work. Your video stays on your computer.</p>
-  </div>
+  <h1 class="rise">Your AI agent can edit your videos. Even the <mark class="spoken">free</mark> ones.</h1>
+  <p class="lede rise">So basically, Bare Video is a free skill you give to your AI agent, and it cuts your talking-head video, adds captions that follow every word, and puts simple graphics on top so it's ready for TikTok, Reels and Shorts.</p>
+  <p class="works rise">It works with Kilo CLI, Claude Code, Codex, OpenCode, Hermes Agent, or honestly any agent that can run commands. New to this? Start with the <a href="tutorial.html">tutorial</a>.</p>
 </section>
 
 <section class="inspect wrap reveal" id="examples" aria-labelledby="ex-h">
-  <div class="head-row">
-    <h2 id="ex-h">One recording, three editors</h2>
-    <p>I gave three models the same 4-minute video and the same prompt. Each one chose its own cuts and its own scenes. Pick a model, then click any scene to jump to it.</p>
-  </div>
+  <h2 id="ex-h">We let cheaper models edit this one</h2>
+  <p class="section-lede">I gave the same 4-minute video and the same prompt to three models, and two of them are completely free. This is what each one made on its own, so just pick a model and click any scene to jump to it.</p>
   <div class="inspector">
     <div class="models" role="radiogroup" aria-label="Pick a model"></div>
     <div class="stage">
@@ -81,11 +61,23 @@ My video: </pre>
   <p class="caption">Times and tokens are what each agent reported. The Nemotron models ran for free through Kilo.</p>
 </section>
 
-<section class="looks wrap reveal" aria-labelledby="looks-h">
-  <div class="head-row">
-    <h2 id="looks-h">Four looks to start from</h2>
-    <p>Rendered straight from the template. Ask your agent for your brand colour, or a whole new look.</p>
+<section class="paste wrap reveal" id="start" aria-labelledby="start-h">
+  <h2 id="start-h">Paste this into your agent</h2>
+  <p class="section-lede">Open your agent in the folder where your video is, paste this, and put your video's path at the end. It asks you how long you want it, which template and what kind of captions, and then it just gets to work. Your video stays on your computer the whole time.</p>
+  <div class="prompt">
+    <div class="prompt-head"><span>prompt</span><button type="button" class="copy" data-copy="prompt-text">Copy</button></div>
+<pre id="prompt-text">Edit my video with Bare Video.
+1. If there is no bare-video folder here, run:
+   git clone --depth 1 https://github.com/barestack-labs/bare-video
+2. Read bare-video/SKILL.md and follow its steps in order.
+
+My video: </pre>
   </div>
+</section>
+
+<section class="looks wrap reveal" aria-labelledby="looks-h">
+  <h2 id="looks-h">We've got four templates</h2>
+  <p class="section-lede">Your agent asks which one you want, or you can just tell it your own colours.</p>
   <div class="frames">
     <figure><div class="player"><video data-src="https://media.paulablaza.com/look-daylight-3.mp4" poster="assets/frames/daylight.jpg" muted loop playsinline preload="none"></video></div><figcaption><b>Daylight</b>Tutorials, apps, products</figcaption></figure>
     <figure><div class="player"><video data-src="https://media.paulablaza.com/look-graphite-3.mp4" poster="assets/frames/graphite.jpg" muted loop playsinline preload="none"></video></div><figcaption><b>Graphite</b>Cars, tech, gear</figcaption></figure>
@@ -94,16 +86,9 @@ My video: </pre>
   </div>
 </section>
 
-<section class="why wrap reveal" aria-labelledby="why-h">
-  <div class="head-row">
-    <h2 id="why-h">Why a free model can do this</h2>
-    <p>Most AI editing falls apart because the model has to write all the timing and layout code itself. Here the agent only makes the calls, what to keep and what to show, and small scripts do the rest.</p>
-  </div>
-  <div class="grid3">
-    <div class="tile"><h3>It keeps your best takes</h3><p>Your speech becomes text with the time of every word. The agent picks the sentences worth keeping, and pauses and restarts get cut automatically.</p></div>
-    <div class="tile"><h3>It can't make things up</h3><p>A checker blocks numbers you never said, long text, missing files and scenes that flash by, so even a small model ends up with a clean plan.</p></div>
-    <div class="tile"><h3>It cleans up after itself</h3><p>It never copies your video, keeps temporary files in one folder, and asks before deleting them once your final video is out.</p></div>
-  </div>
+<section class="how wrap reveal" aria-labelledby="how-h">
+  <h2 id="how-h">How it works</h2>
+  <p class="section-lede">Claude Opus 5.5 built the templates, so your agent doesn't have to design anything. It just picks which parts of your video to keep, chooses a template for each moment and fills in the words, and small scripts handle the cutting, the captions and the timing. It doesn't make up its own graphics, but if you want something new, you can always just ask it.</p>
 </section>
 
 <section class="faq wrap reveal" aria-labelledby="faq-h">
@@ -137,6 +122,6 @@ My video: </pre>
 </footer>
 
 <script src="assets/vendor/lenis.min.js"></script>
-<script src="assets/site.js?v=r4"></script>
+<script src="assets/site.js?v=r5"></script>
 </body>
 </html>
