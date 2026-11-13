@@ -228,3 +228,10 @@ footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wr
   .js .reveal, .folder-anim .row { opacity: 1 !important; transform: none !important; }
 }
 .custom-card .btn.ghost { background: var(--card); box-shadow: 0 0 0 1px var(--line); }
+
+/* centred single column */
+.hero, .inspect > h2, .inspect > .section-lede, .paste, .looks > h2, .looks > .section-lede, .how, .faq > h2, .custom-card, .inspect .caption { text-align: center; }
+.hero h1, .hero .lede, .hero .works, .section-lede, .paste .prompt, .faq-list, .custom-card p { margin-left: auto; margin-right: auto; }
+.paste .prompt, .faq-list { text-align: left; }
+.custom-card .contact { justify-content: center; }
+.frames figcaption { text-align: center; }
