@@ -22,3 +22,5 @@ This file is for agents changing the repo itself. If you were asked to edit a vi
 1. Run the full flow on a real talking-head clip: transcribe, cut, write an edit.json that uses every scene type, check, build, `npx hyperframes lint work`, `npx hyperframes snapshot work --at ...`, and look at the frames.
 2. For template changes, render a short range (`npx hyperframes render work --start 0 --end 8`) and confirm sound and A/V sync.
 3. For website changes, serve the folder (`python -m http.server`) and check 1440px and 390px widths for overflow.
+
+- After changing `assets/site.css` or `assets/site.js`, bump the `?v=` tag on their links in `index.html` and `tutorial.html` (Cloudflare lets browsers cache them for 4 hours).
