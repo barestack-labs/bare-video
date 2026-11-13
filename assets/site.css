@@ -235,3 +235,6 @@ footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wr
 .paste .prompt, .faq-list { text-align: left; }
 .custom-card .contact { justify-content: center; }
 .frames figcaption { text-align: center; }
+.hero .cta { justify-content: center; margin-top: 30px; }
+.hero .works { font-size: 13.5px; margin-top: 16px; }
+.hero .lede { max-width: 30em; }
