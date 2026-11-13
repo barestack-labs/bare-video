@@ -55,46 +55,46 @@
     });
   });
 
-  /* the demo window: each tab replays what that model actually did, next to the video it made */
+  /* the edit inspector: pick a model, its video plays, its scenes are listed and clickable */
   const M = "https://media.paulablaza.com/";
-  const DEMOS = [
-    { path: "videos/demo · claude code · haiku", video: "haiku-daylight.mp4", poster: "assets/frames/haiku-daylight.jpg",
-      steps: ["Read <code>bare-video/SKILL.md</code>", "Transcribed with Groq, 628 words", "Kept the best takes, cut 4:22 down to 52 s", "Planned 10 scenes in the daylight look", "Check passed, built the preview", "Looked at its own snapshots, nothing cut off"],
-      stats: [["Agent time", "3.2 min"], ["Tokens", "~91k"], ["Tool calls", "19"], ["Cost", "paid plan"]] },
-    { path: "videos/demo · kilo free · nemotron 3 ultra", video: "nemotron-ultra.mp4", poster: "assets/frames/nemotron-ultra.jpg",
-      steps: ["Read <code>bare-video/SKILL.md</code>", "Transcribed with Groq, 605 words", "Tried three cuts until it fit, ended at 59 s", "Planned 11 scenes, fixed every checker warning", "Check passed, built the preview", "One miss: spelled the website wrong, fixed by hand"],
-      stats: [["Agent time", "5.9 min"], ["Tokens", "~102k"], ["Tool calls", "30"], ["Cost", "free"]] },
-    { path: "videos/demo · kilo free · nemotron 3.5 super vl", video: "nemotron-vl.mp4", poster: "assets/frames/nemotron-vl.jpg",
-      steps: ["Read <code>bare-video/SKILL.md</code>", "Transcribed with Groq, 607 words", "Switched to word ranges to avoid half sentences, 44 s", "Fixed a misheard name in the captions", "Check passed, built the preview", "Looked at its own snapshots before finishing"],
-      stats: [["Agent time", "8.5 min"], ["Tokens", "~227k"], ["Tool calls", "35"], ["Cost", "free"]] },
+  const EDITS = [
+    { name: "Claude Haiku 5.5", via: "Claude Code", free: false, time: "3.2 min", tokens: "~91k tokens", video: "haiku-daylight.mp4", poster: "assets/frames/haiku-daylight.jpg", len: 52.2,
+      scenes: [[0, "Title", "A cheap AI model edits your video"], [6.6, "Talking", "Speaker on screen"], [13.4, "Label", "Bare Video"], [16.6, "Punch-in", "Zooms in on the point"], [20.3, "Steps", "Create a folder, put the video in, open it"], [25.4, "Talking", "Speaker on screen"], [50.4, "End card", "Made with Bare Video"]] },
+    { name: "Nemotron 3 Ultra", via: "OpenCode + Kilo", free: true, time: "5.9 min", tokens: "~102k tokens", video: "nemotron-ultra.mp4", poster: "assets/frames/nemotron-ultra.jpg", len: 58.8,
+      scenes: [[0, "Title", "Edited by a cheaper model"], [5.1, "Talking", "Speaker on screen"], [11.9, "Label", "Bare Video"], [20, "Label", "Cheap models work"], [27.2, "List", "Copy repo, ask agent, handle the app"], [33, "Punch-in", "Zooms in on the point"], [37.9, "Label", "Prompt builder"], [43.4, "Steps", "Create folder, put video in, open, let it work"], [53.7, "End card", "Try Bare Video"]] },
+    { name: "Nemotron 3.5 Super VL", via: "OpenCode + Kilo", free: true, time: "8.5 min", tokens: "~227k tokens", video: "nemotron-vl.mp4", poster: "assets/frames/nemotron-vl.jpg", len: 43.9,
+      scenes: [[0, "Title", "Edited by a cheap model"], [5, "Talking", "Speaker on screen"], [12, "Label", "Bare Video"], [21, "Stat", "3 transcription options"], [25, "Talking", "Speaker on screen"], [32, "Label", "Captions"], [40, "End card", "Try Bare Video"]] },
   ];
-  const log = $("#demo-log"), stats = $("#demo-stats"), dv = $("#demo-video"), path = $("#demo-path");
-  let timers = [];
-  function showDemo(i) {
-    const d = DEMOS[i];
-    timers.forEach(clearTimeout); timers = [];
-    path.textContent = d.path;
-    log.innerHTML = d.steps.map(s => `<li><span>${s}</span></li>`).join("");
-    stats.innerHTML = d.stats.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
-    stats.classList.remove("in");
-    const lis = [...log.children];
-    lis.forEach((li, k) => timers.push(setTimeout(() => li.classList.add("in"), reduce ? 0 : 120 + k * 260)));
-    timers.push(setTimeout(() => stats.classList.add("in"), reduce ? 0 : 160 + lis.length * 260));
-    const src = M + d.video;
-    if (dv.dataset.src !== src) {
-      dv.style.opacity = "0";
-      dv.dataset.src = src; dv.poster = d.poster;
-      if (dv.getAttribute("src")) { dv.src = src; dv.load(); dv.play().catch(() => {}); }
-      timers.push(setTimeout(() => { dv.style.opacity = "1"; }, 120));
+  const models = $(".models"), list = $("#ins-scenes"), iv = $("#ins-video"), track = $(".timeline .track"), head = $(".timeline .head");
+  let cur = 0;
+  const fmt = t => `0:${String(Math.floor(t)).padStart(2, "0")}`;
+  function pick(i) {
+    cur = i;
+    const e = EDITS[i];
+    [...models.children].forEach((b, k) => b.setAttribute("aria-checked", String(k === i)));
+    list.innerHTML = e.scenes.map(([t, kind, text], k) => `<li><button type="button" data-t="${t}"><span class="t">${fmt(t)}</span><span><b>${kind}</b>${text}</span></button></li>`).join("");
+    track.innerHTML = e.scenes.map(([t, kind], k) => { const end = (e.scenes[k + 1] || [e.len])[0]; return `<button type="button" class="seg k-${kind.split(" ")[0].toLowerCase().replace("-", "")}" data-t="${t}" style="left:${t / e.len * 100}%;width:${(end - t) / e.len * 100}%" title="${kind} at ${fmt(t)}"></button>`; }).join("");
+    const src = M + e.video;
+    if (iv.dataset.src !== src) {
+      iv.dataset.src = src; iv.poster = e.poster;
+      if (iv.getAttribute("src")) { iv.style.opacity = "0"; iv.src = src; iv.load(); iv.play().catch(() => {}); setTimeout(() => { iv.style.opacity = "1"; }, 150); }
     }
   }
-  if (log) {
-    const tabs = $$('[role="tab"]');
-    tabs.forEach(t => t.addEventListener("click", () => {
-      tabs.forEach(o => o.setAttribute("aria-selected", String(o === t)));
-      showDemo(+t.dataset.tab);
-    }));
-    showDemo(0);
+  if (models) {
+    models.innerHTML = EDITS.map((e, i) => `<button type="button" role="radio" aria-checked="${i === 0}" data-i="${i}"><span class="mname">${e.name}${e.free ? '<i>free</i>' : ""}</span><span class="mvia">${e.via}</span><span class="mstats">${e.time} · ${e.tokens} · ${Math.round(e.len)}s video</span></button>`).join("");
+    models.addEventListener("click", ev => { const b = ev.target.closest("[data-i]"); if (b) pick(+b.dataset.i); });
+    const seek = ev => { const b = ev.target.closest("[data-t]"); if (!b) return; if (!iv.getAttribute("src")) { iv.src = iv.dataset.src; } iv.currentTime = +b.dataset.t + 0.05; iv.play().catch(() => {}); };
+    list.addEventListener("click", seek);
+    track.addEventListener("click", seek);
+    iv.loop = true;
+    iv.addEventListener("timeupdate", () => {
+      const e = EDITS[cur], t = iv.currentTime;
+      head.style.left = `${Math.min(100, t / e.len * 100)}%`;
+      let on = 0; e.scenes.forEach(([st], k) => { if (t >= st - 0.05) on = k; });
+      [...list.children].forEach((li, k) => li.classList.toggle("on", k === on));
+      [...track.children].forEach((sg, k) => sg.classList.toggle("on", k === on));
+    });
+    pick(0);
   }
 
   /* tutorial: folder animation plays when it scrolls into view */

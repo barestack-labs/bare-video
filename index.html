@@ -13,7 +13,7 @@
 <script>try{if(localStorage.getItem("bv-theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
 <link rel="preload" href="assets/fonts/InstrumentSans-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/vendor/lenis.css">
-<link rel="stylesheet" href="assets/site.css?v=a658a39">
+<link rel="stylesheet" href="assets/site.css?v=r4">
 </head>
 <body>
 
@@ -34,65 +34,51 @@
 
 <main>
 <section class="hero wrap">
-  <h1 class="rise">Your AI agent can edit your videos. Even the free ones.</h1>
-  <p class="lede rise">Bare Video is a free skill you hand to Kilo CLI, Claude Code, Codex or any agent that runs commands, and it cuts your talking-head video, adds captions that follow every word, and puts clean graphics on top for TikTok, Reels and Shorts.</p>
-  <div class="cta rise">
-    <a class="btn primary" href="#start">Get the prompt</a>
-    <a class="btn ghost" href="tutorial.html">I'm new to this</a>
-  </div>
-  <p class="small rise">Free and open source. Your video stays on your computer.</p>
-
-  <!-- the product: a real agent session per model, with the video it made -->
-  <div class="demo rise" id="examples">
-    <div class="tabs" role="tablist" aria-label="Edits made by different models">
-      <button role="tab" aria-selected="true" data-tab="0">Claude Haiku</button>
-      <button role="tab" aria-selected="false" data-tab="1">Nemotron 3 Ultra <i>free</i></button>
-      <button role="tab" aria-selected="false" data-tab="2">Nemotron 3.5 VL <i>free</i></button>
+  <div class="hero-text">
+    <h1 class="rise">Your AI agent can edit your videos. Even the <mark class="spoken">free</mark> ones.</h1>
+    <p class="lede rise">Bare Video is a free skill you hand to your AI agent, and it cuts your talking-head video, adds captions that follow every word, and puts clean graphics on top for TikTok, Reels and Shorts.</p>
+    <div class="cta rise">
+      <a class="btn primary" href="#examples">See what it made</a>
+      <a class="btn ghost" href="tutorial.html">I'm new to this</a>
     </div>
-    <div class="window">
-      <div class="bar"><span class="dots"><b></b><b></b><b></b></span><span class="path" id="demo-path">videos/demo · claude</span></div>
-      <div class="win-body">
-        <div class="log">
-          <div class="msg you">Edit my video with Bare Video. Read bare-video/SKILL.md and follow its steps.</div>
-          <ol class="steps-log" id="demo-log"></ol>
-          <dl class="stats" id="demo-stats"></dl>
-        </div>
-        <div class="phone">
-          <div class="player">
-            <video id="demo-video" data-src="https://media.paulablaza.com/haiku-daylight.mp4" poster="assets/frames/haiku-daylight.jpg" muted loop playsinline preload="none" aria-label="The edit this model made"></video>
-            <button type="button" class="sound" aria-label="Turn sound on" aria-pressed="false">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="on" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M17 9l5 6M22 9l-5 6"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <p class="caption">Same 4-minute recording, same prompt, each model working alone. Times and tokens are what each agent reported.</p>
+    <p class="works rise">Works with Kilo CLI, Claude Code, Codex, OpenCode, Hermes Agent and any agent that can run commands.</p>
   </div>
-</section>
-
-<section class="works wrap reveal" aria-label="Agents it works with">
-  <p>Works with the agent you already have</p>
-  <ul class="chips">
-    <li>Kilo CLI</li><li>Claude Code</li><li>Codex</li><li>OpenCode</li><li>Hermes Agent</li><li>Cline</li><li>Cursor</li><li>Gemini CLI</li>
-  </ul>
-</section>
-
-<section class="start wrap reveal" id="start" aria-labelledby="start-h">
-  <div class="start-text">
-    <h2 id="start-h">Already use an AI agent? Paste this.</h2>
-    <p>Open your agent in a folder with your video, paste this, and add the path at the end. It asks how long you want it, which look and what kind of captions, and then it just works.</p>
-    <p class="small">New to all this? The <a href="tutorial.html">tutorial</a> goes from zero, or you can even send your agent there and let it set everything up for you.</p>
-  </div>
-  <div class="prompt">
-    <div class="prompt-head"><span>prompt.txt</span><button type="button" class="copy" data-copy="prompt-text">Copy</button></div>
+  <div class="hero-prompt rise" id="start">
+    <div class="prompt">
+      <div class="prompt-head"><span>Paste this into your agent</span><button type="button" class="copy" data-copy="prompt-text">Copy</button></div>
 <pre id="prompt-text">Edit my video with Bare Video.
 1. If there is no bare-video folder here, run:
    git clone --depth 1 https://github.com/barestack-labs/bare-video
 2. Read bare-video/SKILL.md and follow its steps in order.
 
 My video: </pre>
+    </div>
+    <p class="small">Add the path to your video at the end, or let the agent ask. It asks how long you want it, which look and what captions, then gets to work. Your video stays on your computer.</p>
   </div>
+</section>
+
+<section class="inspect wrap reveal" id="examples" aria-labelledby="ex-h">
+  <div class="head-row">
+    <h2 id="ex-h">One recording, three editors</h2>
+    <p>I gave three models the same 4-minute video and the same prompt. Each one chose its own cuts and its own scenes. Pick a model, then click any scene to jump to it.</p>
+  </div>
+  <div class="inspector">
+    <div class="models" role="radiogroup" aria-label="Pick a model"></div>
+    <div class="stage">
+      <div class="player">
+        <video id="ins-video" data-src="https://media.paulablaza.com/haiku-daylight.mp4" poster="assets/frames/haiku-daylight.jpg" muted playsinline preload="none" aria-label="The edit the selected model made"></video>
+        <button type="button" class="sound" aria-label="Turn sound on" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="on" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="off" d="M17 9l5 6M22 9l-5 6"/></svg>
+        </button>
+      </div>
+      <div class="timeline" aria-hidden="true"><div class="track"></div><div class="head"></div></div>
+    </div>
+    <div class="scenes">
+      <p class="scenes-title">Scenes it chose</p>
+      <ol id="ins-scenes"></ol>
+    </div>
+  </div>
+  <p class="caption">Times and tokens are what each agent reported. The Nemotron models ran for free through Kilo.</p>
 </section>
 
 <section class="looks wrap reveal" aria-labelledby="looks-h">
@@ -151,6 +137,6 @@ My video: </pre>
 </footer>
 
 <script src="assets/vendor/lenis.min.js"></script>
-<script src="assets/site.js?v=a658a39"></script>
+<script src="assets/site.js?v=r4"></script>
 </body>
 </html>
