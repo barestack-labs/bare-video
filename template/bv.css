@@ -44,7 +44,7 @@ html, body { background: #000; }
 .t-paper .h1 { font-size: calc(150px * var(--k, 1)); }
 .t-paper .on-face .h1 { font-size: calc(112px * var(--k, 1)); }
 .t-paper .row, .t-paper .step { font-size: calc(116px * var(--k, 1)); }
-.t-paper .cmp .col b { font-size: calc(90px * var(--k, 1)); }
+.t-paper .cmp .col b { font-size: calc(104px * var(--k, 1)); }
 .m { display: inline-block; overflow: hidden; vertical-align: top; padding: .06em .02em .14em; margin: -.06em -.02em -.14em; }
 .w { display: inline-block; }
 
@@ -74,7 +74,7 @@ html, body { background: #000; }
 .cmp .col { display: flex; flex-direction: column; justify-content: center; gap: calc(18px * var(--k, 1)); background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius); padding: calc(40px * var(--k, 1)) calc(32px * var(--k, 1)); }
 .on-face .cmp .col { background: none; border: 0; padding: 0; }
 .cmp .col.win { border-color: var(--accent); }
-.cmp .col b { font-size: calc(74px * var(--k, 1)); }
+.cmp .col b { font-size: calc(88px * var(--k, 1)); }
 .cmp .vs { align-self: center; font: 700 calc(36px * var(--k, 1))/1 var(--mono); color: var(--muted); }
 
 /* quote */
@@ -108,5 +108,5 @@ html, body { background: #000; }
   background: color-mix(in srgb, var(--accent) calc(var(--on, 0) * 100%), transparent);
   color: color-mix(in srgb, var(--accent-ink) calc(var(--on, 0) * 100%), #fff);
   -webkit-text-stroke-width: calc(14px * (1 - var(--on, 0))); }
-.caps-clean .cap { font-size: 70px; font-weight: 700; -webkit-text-stroke: 0; text-shadow: 0 2px 14px rgba(0,0,0,.75), 0 0 2px rgba(0,0,0,.9); text-transform: none; letter-spacing: -.01em; }
-.caps-clean .cap i, .caps-clean.cap-block .cap i { color: #fff; background: none; padding: 0; margin: 0; opacity: calc(.6 + .4 * var(--on, 0)); }
+.caps-clean .cap { font-size: 70px; font-weight: 700; -webkit-text-stroke: 9px rgba(0,0,0,.88); text-shadow: 0 2px 12px rgba(0,0,0,.5); text-transform: none; letter-spacing: -.01em; }
+.caps-clean .cap i, .caps-clean.cap-block .cap i { color: #fff; background: none; padding: 0; margin: 0; opacity: calc(.78 + .22 * var(--on, 0)); }

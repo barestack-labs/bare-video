@@ -86,7 +86,9 @@ ${mediaTags}</div>
 <div id="scenes"></div>
 <div id="caps"></div>
 ${audioTags}<script src="${gsap}"></script>
-<script>window.BV = ${json};</script>
+<script>window.BV = ${json};
+window.__timelines = window.__timelines || {};
+window.__timelines["bare-video"] = gsap.timeline({ paused: true });</script>
 <script src="bv/bv.js"></script>
 </div>
 </body>
@@ -94,6 +96,8 @@ ${audioTags}<script src="${gsap}"></script>
 `;
 fs.writeFileSync("work/index.html", html);
 console.log(`\nBuilt work/index.html (${V.theme}, captions ${V.captions}). Next:`);
-console.log("  look:    npx hyperframes snapshot work --at 1,4,8   (then open the PNGs)");
+const mids = V.scenes.filter(s => s.type !== "none").map(s => +(s.t + Math.min(s.end - s.t, 1.6 + (s.end - s.t) / 3)).toFixed(1));
+const at = (mids.length ? mids : [1, V.duration / 2]).slice(0, 12).join(",");
+console.log(`  look:    npx hyperframes snapshot work --at ${at} --no-end   (then open contact-sheet.jpg)`);
 console.log("  preview: npx hyperframes preview work");
 console.log("  render:  npx hyperframes render work --output work/render.mp4   (only after the user approves)");

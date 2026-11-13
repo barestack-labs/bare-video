@@ -7,7 +7,7 @@ description: Edit a talking-head video into a vertical short (1080x1920) with cl
 
 You edit by writing two small JSON files. The scripts do the hard parts (cutting, timing, captions, layout, rendering checks). Do not write HTML or FFmpeg filter graphs yourself.
 
-In this file `BV` means the folder this SKILL.md is in. Run every command from inside the video's own folder, for example `node ../bare-video/scripts/transcribe.mjs source.mp4`.
+In this file `BV` means the folder this SKILL.md is in, and `source.mp4` means the user's video: replace it with the real path (any format FFmpeg reads, such as .mp4, .mov or .mkv). Run every command from inside the video's own folder, for example `node ../bare-video/scripts/transcribe.mjs source.mp4`.
 
 Read the files in `BV/docs/` only when a step tells you to.
 
@@ -41,7 +41,8 @@ node BV/scripts/transcribe.mjs source.mp4 --terms "Brand Name,Model X,Person Nam
 ```
 
 - `--terms` is a comma list of names and words that are easy to mishear. Take them from the user's message and file names.
-- It uses Groq (free API key) or Deepgram if a key is in `.env`. If no key exists, the script says what to do. Ask the user to put the key in the `.env` file themselves, open the file for them in their editor, and never ask for the key in chat.
+- It uses Groq (free API key) or Deepgram, reading the key from a `.env` file in the video folder or any folder above it (usually `videos/.env`). If no key exists, the script says what to do. Create the `.env` file with an empty `GROQ_API_KEY=` line, open it in the user's editor, and ask them to paste the key there and save. Never ask for the key in chat.
+- Names, websites and model numbers are often misheard. Do not fix them now. Note the right spelling and fix the captions in Step 6 with `"fix"`.
 - Output: `edit/lines.txt` (one sentence per line, numbered L1, L2...) and `edit/words.txt` (every word with its time).
 
 ## Step 4. Choose what to keep
@@ -64,7 +65,7 @@ Read `edit/lines.txt`. Write `edit/cuts.json`:
 node BV/scripts/cut.mjs source.mp4
 ```
 
-It removes pauses automatically and writes `work/cut.mp4` and `edit/cut.lines.txt`. Read `edit/cut.lines.txt` and check that it reads well from top to bottom. If not, fix `edit/cuts.json` and run it again.
+It removes pauses automatically and writes `work/cut.mp4` and `edit/cut.lines.txt`. From now on use `edit/cut.lines.txt` and `edit/cut.words.txt`: their numbers and times are for the cut video, not the original. Read `edit/cut.lines.txt` from top to bottom: every sentence must be complete and make sense. Read every `CHECK:` line the script prints. A part that starts or stops mid-sentence is usually a mistake. Fix `edit/cuts.json` and run it again.
 
 ## Step 6. Plan the visuals
 
@@ -89,7 +90,9 @@ Rules that make it look good:
 - A new scene every 3 to 6 seconds. Go back to the face (`"layout": "face"` with no type) between graphics, so the viewer sees the person.
 - The first 2 seconds should show the hook: a `title` with the main promise, or the face with a `punch`.
 - Only show a graphic when it adds something: a name, a number, a list, a step, a comparison, a real image. Do not put the same words the person is saying on screen just to fill time.
-- On-screen text is 2 to 7 words. Highlight one word with `*stars*`.
+- On-screen text is 2 to 7 words, list and step items under 24 characters. Highlight one word with `*stars*`.
+- Graphics should be on screen about 40 to 70 percent of the time. `check.mjs` reports the number.
+- Fix misheard names in the captions with `"fix": {"wrong words": "Right Words"}` (copy the wrong words from `edit/cut.words.txt`).
 - Numbers must be real: said in the video, or from a real document the user gave (then add `"source"`). Never invent stats, prices, specs, logos, screenshots or quotes.
 - Use the user's real images and clips with `"type": "media"`. If there are none, do not pretend there are.
 - Last scene: an `end` card, or the face.
@@ -106,10 +109,9 @@ Fix every PROBLEM and run it again until it says OK. Read the warnings and fix t
 
 ```
 node BV/scripts/build.mjs
-npx hyperframes snapshot work --at 1,5,10,15,20 --no-end
 ```
 
-Pick the `--at` times from the middle of your graphic scenes. Open `contact-sheet.jpg` in the folder it prints and actually look at it: text cut off, text over the face, an empty screen, or something unreadable is a bug. If you cannot view images, say so to the user instead of claiming it looks right.
+It prints a `npx hyperframes snapshot` command with times in the middle of your graphic scenes. Run that command, open the `contact-sheet.jpg` it prints, and actually look at it. On split screens the caption sits on the line between the two halves on purpose. Real problems are: text cut off, text over the face, an empty screen, or something unreadable. If you cannot view images, say so to the user instead of claiming it looks right.
 
 ## Step 9. Show the user
 

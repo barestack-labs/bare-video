@@ -160,6 +160,11 @@ export function loadPlan(file = "edit/edit.json") {
   const graphic = kept.filter(s => s.type !== "none").reduce((n, s) => n + (s.end - s.t), 0);
   let longestFace = 0;
   kept.forEach(s => { if (s.type === "none") longestFace = Math.max(longestFace, s.end - s.t); });
+  kept.forEach((s, k) => {
+    const prev = kept[k - 1];
+    if (prev && s.type === "none" && prev.type === "none" && s.layout === prev.layout && !s.punch) Wn.push(`${s.label}: face after face with nothing new does not change the picture. Delete it, add "punch": true, or show something.`);
+  });
+  if (D > 15 && graphic / D < 0.3) Wn.push(`graphics are on screen only ${Math.round(graphic / D * 100)}% of the time. Aim for 40 to 70%: add a list, a stat, a label or a title where something concrete is said.`);
   if (longestFace > 12) Wn.push(`a face-only stretch lasts ${longestFace.toFixed(1)}s. Fine for a strong moment, otherwise add a visual.`);
 
   const joins = (map.pieces || []).slice(1).map(p => p.out_in);

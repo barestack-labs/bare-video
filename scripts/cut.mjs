@@ -134,4 +134,10 @@ writeJSON("edit/cut.map.json", { source: video, duration: +out.duration.toFixed(
 const left = silences("work/cut.mp4").filter(([s, e]) => e - s > 1.0 && s > 0.3 && e < out.duration - 0.3);
 console.log(`OK: work/cut.mp4  ${out.width}x${out.height}  ${out.duration.toFixed(1)}s  (was ${info.duration.toFixed(1)}s, ${segs.length} pieces)`);
 console.log(`Wrote edit/cut.words.txt and edit/cut.lines.txt. Times in these files are cut times: use them in edit.json.`);
+// half sentences are the most common cut mistake: point them out
+const ends = w => /[.?!]["')\]]?$/.test(w.w);
+merged.forEach(([x, y]) => {
+  if (x > 0 && !ends(words[x - 1])) console.log(`CHECK: the kept part starting at word ${x} ("${words.slice(x, x + 4).map(w => w.w).join(" ")}...") starts in the middle of a sentence. Fine if it still makes sense on its own.`);
+  if (y < words.length - 1 && !ends(words[y])) console.log(`CHECK: the kept part ending at word ${y} ("...${words.slice(Math.max(x, y - 3), y + 1).map(w => w.w).join(" ")}") stops in the middle of a sentence. Read edit/cut.lines.txt and make sure it still makes sense.`);
+});
 if (left.length) console.log(`NOTE: ${left.length} pause(s) over 1s remain, at ${left.map(([s]) => s.toFixed(1) + "s").join(", ")}. Fine if deliberate.`);

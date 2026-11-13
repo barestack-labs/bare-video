@@ -5,7 +5,7 @@ function bvStart() {
   const root = document.getElementById("root");
   const $ = id => document.getElementById(id);
   const D = V.duration;
-  const tl = gsap.timeline({ paused: true });
+  const tl = window.__timelines["bare-video"];
 
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const rich = s => esc(s).replace(/\*(.+?)\*/g, '<span class="hl">$1</span>');
@@ -259,14 +259,15 @@ function bvStart() {
   }
 
   tl.set({}, {}, D);
-  window.__timelines = window.__timelines || {};
-  window.__timelines["bare-video"] = tl;
   if (!window.__hyperframes) {
     const q = new URLSearchParams(location.search), at = parseFloat(q.get("t"));
     if (!isNaN(at)) tl.seek(at); else tl.play(0);
   }
 }
 
-// measure text with the real fonts, never the fallback
+// register the paused timeline right away; it is filled once the fonts are loaded,
+// so text is measured with the real fonts and never the fallback
+window.__timelines = window.__timelines || {};
+window.__timelines["bare-video"] = window.__timelines["bare-video"] || gsap.timeline({ paused: true });
 const BV_FONTS = ['800 100px "BV Inter"', '400 100px "BV Serif"', '700 30px "BV Mono"', '800 100px "BV Wide"'];
 Promise.all(BV_FONTS.map(f => document.fonts.load(f))).then(bvStart, bvStart);
